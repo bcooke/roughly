@@ -15,24 +15,24 @@
 
 ## Recently Completed (Last 3)
 
+- ✅ **T-2026-013** - Create database migrations for projections
 - ✅ **T-2026-012** - Refactor to Commanded event-sourcing with TDD
 - ✅ **T-2026-009** - Implement CQRS code structure
-- ✅ **T-2026-007** - Design question relationship graph model
 
 ---
 
 ## Next Up (Top 3 Priorities)
 
-1. **T-2026-013** - Create database migrations for projections
-2. **T-2026-008** - Create design system and Tailwind theme
-3. **T-2026-004** - Expand Glossary and User Personas
+1. **T-2026-008** - Create design system and Tailwind theme
+2. **T-2026-004** - Expand Glossary and User Personas
+3. **T-2026-005** - Improve Feature Documentation Quality
 
 ---
 
 ## Backlog
 
 ### Foundation (P1)
-- **T-2026-013** - Create database migrations for projections (questions, votes, users tables)
+- Database schema refinement (after data model review)
 
 ### Design & Docs (P2)
 - **T-2026-008** - Create design system and Tailwind theme

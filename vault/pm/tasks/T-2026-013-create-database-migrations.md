@@ -3,7 +3,7 @@ type: task
 id: T-2026-013
 story:
 epic:
-status: backlog
+status: completed
 priority: p1
 created: 2026-02-03
 updated: 2026-02-03
@@ -23,12 +23,12 @@ updated: 2026-02-03
 Create Ecto migrations for the projection schemas created in T-2026-012. The aggregates store their state in EventStore, but the projections need PostgreSQL tables for querying.
 
 ## Checklist
-- [ ] Create questions table migration
-- [ ] Create votes table migration
-- [ ] Create users table migration
-- [ ] Add projection_versions table (for Commanded.Projections.Ecto)
-- [ ] Run migrations and verify
-- [ ] Write seed data for development
+- [x] Create questions table migration
+- [x] Create votes table migration
+- [x] Create users table migration
+- [x] Add projection_versions table (for Commanded.Projections.Ecto)
+- [x] Run migrations and verify
+- [ ] Write seed data for development (deferred - not needed yet)
 
 ## Migrations Needed
 
