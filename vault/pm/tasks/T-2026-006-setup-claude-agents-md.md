@@ -3,7 +3,7 @@ type: task
 id: T-2026-006
 story:
 epic:
-status: backlog
+status: in-progress
 priority: p0
 created: 2026-02-03
 updated: 2026-02-03
@@ -13,22 +13,23 @@ updated: 2026-02-03
 
 ## Task Details
 **Task ID**: T-2026-006
-**Status**: Backlog
+**Status**: In Progress
 **Priority**: P0 (Foundation)
 **Branch**: feat/T-2026-006-setup-claude-agents-md
+**PR**: https://github.com/bcooke/roughly/pull/5
 **Created**: 2026-02-03
 
 ## Description
 Create proper CLAUDE.md and AGENTS.md files following the Phoenix/flojo baseline pattern but customized for Roughly. These files establish project context for AI assistants and document our conventions.
 
 ## Checklist
-- [ ] Create CLAUDE.md with project overview and critical rules
-- [ ] Create AGENTS.md with multi-agent system documentation
-- [ ] Document Balustrade PM conventions (tasks, PRs, commits)
-- [ ] Document vault structure and usage
-- [ ] Document architecture (event-sourcing, CQRS, TDD)
-- [ ] Document product vision and key concepts
-- [ ] Reference flojo patterns for CQRS code structure
+- [x] Create CLAUDE.md with project overview and critical rules
+- [x] Create AGENTS.md with multi-agent system documentation
+- [x] Document Balustrade PM conventions (tasks, PRs, commits)
+- [x] Document vault structure and usage
+- [x] Document architecture (event-sourcing, CQRS, TDD)
+- [x] Document product vision and key concepts
+- [x] Reference flojo patterns for CQRS code structure
 
 ## Technical Details
 ### CLAUDE.md Should Include
