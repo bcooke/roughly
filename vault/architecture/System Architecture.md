@@ -193,10 +193,14 @@ roughly/
 - **Rationale**: Simpler ops, transactional consistency between event store and projections
 - **Trade-off**: May need to shard later for scale
 
-### Anonymous Voting with Demographics
-- **Decision**: Votes are anonymous but linked to demographic data
-- **Rationale**: Privacy + useful demographic breakdowns
-- **Trade-off**: Harder to detect bad-faith voting patterns
+### Privacy Model: "Anonymous but Accountable"
+- **Decision**: Accounts required to vote, but individual responses are private
+- **Rationale**:
+  - Accounts incentivize quality (skin in the game)
+  - Prevents duplicate votes
+  - Enables quality signals (account age, patterns)
+  - Only aggregate data is publicly visible
+- **Trade-off**: Higher barrier to entry vs anonymous voting, but better data quality
 
 ---
 

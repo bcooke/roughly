@@ -2,7 +2,29 @@
 
 **Task**: [[T-2026-006-setup-claude-agents-md]]
 **Created**: 2026-02-03
-**Status**: Planning
+**Status**: In Progress
+
+## Progress Update (2026-02-03)
+
+### Completed
+- Created CLAUDE.md as redirect to AGENTS.md
+- Created comprehensive AGENTS.md with:
+  - Project overview and values
+  - Privacy model documentation ("Anonymous but Accountable")
+  - Git workflow and Balustrade PM conventions
+  - Development commands (setup, testing, quality)
+  - Architecture overview with CQRS patterns
+  - Elixir, Ecto, Phoenix, LiveView guidelines
+  - Agent and skills documentation
+  - Testing guidelines (TDD emphasis)
+- Updated Product Vision with privacy model details
+- Updated System Architecture with correct privacy language
+
+### Decisions Made
+- CLAUDE.md is minimal redirect (following flojo pattern)
+- AGENTS.md is comprehensive guide
+- Emphasized privacy model as core architectural principle
+- Included Balustrade PM workflow as standard
 
 ## Overview
 
