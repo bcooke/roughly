@@ -80,11 +80,21 @@ end
 ### Blocked By
 - T-2026-007 (need relationship model design)
 - T-2026-009 (need CQRS folder structure)
+- T-2026-011 (need User schema for Vote association)
 
 ### Blocks
 - Feature implementation
+
+## Privacy Considerations
+- Votes belong to authenticated users only (no anonymous voting)
+- Individual answers are never publicly visible
+- Only aggregate data by demographic slice is exposed
+- Consider k-anonymity threshold (e.g., only show slices with 10+ responses)
+- Snapshot demographics at vote time (user can change profile later)
+- Consider encrypting individual vote records
 
 ## Notes
 - Use UUIDs for all primary keys
 - Snapshot demographics with each vote
 - Consider full-text search from day one
+- See T-2026-011 for auth/user schema details

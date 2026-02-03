@@ -35,7 +35,8 @@
 - **T-2026-006** - Set up CLAUDE.md and AGENTS.md
 - **T-2026-007** - Design question relationship graph model
 - **T-2026-009** - Implement CQRS code structure
-- **T-2026-010** - Create initial Ecto schemas
+- **T-2026-011** - Create auth & user schemas
+- **T-2026-010** - Create initial Ecto schemas (questions/votes)
 
 ### Design & Docs (P2)
 - **T-2026-008** - Create design system and Tailwind theme
@@ -49,6 +50,10 @@
 - Data model: How to efficiently query population overlaps?
 - Polling methodology: How to detect and handle bad-faith responses?
 - Identity: Require verified human identities for voting?
+- **Privacy model**: Accounts required (no anonymous voting), but individual answers private
+  - Only aggregate data visible publicly
+  - Consider encrypting individual vote records
+  - k-anonymity threshold for demographic slices?
 
 ---
 
@@ -59,6 +64,7 @@
 - **Logo Concept**: ≈ symbol with "APPROXIMATE.LY" / "ROUGHLY" branding
 - **Values**: Free, open source, Wikipedia model (not monetized like Gallup)
 - **Architecture**: Event-sourced from day one for vote auditability
+- **Privacy**: Accounts required to vote (no anonymous), but individual responses are private (aggregate-only public data)
 - **Git Workflow**: Squash and merge only, linear history, PRs required for main
 - **Task Granularity**: Small, focused tasks with individual PRs
 
