@@ -36,6 +36,11 @@ erl_crash.dump
 *.plt.hash
 .fetch
 priv/static/assets/
+priv/static/cache_manifest.json
+/cover/
+/doc/
+roughly-*.tar
+assets/node_modules/
 
 # Build outputs (customize for your stack)
 dist/
