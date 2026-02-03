@@ -3,8 +3,9 @@ type: task
 id: T-2026-010
 story:
 epic:
-status: backlog
+status: completed
 priority: p1
+superseded_by: T-2026-012
 created: 2026-02-03
 updated: 2026-02-03
 ---
