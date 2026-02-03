@@ -9,23 +9,23 @@
 
 **Active Task**: None - select from backlog
 **Branch**: main
-**Goal**: Foundation complete, ready for Phoenix setup
+**Goal**: Phoenix foundation complete, ready for feature development
 
 ---
 
 ## Recently Completed (Last 3)
 
+- ✅ **T-2026-001** - Set up Phoenix/Elixir project with Commanded
 - ✅ **T-2025-001** - Tailor Balustrade Template for Roughly
 - ✅ GitHub branch protection configured (squash-only, linear history)
-- ✅ Roughly-specific agents created
 
 ---
 
 ## Next Up (Top 3 Priorities)
 
-1. **T-2026-001** - Set up Phoenix/Elixir project with Commanded
-2. **T-2026-002** - Customize pre-commit hook for Elixir
-3. **T-2026-003** - Add Elixir-specific skills
+1. **T-2026-002** - Customize pre-commit hook for Elixir
+2. **T-2026-003** - Add Elixir-specific skills
+3. **T-2026-004** - Expand Glossary and User Personas
 
 ---
 
