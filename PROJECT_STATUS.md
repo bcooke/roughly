@@ -15,24 +15,23 @@
 
 ## Recently Completed (Last 3)
 
+- ✅ **T-2026-006** - Set up CLAUDE.md and AGENTS.md
 - ✅ **T-2026-003** - Add Elixir-specific skills
 - ✅ **T-2026-002** - Customize pre-commit hook for Elixir
-- ✅ **T-2026-001** - Set up Phoenix/Elixir project with Commanded
 
 ---
 
 ## Next Up (Top 3 Priorities)
 
-1. **T-2026-006** - Set up CLAUDE.md and AGENTS.md (foundation)
-2. **T-2026-007** - Design question relationship graph model
-3. **T-2026-009** - Implement CQRS code structure
+1. **T-2026-007** - Design question relationship graph model
+2. **T-2026-009** - Implement CQRS code structure
+3. **T-2026-011** - Create auth & user schemas
 
 ---
 
 ## Backlog
 
 ### Foundation (P0-P1)
-- **T-2026-006** - Set up CLAUDE.md and AGENTS.md
 - **T-2026-007** - Design question relationship graph model
 - **T-2026-009** - Implement CQRS code structure
 - **T-2026-011** - Create auth & user schemas

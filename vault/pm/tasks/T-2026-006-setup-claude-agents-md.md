@@ -3,7 +3,7 @@ type: task
 id: T-2026-006
 story:
 epic:
-status: in-progress
+status: completed
 priority: p0
 created: 2026-02-03
 updated: 2026-02-03
@@ -13,11 +13,12 @@ updated: 2026-02-03
 
 ## Task Details
 **Task ID**: T-2026-006
-**Status**: In Progress
+**Status**: Completed
 **Priority**: P0 (Foundation)
 **Branch**: feat/T-2026-006-setup-claude-agents-md
 **PR**: https://github.com/bcooke/roughly/pull/5
 **Created**: 2026-02-03
+**Completed**: 2026-02-03
 
 ## Description
 Create proper CLAUDE.md and AGENTS.md files following the Phoenix/flojo baseline pattern but customized for Roughly. These files establish project context for AI assistants and document our conventions.
