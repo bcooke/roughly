@@ -15,24 +15,23 @@
 
 ## Recently Completed (Last 3)
 
+- ✅ **T-2026-009** - Implement CQRS code structure
 - ✅ **T-2026-007** - Design question relationship graph model
 - ✅ **T-2026-006** - Set up CLAUDE.md and AGENTS.md
-- ✅ **T-2026-003** - Add Elixir-specific skills
 
 ---
 
 ## Next Up (Top 3 Priorities)
 
-1. **T-2026-009** - Implement CQRS code structure
-2. **T-2026-011** - Create auth & user schemas
-3. **T-2026-010** - Create initial Ecto schemas (questions/votes)
+1. **T-2026-011** - Create auth & user schemas
+2. **T-2026-010** - Create initial Ecto schemas (questions/votes)
+3. **T-2026-008** - Create design system and Tailwind theme
 
 ---
 
 ## Backlog
 
 ### Foundation (P0-P1)
-- **T-2026-009** - Implement CQRS code structure
 - **T-2026-011** - Create auth & user schemas
 - **T-2026-010** - Create initial Ecto schemas (questions/votes)
 
