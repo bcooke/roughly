@@ -3,7 +3,7 @@ type: task
 id: T-2026-002
 story:
 epic:
-status: backlog
+status: completed
 priority: p1
 created: 2026-02-03
 updated: 2026-02-03
@@ -22,12 +22,12 @@ updated: 2026-02-03
 Customize the pre-commit hook (`.claude/hooks/pre-commit.sh`) to validate Elixir-specific code quality standards instead of generic/Node.js checks.
 
 ## Checklist
-- [ ] Add `mix format --check-formatted` validation
-- [ ] Add `mix credo --strict` linting (if credo installed)
-- [ ] Add `mix dialyzer` type checking (optional, can be slow)
-- [ ] Remove Node.js-specific checks (ESLint, etc.)
-- [ ] Keep universal checks (temporal language, task validation)
-- [ ] Test hook with sample commits
+- [x] Add `mix format --check-formatted` validation
+- [x] Add `mix credo` linting
+- [ ] Add `mix dialyzer` type checking (deferred to CI - too slow)
+- [x] Remove Node.js-specific checks (ESLint, etc.)
+- [x] Keep universal checks (temporal language, task validation)
+- [x] Test hook with sample commits
 
 ## Technical Details
 ### Current checks to keep

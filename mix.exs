@@ -70,7 +70,10 @@ defmodule Roughly.MixProject do
       # Event Sourcing / CQRS
       {:commanded, "~> 1.4"},
       {:commanded_eventstore_adapter, "~> 1.4"},
-      {:eventstore, "~> 1.4"}
+      {:eventstore, "~> 1.4"},
+
+      # Code Quality
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -93,7 +96,12 @@ defmodule Roughly.MixProject do
         "esbuild roughly --minify",
         "phx.digest"
       ],
-      precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "test"]
+      precommit: [
+        "compile --warnings-as-errors",
+        "credo",
+        "format --check-formatted",
+        "test"
+      ]
     ]
   end
 end

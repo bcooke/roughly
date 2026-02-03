@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Pre-commit hook for your-project
+# Pre-commit hook for Roughly (Phoenix/Elixir)
 # Validates code quality and PM discipline before commit
 
 set -e
@@ -9,24 +9,54 @@ GIT_ROOT=$(git rev-parse --show-toplevel)
 CURRENT_BRANCH=$(git branch --show-current)
 
 # ============================================================================
-# Code Quality Checks
+# Elixir Code Quality Checks
 # ============================================================================
 
-# Check for common debug statements in staged JavaScript/TypeScript files
-STAGED_JS_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$' || true)
+# Check for staged Elixir files
+STAGED_EX_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ex|exs)$' || true)
 
-if [ -n "$STAGED_JS_FILES" ]; then
-    # Check for console.log (but allow in specific files like dev tools)
-    for FILE in $STAGED_JS_FILES; do
-        if ! echo "$FILE" | grep -qE '(devtools|debug|test|spec)\.(js|ts)'; then
-            if grep -nE '^\s*console\.(log|debug|info)' "$FILE" 2>/dev/null; then
-                echo "⚠️  Warning: Found console.log in $FILE"
+if [ -n "$STAGED_EX_FILES" ]; then
+    # Check for IO.inspect debug statements (warning only for non-test files)
+    for FILE in $STAGED_EX_FILES; do
+        if ! echo "$FILE" | grep -qE '(test|spec)'; then
+            if grep -nE '^\s*IO\.(inspect|puts|warn)' "$FILE" 2>/dev/null; then
+                echo "⚠️  Warning: Found IO.inspect in $FILE"
                 echo "   Consider removing debug statements before committing"
                 # Warning only, don't block
             fi
         fi
 
-        # Check for debugger statements (block these)
+        # Check for IEx.pry (block these)
+        if grep -nE 'IEx\.pry' "$FILE" 2>/dev/null; then
+            echo "❌ Found IEx.pry in $FILE"
+            echo "   Remove debugger statements before committing"
+            exit 1
+        fi
+
+        # Check for :debugger.break (block these)
+        if grep -nE ':debugger\.break' "$FILE" 2>/dev/null; then
+            echo "❌ Found :debugger.break in $FILE"
+            echo "   Remove debugger statements before committing"
+            exit 1
+        fi
+    done
+fi
+
+# Check for staged JavaScript files (assets)
+STAGED_JS_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$' || true)
+
+if [ -n "$STAGED_JS_FILES" ]; then
+    for FILE in $STAGED_JS_FILES; do
+        # Skip vendor files
+        if echo "$FILE" | grep -qE 'vendor/'; then
+            continue
+        fi
+
+        if grep -nE '^\s*console\.(log|debug|info)' "$FILE" 2>/dev/null; then
+            echo "⚠️  Warning: Found console.log in $FILE"
+            echo "   Consider removing debug statements before committing"
+        fi
+
         if grep -nE '^\s*debugger' "$FILE" 2>/dev/null; then
             echo "❌ Found debugger statement in $FILE"
             echo "   Remove debugger statements before committing"
