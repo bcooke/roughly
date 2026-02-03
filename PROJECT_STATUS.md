@@ -23,15 +23,18 @@
 
 ## Next Up (Top 3 Priorities)
 
-1. **T-2026-011** - Create auth & user schemas
-2. **T-2026-010** - Create initial Ecto schemas (questions/votes)
-3. **T-2026-008** - Create design system and Tailwind theme
+1. **T-2026-012** - Refactor to Commanded event-sourcing with TDD (CRITICAL)
+2. **T-2026-011** - Create auth & user schemas (superseded by T-2026-012)
+3. **T-2026-010** - Create initial Ecto schemas (superseded by T-2026-012)
 
 ---
 
 ## Backlog
 
-### Foundation (P0-P1)
+### Foundation (P0 - Critical)
+- **T-2026-012** - Refactor to Commanded event-sourcing with TDD
+
+### Foundation (P1 - After T-2026-012)
 - **T-2026-011** - Create auth & user schemas
 - **T-2026-010** - Create initial Ecto schemas (questions/votes)
 
@@ -57,10 +60,12 @@
 ## Key Decisions
 
 - **Tech Stack**: Phoenix/Elixir with LiveView, Commanded for event sourcing, PostgreSQL
+- **TDD Mandatory**: All code changes must follow Red → Green → Refactor. Never write implementation without failing test first
+- **Event-Sourced Architecture**: Commanded aggregates for write side, Ecto projections for read side. Never query aggregates directly
+- **No Demographics Context**: Demographics are just questions - no separate context needed
 - **Design Philosophy**: Minimal, white/gray base, functional accent colors (538-inspired)
 - **Logo Concept**: ≈ symbol with "APPROXIMATE.LY" / "ROUGHLY" branding
 - **Values**: Free, open source, Wikipedia model (not monetized like Gallup)
-- **Architecture**: Event-sourced from day one for vote auditability
 - **Privacy**: Accounts required to vote (no anonymous), but individual responses are private (aggregate-only public data)
 - **Git Workflow**: Squash and merge only, linear history, PRs required for main
 - **Task Granularity**: Small, focused tasks with individual PRs
