@@ -3,7 +3,7 @@ type: task
 id: T-2026-003
 story:
 epic:
-status: backlog
+status: completed
 priority: p2
 created: 2026-02-03
 updated: 2026-02-03
@@ -22,11 +22,11 @@ updated: 2026-02-03
 Create Elixir/Phoenix-specific skills in `.claude/skills/` to provide domain expertise for the codebase.
 
 ## Checklist
-- [ ] Create `event-sourcing.md` skill (Commanded patterns)
-- [ ] Create `liveview.md` skill (Phoenix LiveView patterns)
-- [ ] Create `ecto.md` skill (Schema, migrations, queries)
-- [ ] Update `test-setup.md` for ExUnit patterns
-- [ ] Update `api-design.md` for Phoenix conventions
+- [x] Create `event-sourcing.md` skill (Commanded patterns)
+- [x] Create `liveview.md` skill (Phoenix LiveView patterns)
+- [x] Create `ecto.md` skill (Schema, migrations, queries)
+- [x] Update `test-setup.md` for ExUnit patterns
+- [ ] Update `api-design.md` for Phoenix conventions (deferred)
 
 ## Skills to Create
 

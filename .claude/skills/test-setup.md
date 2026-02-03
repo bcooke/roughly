@@ -392,3 +392,121 @@ Add YOUR project's testing patterns:
 - CI/CD integration
 - Coverage requirements
 - Common test utilities
+
+---
+
+## Elixir/ExUnit Patterns (Roughly-specific)
+
+### Test Structure
+
+```elixir
+defmodule Roughly.Questions.QuestionTest do
+  use Roughly.DataCase, async: true
+
+  alias Roughly.Questions.Question
+
+  describe "changeset/2" do
+    test "validates required fields" do
+      changeset = Question.changeset(%Question{}, %{})
+      refute changeset.valid?
+      assert "can't be blank" in errors_on(changeset).text
+    end
+
+    test "accepts valid attributes" do
+      changeset = Question.changeset(%Question{}, %{
+        text: "What is your favorite color?",
+        question_type: :multiple_choice
+      })
+      assert changeset.valid?
+    end
+  end
+end
+```
+
+### LiveView Tests
+
+```elixir
+defmodule RoughlyWeb.QuestionLive.IndexTest do
+  use RoughlyWeb.ConnCase
+
+  import Phoenix.LiveViewTest
+
+  test "lists questions", %{conn: conn} do
+    question = insert(:question)
+    {:ok, view, _html} = live(conn, ~p"/questions")
+
+    assert has_element?(view, "#question-#{question.uuid}")
+  end
+
+  test "creates new question", %{conn: conn} do
+    {:ok, view, _html} = live(conn, ~p"/questions/new")
+
+    view
+    |> form("#question-form", question: %{text: "Test question?"})
+    |> render_submit()
+
+    assert_redirect(view, ~p"/questions")
+  end
+end
+```
+
+### Commanded Aggregate Tests
+
+```elixir
+defmodule Roughly.Questions.Aggregates.QuestionTest do
+  use Roughly.AggregateCase, aggregate: Roughly.Questions.Aggregates.Question
+
+  alias Roughly.Questions.Commands.CreateQuestion
+  alias Roughly.Questions.Events.QuestionCreated
+
+  test "creates question" do
+    uuid = UUID.uuid4()
+
+    assert_events(
+      %CreateQuestion{uuid: uuid, text: "Test?", question_type: :binary},
+      [%QuestionCreated{uuid: uuid, text: "Test?", question_type: :binary}]
+    )
+  end
+end
+```
+
+### Test Factories with ExMachina
+
+```elixir
+# test/support/factory.ex
+defmodule Roughly.Factory do
+  use ExMachina.Ecto, repo: Roughly.Repo
+
+  def question_factory do
+    %Roughly.Questions.Question{
+      uuid: UUID.uuid4(),
+      text: sequence(:text, &"Question #{&1}?"),
+      question_type: :multiple_choice,
+      status: :draft
+    }
+  end
+end
+
+# Usage in tests
+question = insert(:question)
+question = insert(:question, status: :active)
+questions = insert_list(3, :question)
+```
+
+### Async Tests
+
+Use `async: true` when tests don't share state:
+
+```elixir
+use Roughly.DataCase, async: true
+```
+
+### Running Tests
+
+```bash
+mix test                     # All tests
+mix test test/roughly/       # Specific directory
+mix test --only wip          # Only @tag :wip tests
+mix test --cover             # With coverage
+mix test --stale             # Only changed
+```
