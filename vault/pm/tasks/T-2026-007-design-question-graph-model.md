@@ -3,7 +3,7 @@ type: task
 id: T-2026-007
 story:
 epic:
-status: in-progress
+status: completed
 priority: p1
 created: 2026-02-03
 updated: 2026-02-03
@@ -13,10 +13,12 @@ updated: 2026-02-03
 
 ## Task Details
 **Task ID**: T-2026-007
-**Status**: In Progress
+**Status**: Completed
 **Priority**: P1
 **Branch**: feat/T-2026-007-design-question-graph-model
+**PR**: https://github.com/bcooke/roughly/pull/6
 **Created**: 2026-02-03
+**Completed**: 2026-02-03
 
 ## Description
 Design a robust data model for question relationships, including:
