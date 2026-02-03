@@ -3,7 +3,7 @@ type: task
 id: T-2026-007
 story:
 epic:
-status: backlog
+status: in-progress
 priority: p1
 created: 2026-02-03
 updated: 2026-02-03
@@ -13,7 +13,7 @@ updated: 2026-02-03
 
 ## Task Details
 **Task ID**: T-2026-007
-**Status**: Backlog
+**Status**: In Progress
 **Priority**: P1
 **Branch**: feat/T-2026-007-design-question-graph-model
 **Created**: 2026-02-03
@@ -27,12 +27,12 @@ Design a robust data model for question relationships, including:
 - Relationship scoring/strength
 
 ## Checklist
-- [ ] Research graph database patterns (can use PostgreSQL with extensions)
-- [ ] Design relationship types and their semantics
-- [ ] Design scoring/strength model for relationships
-- [ ] Document in vault/architecture/Question Relationships.md
-- [ ] Define Ecto schemas for relationships
-- [ ] Consider how to detect/suggest relationships
+- [x] Research graph database patterns (can use PostgreSQL with extensions)
+- [x] Design relationship types and their semantics
+- [x] Design scoring/strength model for relationships
+- [x] Document in vault/architecture/Question Relationships.md
+- [x] Define Ecto schemas for relationships
+- [x] Consider how to detect/suggest relationships
 
 ## Key Concepts to Model
 - **Equivalence**: "Is X the same question as Y?" (e.g., different wordings)
