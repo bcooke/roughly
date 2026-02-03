@@ -15,17 +15,17 @@
 
 ## Recently Completed (Last 3)
 
+- ✅ **T-2026-003** - Add Elixir-specific skills
 - ✅ **T-2026-002** - Customize pre-commit hook for Elixir
 - ✅ **T-2026-001** - Set up Phoenix/Elixir project with Commanded
-- ✅ **T-2025-001** - Tailor Balustrade Template for Roughly
 
 ---
 
 ## Next Up (Top 3 Priorities)
 
-1. **T-2026-003** - Add Elixir-specific skills
-2. **T-2026-004** - Expand Glossary and User Personas
-3. **T-2026-005** - Improve Feature Documentation Quality
+1. **T-2026-004** - Expand Glossary and User Personas
+2. **T-2026-005** - Improve Feature Documentation Quality
+3. Create first domain feature (e.g., Question aggregate)
 
 ---
 
