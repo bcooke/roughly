@@ -72,6 +72,9 @@ defmodule Roughly.MixProject do
       {:commanded_eventstore_adapter, "~> 1.4"},
       {:eventstore, "~> 1.4"},
 
+      # Authentication
+      {:bcrypt_elixir, "~> 3.0"},
+
       # Code Quality
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]

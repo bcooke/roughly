@@ -3,7 +3,7 @@ type: task
 id: T-2026-009
 story:
 epic:
-status: backlog
+status: in-progress
 priority: p1
 created: 2026-02-03
 updated: 2026-02-03
@@ -13,7 +13,7 @@ updated: 2026-02-03
 
 ## Task Details
 **Task ID**: T-2026-009
-**Status**: Backlog
+**Status**: In Progress
 **Priority**: P1
 **Branch**: feat/T-2026-009-implement-cqrs-structure
 **Created**: 2026-02-03
@@ -26,14 +26,14 @@ Set up the CQRS code structure following flojo patterns:
 - Context modules as public APIs
 
 ## Checklist
-- [ ] Create Questions context with commands/queries/schemas folders
-- [ ] Create Voting context structure
-- [ ] Create Users context structure
-- [ ] Create Demographics context structure
-- [ ] Set up base command pattern (struct + execute/1)
-- [ ] Set up base query pattern
-- [ ] Create context gateway modules
-- [ ] Add Flojo.Commands.Error equivalent
+- [x] Create Questions context with commands/queries/schemas folders
+- [x] Create Voting context structure
+- [x] Create Users context structure
+- [x] Create Demographics context structure
+- [x] Set up base command pattern (struct + execute/1)
+- [x] Set up base query pattern
+- [x] Create context gateway modules
+- [x] Add Flojo.Commands.Error equivalent
 
 ## Code Structure
 ```
