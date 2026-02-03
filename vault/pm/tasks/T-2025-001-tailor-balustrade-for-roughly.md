@@ -3,10 +3,10 @@ type: task
 id: T-2025-001
 story:
 epic:
-status: in-progress
+status: completed
 priority: p0
 created: 2025-02-02
-updated: 2025-02-02
+updated: 2026-02-03
 ---
 
 # Task: Tailor Balustrade Template for Roughly
@@ -15,12 +15,12 @@ updated: 2025-02-02
 **Task ID**: T-2025-001
 **Story**: -
 **Epic**: -
-**Status**: In Progress
+**Status**: Completed
 **Priority**: P0 (Foundation)
-**Branch**: feat/T-2025-001-tailor-balustrade-for-roughly
+**Branch**: main (direct commits - pre-branch-protection)
 **Created**: 2025-02-02
 **Started**: 2025-02-02
-**Completed**:
+**Completed**: 2026-02-03
 
 ## Description
 Transform the Balustrade template into the foundation for "The Roughly Project" - a Wikipedia-like encyclopedia of world percentages and polling data. This involves updating all project references, establishing the project vision documentation, and preparing the codebase for Phoenix/Elixir development.
@@ -44,7 +44,9 @@ Transform the Balustrade template into the foundation for "The Roughly Project" 
 - [x] Update .claude/aliases.sh
 - [x] Create next task (T-2026-001 Phoenix setup)
 - [x] Create context document
-- [ ] Final commit
+- [x] Final commit
+- [x] Install git hooks
+- [x] Create Roughly-specific agents (full-stack-dev, product-manager, user-tester)
 
 ## Technical Details
 ### Approach
@@ -99,7 +101,8 @@ Transform the Balustrade template into the foundation for "The Roughly Project" 
 See [[T-2025-001-context]] for detailed implementation notes and project background.
 
 ## Commits
-- (pending final commit)
+- `feat: transform Balustrade template into Roughly project foundation`
+- `feat(agents): add Roughly-specific agents`
 
 ## Review Checklist
 - [x] Project vision clearly documented
@@ -107,7 +110,8 @@ See [[T-2025-001-context]] for detailed implementation notes and project backgro
 - [x] Architecture documented for Phoenix/Commanded
 - [x] Data model documented
 - [x] Features documented
-- [ ] Committed to git
+- [x] Committed to git
+- [x] Pushed to GitHub
 
 ## Notes
 - Key tech stack: Phoenix, Elixir, LiveView, Commanded (event sourcing)
