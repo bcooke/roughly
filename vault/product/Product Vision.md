@@ -78,6 +78,28 @@ Browse by topic: Home, World, US, Business, Technology, Entertainment, Sports, S
 - Consider verified human identities for voting
 - Event sourcing for complete audit trail
 
+## Privacy Model
+
+### "Anonymous but Accountable"
+A core design principle: **accounts required, but responses private**.
+
+- **No anonymous voting**: Users must have an account to answer questions
+  - Incentivizes quality responses (skin in the game)
+  - Enables duplicate vote prevention
+  - Allows users to view their own answer history
+  - Supports quality signals (account age, answer patterns)
+- **Individual answers are never public**: Only aggregate data is visible
+  - Users can see what they answered, but no one else can
+  - Only demographic slice aggregates are shown publicly
+  - Consider k-anonymity thresholds (e.g., only show slices with 10+ responses)
+- **Potential encryption**: Consider encrypting individual vote records for defense in depth
+  - Users could prove their own vote if needed
+  - Aggregate queries work on encrypted data or via projections
+  - Protects against database breaches exposing individual responses
+
+### Why This Matters
+People want to share their honest opinions without being individually identified. The value is in the aggregate ("60% of women under 30 prefer X") not in "user@email.com chose X". Protecting individual privacy while requiring accountability creates trust.
+
 ## What Makes This Different
 
 | Competitor | Problem | Roughly's Approach |
