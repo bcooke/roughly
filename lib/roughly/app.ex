@@ -11,5 +11,9 @@ defmodule Roughly.App do
     event_store: [
       adapter: Commanded.EventStore.Adapters.EventStore,
       event_store: Roughly.EventStore
-    ]
+    ],
+    pubsub: :local,
+    registry: :local
+
+  router(Roughly.Router)
 end

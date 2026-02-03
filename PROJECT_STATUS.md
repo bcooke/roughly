@@ -15,28 +15,24 @@
 
 ## Recently Completed (Last 3)
 
+- ✅ **T-2026-012** - Refactor to Commanded event-sourcing with TDD
 - ✅ **T-2026-009** - Implement CQRS code structure
 - ✅ **T-2026-007** - Design question relationship graph model
-- ✅ **T-2026-006** - Set up CLAUDE.md and AGENTS.md
 
 ---
 
 ## Next Up (Top 3 Priorities)
 
-1. **T-2026-012** - Refactor to Commanded event-sourcing with TDD (CRITICAL)
-2. **T-2026-011** - Create auth & user schemas (superseded by T-2026-012)
-3. **T-2026-010** - Create initial Ecto schemas (superseded by T-2026-012)
+1. **T-2026-013** - Create database migrations for projections
+2. **T-2026-008** - Create design system and Tailwind theme
+3. **T-2026-004** - Expand Glossary and User Personas
 
 ---
 
 ## Backlog
 
-### Foundation (P0 - Critical)
-- **T-2026-012** - Refactor to Commanded event-sourcing with TDD
-
-### Foundation (P1 - After T-2026-012)
-- **T-2026-011** - Create auth & user schemas
-- **T-2026-010** - Create initial Ecto schemas (questions/votes)
+### Foundation (P1)
+- **T-2026-013** - Create database migrations for projections (questions, votes, users tables)
 
 ### Design & Docs (P2)
 - **T-2026-008** - Create design system and Tailwind theme
