@@ -1,6 +1,6 @@
-# How Balustrade Works
+# How The Meta-Framework Works
 
-A visual walkthrough of how all the pieces fit together.
+A visual walkthrough of how hooks, commands, and vault work together.
 
 ---
 
@@ -8,40 +8,38 @@ A visual walkthrough of how all the pieces fit together.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      YOUR PROJECT                            │
-│  ┌────────────┐  ┌────────────┐  ┌────────────┐            │
-│  │   Node.js  │  │   Python   │  │    Rust    │  (any code)│
-│  │    Code    │  │    Code    │  │    Code    │            │
-│  └────────────┘  └────────────┘  └────────────┘            │
+│                      ROUGHLY PROJECT                         │
+│  ┌────────────────────────────────────────────────────────┐ │
+│  │              Phoenix / Elixir / Commanded               │ │
+│  │                   (your application)                    │ │
+│  └────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
                           ▲
-                          │ Balustrade manages this ▼
+                          │ Meta-framework manages this ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    BALUSTRADE LAYER                          │
+│                    META-FRAMEWORK LAYER                      │
 │                                                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │    HOOKS     │  │   COMMANDS   │  │    VAULT     │     │
-│  │  (Enforce)   │  │   (Guide)    │  │  (Document)  │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │    HOOKS     │  │   COMMANDS   │  │    VAULT     │      │
+│  │  (Enforce)   │  │   (Guide)    │  │  (Document)  │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
 │         ▲                 ▲                  ▲              │
 │         └─────────────────┴──────────────────┘              │
 │                    All work together                        │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Key Insight**: Balustrade sits between your code and git, managing how you work with Claude Code.
-
 ---
 
 ## Problem It Solves
 
-### Without Balustrade
+### Without Meta-Framework
 
 ```
 User: "What's the status?"
 Claude: *reads 10 files, scans git*
         [5000 tokens used]
-        "You're working on auth..."
+        "You're working on search..."
 
 User: "Create a commit"
 Claude: *creates commit with random format*
@@ -52,20 +50,13 @@ Claude: *might remember, might forget*
         (no enforcement)
 ```
 
-**Problems**:
-- High token usage for simple questions
-- Inconsistent workflows
-- No enforcement of standards
-- Context lost during compaction
-- Manual tracking of everything
-
-### With Balustrade
+### With Meta-Framework
 
 ```
 User: /status
 Claude: *reads PROJECT_STATUS.md only*
         [500 tokens used]
-        "Working on T-2025-007 (AI generation)"
+        "Working on T-2025-001 (template setup)"
 
 User: git commit
 Hook: *validates automatically*
@@ -75,15 +66,10 @@ Hook: *validates automatically*
 User: Adds temporal language to docs
 Hook: *validates automatically*
       "❌ No 'will' in evergreen docs"
-      (enforces your conventions)
+      (enforces conventions)
 ```
 
-**Benefits**:
-- 10x token reduction for common operations
-- Consistent, guided workflows
-- Automatic enforcement
-- Context preserved
-- Hands-free tracking
+**Result**: 10x token reduction, consistent workflows, automatic enforcement.
 
 ---
 
@@ -111,19 +97,6 @@ You attempt commit
    ❌ Fail → commit blocked
 ```
 
-**Example Flow**:
-```bash
-$ git add vault/product/Vision.md
-$ git commit -m "add vision"
-
-# Hook runs automatically:
-❌ Found temporal language in vault/product/Vision.md
-   Line 5: "We will implement this soon"
-   Evergreen docs must describe current state
-
-# Commit blocked! Fix the issue first.
-```
-
 **Hooks Included**:
 - `pre-commit.sh` - Validates before commit
 - `commit-msg.sh` - Validates commit message format
@@ -139,18 +112,18 @@ $ git commit -m "add vision"
 **Why**: Ensure every task follows same lifecycle
 
 ```
-/p "Add user auth"
+/p "Implement search API"
         ▼
    Creates task file
    Creates context doc
    Updates PROJECT_STATUS.md
    Commits everything
         ▼
-   Task T-2025-001 ready!
+   Task T-2026-001 ready!
 
-/s T-2025-001
+/s T-2026-001
         ▼
-   Creates branch feat/T-2025-001-add-user-auth
+   Creates branch feat/T-2026-001-implement-search-api
    Updates task status → in-progress
    Updates PROJECT_STATUS.md "Current Focus"
    Commits changes
@@ -174,8 +147,6 @@ $ git commit -m "add vision"
 - `/ctx <note>` - Update context
 - `/status` - Quick status check (~500 tokens)
 - `/wrap` - End-of-session summary
-- `/groom` - Audit and sync PM state
-- `/x <request>` - Escape hatch (bypass PM hooks)
 
 ### 3. Vault (Documentation)
 
@@ -183,26 +154,31 @@ $ git commit -m "add vision"
 
 **When**: You document your product, not your code
 
-**Why**: Knowledge graph of your project that works with Obsidian
+**Why**: Knowledge graph of your project
 
 ```
 vault/
 ├── product/           # Product vision (evergreen)
-│   └── Vision.md
+│   ├── Product Vision.md
+│   ├── Glossary.md
+│   └── Design Philosophy.md
 ├── architecture/      # System design (evergreen)
-│   └── Architecture.md
+│   ├── System Architecture.md
+│   └── Data Model.md
 ├── features/          # Feature specs (evergreen)
-│   └── Auth.md
+│   ├── Question Search.md
+│   ├── Demographic Slicing.md
+│   └── Data Contribution.md
 └── pm/                # Project management (temporal OK)
-    ├── tasks/         # Task files (T-YYYY-NNN)
-    ├── epics/         # Epic files (E-YYYY-NNN)
-    └── _context/      # Working notes
+    ├── tasks/
+    ├── epics/
+    └── _context/
 ```
 
 **Evergreen docs** (product/, architecture/, features/):
 - Timeless - describe current state
 - No temporal language ("will", "soon", "recently")
-- Hooks enforce this automatically
+- Hooks can enforce this automatically
 
 **PM docs** (pm/):
 - Track progress and status
@@ -227,17 +203,6 @@ PROJECT_STATUS.md contains:
 └── Files Recently Modified (auto-updated)
 ```
 
-**Token Comparison**:
-```
-Without PROJECT_STATUS.md:
-  /status → reads 10+ vault files → 5000 tokens
-
-With PROJECT_STATUS.md:
-  /status → reads 1 file → 500 tokens
-
-Result: 10x reduction
-```
-
 ---
 
 ## How They Work Together
@@ -245,25 +210,25 @@ Result: 10x reduction
 ### Example: Starting New Work
 
 ```
-1. You: /p Add email notifications
+1. You: /p Implement demographic slicing
 
 2. /p command:
-   ├─ Creates vault/pm/tasks/T-2025-008-add-email-notifications.md
-   ├─ Creates vault/pm/_context/T-2025-008-context.md
+   ├─ Creates vault/pm/tasks/T-2026-002-implement-demographic-slicing.md
+   ├─ Creates vault/pm/_context/T-2026-002-context.md
    ├─ Updates PROJECT_STATUS.md "Next Up"
    └─ Commits all files
 
-3. You: /s T-2025-008
+3. You: /s T-2026-002
 
 4. /s command:
-   ├─ Creates branch feat/T-2025-008-add-email-notifications
+   ├─ Creates branch feat/T-2026-002-implement-demographic-slicing
    ├─ Updates task status → in-progress
    ├─ Updates PROJECT_STATUS.md "Current Focus"
    └─ Commits changes
 
 5. You: *make code changes*
 
-6. You: git commit -m "feat: add email service"
+6. You: git commit -m "feat: add demographic projector"
 
 7. pre-commit hook runs:
    ├─ Checks for debugger statements ✅
@@ -272,16 +237,15 @@ Result: 10x reduction
    └─ Checks YOUR conventions ✅
 
 8. commit-msg hook runs:
-   └─ Validates "feat: add email service" format ✅
+   └─ Validates "feat: add demographic projector" format ✅
 
 9. post-commit hook runs:
    └─ Updates PROJECT_STATUS.md timestamp ✅
 
-10. You: /ctx Decided to use SendGrid over AWS SES
+10. You: /ctx Decided to use composite keys for demographic slices
 
 11. /ctx command:
-    ├─ Appends to vault/pm/_context/T-2025-008-context.md
-    ├─ Updates PROJECT_STATUS.md "Key Decisions"
+    ├─ Appends to vault/pm/_context/T-2026-002-context.md
     └─ Commits
 
 12. You: /c
@@ -290,17 +254,14 @@ Result: 10x reduction
     ├─ Reviews task checklist
     ├─ Updates task status → completed
     ├─ Moves to PROJECT_STATUS.md "Recently Completed"
-    ├─ Offers to create PR
-    └─ Commits
+    └─ Offers to create PR
 
 All automated. All consistent. Every time.
 ```
 
 ---
 
-## The Flow (Visual)
-
-### Task Lifecycle
+## Task Lifecycle (Visual)
 
 ```
 ┌──────────────────────────────────────────────────────┐
@@ -319,22 +280,26 @@ Creates:             Creates:             Creates:
 - Status entry       - Updates focus     - Move to history
 ```
 
-### Token Usage Flow
+---
+
+## Token Usage Flow
 
 ```
-WITHOUT BALUSTRADE:
+WITHOUT META-FRAMEWORK:
 User asks "status" → Claude scans vault → 10+ files → 5000 tokens
                                              ↓
                                         ❌ Expensive
 
 
-WITH BALUSTRADE:
+WITH META-FRAMEWORK:
 User asks "/status" → Claude reads PROJECT_STATUS.md → 1 file → 500 tokens
                                                           ↓
                                                      ✅ Efficient
 ```
 
-### Hook Enforcement Flow
+---
+
+## Hook Enforcement Flow
 
 ```
 Code Change
@@ -359,118 +324,6 @@ post-commit hook runs
 
 ---
 
-## What Makes It Different
-
-### Not A Framework
-
-No `npm install balustrade`. No CLI.
-
-Just patterns you fork and modify.
-
-### Language Agnostic
-
-Works with:
-- Node, Python, Ruby, Go
-- React, Vue, Angular
-- iOS, Android, Flutter
-- Rust, Elixir, anything
-
-The hooks/commands/vault work regardless of your code.
-
-### Convention Examples, Not Rules
-
-Balustrade checks temporal language as **demonstration**.
-
-You should:
-- Remove checks you don't want
-- Add checks for YOUR conventions
-- Customize for YOUR team
-
-See `vault/how-to/Adding Your Conventions.md`.
-
-### Teaching By Example
-
-The todo app shows patterns in action:
-- Product docs for todo features
-- Architecture docs for simple API
-- Task files for todo work
-
-Delete it. Replace with YOUR product.
-
-The patterns remain valuable.
-
----
-
-## Core + Packs Architecture
-
-Balustrade uses a **Core + Packs** model to stay simple while supporting different project types.
-
-### Core (Universal)
-
-The core includes patterns useful for **any project**:
-
-```
-.claude/
-├── commands/          # Task lifecycle (/p, /s, /c, /ctx, /commit)
-├── hooks/             # Git enforcement (pre-commit, commit-msg, etc.)
-├── agents/            # Base coordinator agent
-└── settings.json      # Hook configuration
-
-vault/
-├── _meta/             # Guidelines for using the vault
-├── _templates/        # Task, epic, context templates
-└── pm/                # Project management structure
-```
-
-**Core components**:
-- Task lifecycle commands (`/p`, `/s`, `/c`, `/ctx`)
-- Git hooks (pre-commit, commit-msg, post-commit)
-- PROJECT_STATUS.md pattern
-- Token-efficient workflows
-
-### Packs (Copy What You Need)
-
-Packs are pre-configured agents and templates for specific project types.
-
-**Available Packs**:
-
-| Pack | Use Case | What's Included |
-|------|----------|-----------------|
-| `saas/` | SaaS products | Product manager, UI/UX designer, user-tester agents + Product Vision, Personas, Pricing templates |
-| `oss/` | Open source | (Coming soon) |
-
-**How to Use Packs**:
-
-1. **Find the pack** in `.claude/agents/_packs/` or `vault/_packs/`
-2. **Copy what you need** to the main location:
-   ```bash
-   # Copy SaaS agents
-   cp .claude/agents/_packs/saas/*.md .claude/agents/
-
-   # Copy SaaS vault templates
-   cp vault/_packs/saas/*.md vault/product/
-   ```
-3. **Customize** the copied files for your project
-4. **Delete** what you don't need
-
-**Example**: Building a SaaS product?
-
-```bash
-# Copy the SaaS pack agents
-cp .claude/agents/_packs/saas/product-manager.md .claude/agents/
-cp .claude/agents/_packs/saas/ui-ux-designer.md .claude/agents/
-cp .claude/agents/_packs/saas/user-tester.md .claude/agents/
-
-# Copy the SaaS vault templates
-cp vault/_packs/saas/* vault/product/
-
-# Now edit them for YOUR product!
-```
-
-The agents reference docs adaptively - they check if files exist before trying to use them.
-
----
-
 ## Key Design Principles
 
 ### 1. Determinism Over Flexibility
@@ -486,7 +339,7 @@ Every design minimizes token usage:
 - Slash commands (structured updates)
 - Hooks (no validation overhead)
 
-**Result**: 10x reduction in common operations.
+**Result**: ~10x reduction in common operations.
 
 ### 3. Convention Over Configuration
 
@@ -494,17 +347,9 @@ Standard structure, predictable workflows, automated maintenance.
 
 **Like Rails**: Opinionated defaults you can change.
 
-### 4. Framework As Example
-
-Don't copy blindly. Learn the patterns:
-- See how hooks enforce
-- Understand command workflows
-- Study vault organization
-- Then adapt for your project
-
 ---
 
-## FAQ: How Does This Work?
+## FAQ
 
 ### "How do hooks run automatically?"
 
@@ -531,8 +376,6 @@ Three ways:
 2. **post-commit hook** updates timestamp/files
 3. **You** can edit manually if needed
 
-It's always in sync.
-
 ### "What if I don't want temporal language checks?"
 
 Edit `.claude/hooks/pre-commit.sh`:
@@ -542,95 +385,14 @@ Edit `.claude/hooks/pre-commit.sh`:
 # check_temporal_language "$FILE"
 ```
 
-Or modify the word list. It's YOUR framework now.
-
-### "Does this work with Python/Rust/Flutter?"
-
-Yes! Hooks are bash scripts that run on git events.
-
-They don't care what language your code is.
-
-See `vault/how-to/Multi-Language Support.md`.
-
-### "Do I need Obsidian?"
-
-No. The `vault/` folder is just markdown.
-
-Works with VS Code, vim, any editor.
-
-Obsidian adds graph view and linking, but it's optional.
-
 ### "Can I add my own slash commands?"
 
-Yes! Create `.claude/commands/your-command.md`:
-
-```markdown
-# Your Command
-
-Steps:
-1. Do thing
-2. Update status
-3. Commit
-```
-
-Then use `/your-command` in Claude Code.
+Yes! Create `.claude/commands/your-command.md` and use `/your-command` in Claude Code.
 
 ---
 
-## What You Should Do
+## Related Documentation
 
-### 1. Fork The Repo
-
-This is a template. Make it yours.
-
-### 2. Delete Example App
-
-```bash
-rm -rf example-app/
-```
-
-The todo app is just demonstration.
-
-### 3. Add Your Code
-
-Any language, any framework, any stack.
-
-### 4. Customize Hooks
-
-Edit `.claude/hooks/pre-commit.sh`:
-- Remove checks you don't want
-- Add checks for YOUR conventions
-- Make it enforce YOUR standards
-
-### 5. Document Your Product
-
-Replace:
-- `vault/product/` → YOUR product vision
-- `vault/architecture/` → YOUR architecture
-- `vault/features/` → YOUR features
-
-### 6. Start Working
-
-```bash
-/p Your first task
-/s T-2025-001
-# Build!
-```
-
----
-
-## The Point
-
-Balustrade is NOT:
-- A todo app
-- A framework you install
-- A set of rules you must follow
-
-Balustrade IS:
-- A reference showing patterns
-- A template you customize
-- A foundation for YOUR conventions
-
-**Fork it. Delete the example. Make it yours.**
-
-The balustrade guides your path. Now build something great.
+- `CUSTOMIZATION.md` - How to customize the framework
+- `SUMMARY.md` - Complete file inventory
+- `vault/how-to/` - Process documentation

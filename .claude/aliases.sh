@@ -1,5 +1,5 @@
 #!/bin/bash
-# Balustrade Shell Aliases
+# Roughly Shell Aliases
 #
 # Makes slash commands faster by creating short aliases.
 #
@@ -29,6 +29,6 @@ alias wrap='echo "Use this in Claude Code: /wrap"'
 alias gst='git status'
 alias glog='git log --oneline -10'
 
-echo "Balustrade aliases loaded!"
+echo "Roughly aliases loaded!"
 echo "Note: p, s, c, ctx, status, wrap are reminders to use /commands in Claude Code"
 echo "Actual aliases: gst (git status), glog (git log)"

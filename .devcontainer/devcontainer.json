@@ -1,16 +1,24 @@
 {
-  "name": "balustrade",
+  "name": "roughly",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "features": {
+    "ghcr.io/devcontainers/features/elixir:1": {}
+  },
 
   "customizations": {
     "vscode": {
       "extensions": [
-        "anthropic.claude-code"
+        "anthropic.claude-code",
+        "jakebecker.elixir-ls",
+        "phoenixframework.phoenix"
       ]
     }
   },
 
-  "postCreateCommand": "bash .claude/hooks/install-hooks.sh",
+  "forwardPorts": [4000],
+
+  "postCreateCommand": "bash .claude/hooks/install-hooks.sh && mix local.hex --force && mix local.rebar --force",
 
   "remoteUser": "vscode"
 }

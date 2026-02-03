@@ -1,196 +1,23 @@
-# Customizing Balustrade For Your Project
+# Customizing the Meta-Framework
 
-Step-by-step guide to replace the example with YOUR project.
-
----
-
-## Quick Checklist
-
-- [ ] Delete `example-app/`
-- [ ] Add your code
-- [ ] Update `PROJECT_STATUS.md`
-- [ ] Replace `vault/product/` docs
-- [ ] Replace `vault/architecture/` docs
-- [ ] Replace `vault/features/` docs
-- [ ] Customize `.claude/hooks/pre-commit.sh`
-- [ ] Add your agents in `.claude/agents/`
-- [ ] Update `.devcontainer/devcontainer.json`
-- [ ] Install hooks: `bash .claude/hooks/install-hooks.sh`
+This project uses a meta-framework for Claude Code development, originally from "Balustrade". This guide explains how to customize it for your needs.
 
 ---
 
-## Step 1: Replace Example App
+## Quick Reference
 
-### Delete Example
-
-```bash
-rm -rf example-app/
-```
-
-### Add Your Code
-
-**Node.js**:
-```bash
-npm init -y
-npm install express
-# Add your server code
-```
-
-**Python**:
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install flask
-# Add your Python code
-```
-
-**Any other language**: See `vault/how-to/Multi-Language Support.md`
+The meta-framework provides:
+- **Hooks**: Git hooks that enforce standards (`.claude/hooks/`)
+- **Commands**: Slash commands for task management (`.claude/commands/`)
+- **Vault**: Organized documentation structure (`vault/`)
+- **Agents**: Specialized AI agents (`.claude/agents/`)
+- **Skills**: Reusable expertise modules (`.claude/skills/`)
 
 ---
 
-## Step 2: Update PROJECT_STATUS.md
+## Customizing Hooks
 
-Edit `PROJECT_STATUS.md`:
-
-```markdown
-# Project Status
-
-**Last Updated**: 2025-11-20  # Today
-**Project**: MyAwesomeApp     # YOUR name
-
-## Current Focus
-
-**Active Task**: [Use /s to start first task]
-**Branch**: main
-**Goal**: Initial setup complete
-
-## Next Up (Top 3 Priorities)
-
-1. Set up database schema
-2. Create authentication system
-3. Build core API endpoints
-
-## Key Decisions
-
-- **Stack**: React + Node.js + PostgreSQL
-- **Hosting**: Vercel + Render
-- **Auth**: JWT tokens
-```
-
----
-
-## Step 3: Replace Product Docs
-
-### vault/product/Product Vision.md
-
-Replace todo app vision with yours:
-
-```markdown
-# Product Vision
-
-## What We're Building
-
-[Your product description]
-
-## Problem We Solve
-
-[User pain points]
-
-## Our Solution
-
-[How your product solves it]
-
-## Target Users
-
-[Who uses your product]
-
-## Success Metrics
-
-[How you measure success]
-```
-
-Delete temporal language ("will", "soon", "plans to").
-
----
-
-## Step 4: Replace Architecture Docs
-
-### vault/architecture/System Architecture.md
-
-Document YOUR architecture:
-
-```markdown
-# System Architecture
-
-## Components
-
-- Frontend: React SPA
-- API: Node.js + Express
-- Database: PostgreSQL
-- Cache: Redis
-- Queue: Bull
-
-## Data Flow
-
-[How data moves through your system]
-
-## Design Decisions
-
-### Why PostgreSQL?
-[Your reasoning]
-
-### Why Redis?
-[Your reasoning]
-```
-
----
-
-## Step 5: Replace Feature Docs
-
-### vault/features/
-
-Delete `Todo Management.md`.
-
-Add your features:
-
-```bash
-cd vault/features/
-rm Todo\ Management.md
-
-# Add your features
-touch User\ Authentication.md
-touch Dashboard.md
-touch Reporting.md
-```
-
-Each feature file:
-```markdown
-# Feature Name
-
-## Overview
-
-[What this feature does]
-
-## User Capabilities
-
-- [Capability 1]
-- [Capability 2]
-
-## Implementation Notes
-
-[Technical details]
-
-## Related
-
-- [[Product Vision]]
-- [[System Architecture]]
-```
-
----
-
-## Step 6: Customize Hooks
-
-### Remove Example Conventions You Don't Want
+### Edit Pre-commit Checks
 
 Edit `.claude/hooks/pre-commit.sh`:
 
@@ -228,177 +55,102 @@ check_my_convention() {
 check_my_convention "$FILE"
 ```
 
+### Block vs Warn
+
+**Block (fails commit)**:
+```bash
+exit 1
+```
+
+**Warn (shows message but allows)**:
+```bash
+# Don't exit, just echo warning
+```
+
 ---
 
-## Step 7: Add Your Agents
+## Adding Agents
 
-### Example: Backend Developer Agent
+Create new agents in `.claude/agents/`:
 
-Create `.claude/agents/backend-dev.md`:
+### Example: Elixir Developer Agent
+
+Create `.claude/agents/elixir-dev.md`:
 
 ```markdown
-# Backend Developer
+# Elixir Developer
 
-You are a backend development specialist.
+You are an Elixir/Phoenix development specialist.
 
 ## Responsibilities
 
-- API endpoint design and implementation
-- Database schema design
-- Performance optimization
-- Security best practices
+- Phoenix LiveView implementation
+- Commanded event sourcing patterns
+- Ecto schema and query design
+- ExUnit testing
 
 ## Guidelines
 
-- Follow RESTful conventions
-- Write tests for all endpoints
-- Document API with OpenAPI
-- Use prepared statements (SQL injection prevention)
+- Follow OTP principles
+- Use pattern matching over conditionals
+- Leverage the pipe operator for clarity
+- Write property-based tests for complex logic
 
 ## Tech Stack
 
-- Node.js + Express
-- PostgreSQL
-- Redis for caching
-- Bull for job queues
+- Elixir 1.15+
+- Phoenix 1.7+ with LiveView
+- Commanded for CQRS/ES
+- PostgreSQL via Ecto
 ```
 
-### Example: Frontend Developer Agent
+---
 
-Create `.claude/agents/frontend-dev.md`:
+## Adding Skills
+
+Create new skills in `.claude/skills/`:
+
+### Example: Event Sourcing Skill
+
+Create `.claude/skills/event-sourcing.md`:
 
 ```markdown
-# Frontend Developer
+# Event Sourcing Skill
 
-You are a frontend development specialist.
+Best practices for Commanded and CQRS patterns.
 
-## Responsibilities
+## Aggregates
 
-- React component development
-- State management
-- UI/UX implementation
-- Performance optimization
+- One aggregate per bounded context
+- Keep aggregates small and focused
+- Validate commands before emitting events
 
-## Guidelines
+## Events
 
-- Follow React best practices
-- Use TypeScript for type safety
-- Write unit tests with Vitest
-- Ensure accessibility (WCAG 2.1 AA)
+- Events are immutable facts
+- Name events in past tense (UserRegistered, VoteCast)
+- Include all data needed for projections
 
-## Tech Stack
+## Projections
 
-- React 18
-- TypeScript
-- Tailwind CSS
-- Zustand for state
+- Build read models from events
+- Can be rebuilt from event stream
+- Optimize for query patterns
 ```
 
 ---
 
-## Step 8: Update Dev Container
+## Modifying Commands
 
-Edit `.devcontainer/devcontainer.json`:
-
-### For Node + Postgres
-
-```json
-{
-  "name": "my-app",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
-  "forwardPorts": [3000, 5432],
-  "postCreateCommand": "npm install",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
-      ]
-    }
-  }
-}
-```
-
-Create `docker-compose.yml`:
-```yaml
-services:
-  app:
-    image: mcr.microsoft.com/devcontainers/javascript-node:20
-    volumes:
-      - .:/workspace
-    command: sleep infinity
-
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: myapp
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: dev
-    ports:
-      - "5432:5432"
-```
-
-### For Python
-
-```json
-{
-  "name": "python-app",
-  "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  "forwardPorts": [8000],
-  "postCreateCommand": "pip install -r requirements.txt"
-}
-```
-
----
-
-## Step 9: Create First Tasks
-
-Use slash commands:
-
-```
-/p Set up database schema
-/p Create user authentication
-/p Build core API endpoints
-```
-
-This creates:
-- `vault/pm/tasks/T-2025-001-set-up-database-schema.md`
-- `vault/pm/tasks/T-2025-002-create-user-authentication.md`
-- `vault/pm/tasks/T-2025-003-build-core-api-endpoints.md`
-
-Updates `PROJECT_STATUS.md` "Next Up" section.
-
----
-
-## Step 10: Start Working
-
-```
-/s T-2025-001
-```
-
-This:
-- Creates branch `feat/T-2025-001-set-up-database-schema`
-- Updates task status to `in-progress`
-- Updates `PROJECT_STATUS.md` "Current Focus"
-- Creates context doc
-
-Now build your app!
-
----
-
-## Common Customizations
+Edit commands in `.claude/commands/`:
 
 ### Change Task ID Format
 
 Edit `.claude/commands/p.md` to change from `T-YYYY-NNN` to your format.
 
-### Add More Slash Commands
+### Add New Commands
 
-Create new `.md` files in `.claude/commands/`:
-
-Example: `.claude/commands/deploy.md`
+Create `.claude/commands/deploy.md`:
 ```markdown
 # Deploy
 
@@ -413,41 +165,53 @@ Deploy the application to production.
 5. Update PROJECT_STATUS.md
 ```
 
-### Modify Hook Strictness
+Then use `/deploy` in Claude Code.
 
-**Block vs Warn**:
+---
 
-Block (fails commit):
-```bash
-exit 1
+## Updating Dev Container
+
+Edit `.devcontainer/devcontainer.json`:
+
+Currently configured for Elixir:
+```json
+{
+  "name": "roughly",
+  "features": {
+    "ghcr.io/devcontainers/features/elixir:1": {}
+  },
+  "forwardPorts": [4000],
+  "postCreateCommand": "mix local.hex --force && mix local.rebar --force"
+}
 ```
 
-Warn (shows message but allows):
-```bash
-# Don't exit, just echo warning
-```
+---
 
-### Add Pre-Push Validation
+## Vault Structure
 
-Create `.claude/hooks/pre-push.sh`:
-```bash
-#!/bin/bash
-# Runs before git push
+### Evergreen Docs (no temporal language)
 
-# Example: Run tests before push
-npm test || exit 1
-```
+- `vault/product/` - Product vision, design philosophy
+- `vault/architecture/` - System design, data model
+- `vault/features/` - Feature specifications
 
-Then symlink:
-```bash
-ln -s ../../.claude/hooks/pre-push.sh .git/hooks/pre-push
-```
+### PM Docs (temporal language OK)
+
+- `vault/pm/tasks/` - Task tracking
+- `vault/pm/epics/` - Epic planning
+- `vault/pm/_context/` - Working notes
+
+### Meta Docs
+
+- `vault/_meta/` - Writing guidelines
+- `vault/how-to/` - Process documentation
+- `vault/_templates/` - PM templates
 
 ---
 
 ## Verification
 
-After customization, verify:
+After customization:
 
 ```bash
 # 1. Hooks installed?
@@ -468,20 +232,14 @@ git commit -m "test: verify hooks"
 
 # 5. Test task lifecycle
 /p Test task creation
-/s T-2025-XXX
+/s T-2026-XXX
 /c
 ```
 
 ---
 
-## You're Done!
+## Documentation
 
-Balustrade is now customized for your project:
-- Your code replacing example
-- Your product vision
-- Your architecture decisions
-- Your conventions enforced
-- Your agents defined
-- Your workflow automated
-
-Build something great with deterministic guardrails.
+- `HOW-IT-WORKS.md` - Visual walkthrough of the system
+- `SUMMARY.md` - Complete file manifest
+- `vault/how-to/` - Process documentation

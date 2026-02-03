@@ -1,4 +1,4 @@
-# Balustrade Template .gitignore
+# Roughly Project .gitignore
 
 # Reference materials (cloned repos, screenshots, PRDs, PDFs, external docs)
 # Use underscore prefix for any ignored directories
@@ -24,6 +24,18 @@ __pycache__/
 target/
 Cargo.lock
 .bundle/
+
+# Elixir/Phoenix
+_build/
+deps/
+.elixir_ls/
+*.ez
+*.beam
+erl_crash.dump
+*.plt
+*.plt.hash
+.fetch
+priv/static/assets/
 
 # Build outputs (customize for your stack)
 dist/

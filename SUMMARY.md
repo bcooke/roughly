@@ -1,40 +1,37 @@
-# Balustrade: Complete Summary
+# Roughly: Project Summary
 
-**Ultra-minimal, language-agnostic meta-framework template for Claude Code**
+**The Roughly Project** - Wikipedia for quantifiable human data
+
+**Domain**: roughly.io
 
 ---
 
-## What's Included
+## Project Structure
 
-### Core Framework (58 files)
-- 5 hooks (pre-commit, commit-msg, post-commit, pre-compaction, install)
-- 10 slash commands (/p, /s, /c, /ctx, /status, /wrap, /call, /review, +legacy)
-- 4 example agents (coordinator, full-stack-dev, code-reviewer, bug-hunter)
-- 4 example skills (refactor, test-setup, api-design, docs)
-- 9 vault how-to docs (includes PM-Hierarchy.md)
-- 5 PM templates (Epic, Story, Task, Bug, Context)
-- 3 example product docs (delete these)
-- 9 example PM files (epic, stories, tasks, bug, context docs)
-- 5 root files (README, CUSTOMIZATION, SUMMARY, HOW-IT-WORKS, PROJECT_STATUS)
-- 1 dev container config
-- 1 .gitignore
+### Core Application (To Be Built)
+- Phoenix/Elixir with LiveView
+- Commanded for event sourcing
+- PostgreSQL database
+- TDD from day one
 
-### Example App (~100 lines total)
-- server.js: Node HTTP server, no dependencies
-- index.html: Vanilla JS + Tailwind CDN
-- **Purpose**: Reference only, delete and replace
+### Meta-Framework (From Balustrade)
+- Git hooks for enforcement
+- Slash commands for workflows
+- Vault documentation structure
+- Agents and skills for Claude Code
 
 ---
 
 ## File Breakdown
 
-### .claude/ (THE FRAMEWORK)
+### .claude/ (META-FRAMEWORK)
 ```
 hooks/
   ├── pre-commit.sh         # Validates code, docs, PM discipline
   ├── commit-msg.sh         # Conventional commits
   ├── post-commit.sh        # Auto-updates PROJECT_STATUS.md
   ├── pre-compaction.sh     # Saves context before compression
+  ├── user-prompt-submit.sh # Task creation enforcement
   └── install-hooks.sh      # Installation script
 
 commands/
@@ -46,327 +43,197 @@ commands/
   ├── wrap.md               # Session summary
   ├── call.md               # Invoke agent
   ├── review.md             # Address PR feedback
-  ├── start.md              # (legacy)
-  └── commit.md             # (legacy)
+  └── ...                   # Additional commands
 
-agents/                     # Example agents (customize!)
+agents/
   ├── coordinator.md        # Multi-domain coordination
   ├── full-stack-dev.md     # Feature implementation
   ├── code-reviewer.md      # Code quality review
-  └── bug-hunter.md         # Debugging specialist
+  ├── bug-hunter.md         # Debugging specialist
+  ├── vault-writer.md       # Documentation writing
+  ├── vault-organizer.md    # Vault maintenance
+  └── _packs/               # Specialized agent packs
 
-skills/                     # Example skills (customize!)
+skills/
   ├── refactor.md           # Code refactoring patterns
   ├── test-setup.md         # Testing guidance
-  ├── api-design.md         # REST API best practices
+  ├── api-design.md         # API best practices
   └── docs.md               # Documentation writing
 
-settings.json               # PreCompact hook config
-aliases.sh                  # Optional shell shortcuts
+settings.json               # Hook configuration
 ```
 
-### vault/ (DOCUMENTATION PATTERNS)
+### vault/ (DOCUMENTATION)
 ```
 product/
-  └── Product Vision.md     # Example - replace with yours
+  ├── Product Vision.md     # What Roughly is and why
+  ├── Glossary.md           # Key terminology
+  └── Design Philosophy.md  # Visual design principles
 
 architecture/
-  └── System Architecture.md # Example - replace with yours
+  ├── System Architecture.md # Phoenix/Commanded architecture
+  └── Data Model.md          # Questions, responses, demographics
 
 features/
-  └── Todo Management.md    # Example - replace with yours
+  ├── Question Search.md     # Core search functionality
+  ├── Demographic Slicing.md # Population filtering
+  └── Data Contribution.md   # Polling and voting system
 
 _meta/
-  └── Vault Writing Guidelines.md
+  ├── Vault Writing Guidelines.md
+  ├── Code Conventions.md
+  ├── Definition of Done.md
+  ├── Avoiding Temporal Language.md
+  └── ...
 
 how-to/
-  ├── Meta-Framework.md
-  ├── Hooks and Automation.md
+  ├── PM-Hierarchy.md
   ├── Git Workflow.md
-  ├── Multi-Language Support.md
+  ├── Hooks and Automation.md
   ├── Dev Container Setup.md
-  ├── Obsidian Integration.md
-  └── Adding Your Conventions.md
+  └── ...
 
 _templates/
-  ├── Epic.md               # Template for creating epics
-  ├── Story.md              # Template for creating stories
-  ├── Task.md               # Template for creating tasks
-  ├── Bug.md                # Template for creating bugs
-  └── Context.md            # Template for context docs
+  ├── Epic.md
+  ├── Story.md
+  ├── Task.md
+  ├── Bug.md
+  └── Context.md
 
 pm/
-  ├── epics/                # Epic files only
-  │   └── E-2025-001-todo-app-mvp.md (example epic)
-  ├── stories/              # User story files
-  │   ├── US-2025-001-setup-api.md (example story)
-  │   └── US-2025-002-build-frontend.md (example story)
-  ├── tasks/                # Task files only
-  │   ├── T-2025-001-setup-todo-api.md (example task)
-  │   └── T-2025-002-create-html-interface.md (example task)
-  ├── bugs/                 # Bug files only
-  │   └── B-2025-001-fix-cors-error.md (example bug)
-  └── _context/             # Context docs
-      ├── E-2025-001-context.md (example epic context)
-      └── T-2025-001-context.md (example task context)
-```
-
-### example-app/ (DELETE THIS)
-```
-server.js                   # 80 lines: Node HTTP API
-index.html                  # 100 lines: Vanilla JS frontend
-README.md                   # "This is just an example"
+  ├── epics/                # Epic tracking
+  ├── stories/              # User stories
+  ├── tasks/                # Task files
+  │   └── T-2025-001-tailor-balustrade-for-roughly.md
+  ├── bugs/                 # Bug tracking
+  └── _context/             # Working notes
 ```
 
 ### Root Files
 ```
-README.md                   # Main documentation
-CUSTOMIZATION.md            # How to make it yours
-PROJECT_STATUS.md           # Status tracking template
+README.md                   # Project overview and vision
+PROJECT_STATUS.md           # Current status (token-efficient)
+CUSTOMIZATION.md            # Meta-framework customization guide
+HOW-IT-WORKS.md             # Visual system walkthrough
 SUMMARY.md                  # This file
-.gitignore                  # Generic ignores
+.gitignore                  # Git ignores
 .devcontainer/
-  └── devcontainer.json     # Generic Ubuntu container
+  └── devcontainer.json     # Elixir dev environment
+```
+
+### Reference Materials
+```
+_reference/                 # Gitignored reference projects
+  ├── Eden/                 # Reference implementation
+  ├── flojo/                # Reference implementation
+  └── goflojo/              # Reference implementation
 ```
 
 ---
 
 ## Key Features
 
-### 1. Language Agnostic
-Works with any tech stack:
-- Node, Python, Ruby, Go
-- React, Vue, Angular
-- iOS, Android, Flutter
-- Rust, Elixir, C++, anything
+### 1. Event-Sourced Architecture
+Every vote is an immutable event. Complete audit trail for all data.
 
-### 2. Zero Dependencies
-Example app has NO package.json, NO build step.
-Just Node built-ins + vanilla JS + CDN Tailwind.
+### 2. Demographic Slicing
+Filter any question by demographics (gender, age, location, etc.)
 
-### 3. Framework Focused
-Real value is `.claude/` and `vault/`, not the example app.
-Delete example, keep framework.
+### 3. Population Overlap
+Cross-question analysis: "What % of coffee drinkers exercise daily?"
 
-### 4. Teaching By Example
-Shows patterns via minimal todo app.
-Then you replace with your project.
+### 4. Search-First UX
+Google-style search for questions about human data.
 
-### 5. Fully Customizable
-Every convention is an example.
-Change hooks for YOUR rules.
-Add YOUR agents.
-Document YOUR product.
+### 5. Free and Open
+Wikipedia model - no paywalls, no premium tiers.
 
 ---
 
-## What Gets Enforced (Examples)
+## Tech Stack
 
-These are demonstrations - customize for your needs:
-
-**Pre-commit blocks**:
-- Temporal language in evergreen docs (optional)
-- Invalid task status (optional)
-- Missing task fields (optional)
-- Debugger statements (optional)
-- Merge conflict markers (recommended)
-
-**Pre-commit warns**:
-- Task size >7 items (adjustable)
-- Branch-task misalignment (optional)
-- PROJECT_STATUS.md out of sync (optional)
-
-**Commit-msg validates**:
-- Conventional commit format (customizable)
-
-**Post-commit updates**:
-- PROJECT_STATUS.md timestamp (automatic)
-- Recent files list (automatic)
+| Layer | Technology |
+|-------|------------|
+| Web | Phoenix 1.7+ with LiveView |
+| Domain | Elixir with Commanded (CQRS/ES) |
+| Database | PostgreSQL |
+| Search | PostgreSQL full-text (initially) |
+| Styling | TBD (minimal, 538-inspired) |
 
 ---
 
-## Quick Start (3 Steps)
+## Design Principles
 
-1. **Fork** this repo
-2. **Delete** example-app/
-3. **Add** your code and customize
-
-That's it.
-
----
-
-## Customization Checklist
-
-- [ ] Delete example-app/
-- [ ] Add your code
-- [ ] Update PROJECT_STATUS.md
-- [ ] Replace vault/product/ docs
-- [ ] Replace vault/architecture/ docs
-- [ ] Replace vault/features/ docs
-- [ ] Customize .claude/hooks/
-- [ ] Add your agents
-- [ ] Update dev container
-- [ ] Install hooks: `bash .claude/hooks/install-hooks.sh`
-
-See CUSTOMIZATION.md for details.
+- **Minimal**: White/gray base, no visual clutter
+- **Functional**: Color only for semantic meaning
+- **Data-forward**: Charts and percentages are the hero
+- **Trustworthy**: Clean, statistical, transparent
 
 ---
 
-## Token Efficiency
+## Current Status
 
-**Problem**: Scanning vault for status costs 5000+ tokens
-
-**Solution**: Read PROJECT_STATUS.md (500 tokens)
-
-**Result**: ~10x reduction in common operations
-
-**Usage**:
-```
-/status     # Reads PROJECT_STATUS.md only
-            # Fast, cheap, always current
-```
+See `PROJECT_STATUS.md` for:
+- Current focus
+- Recent completions
+- Next priorities
+- Key decisions
 
 ---
 
-## Multi-Agent Ready
+## Slash Commands
 
-Dev container enables:
-- Multiple services in one environment
-- Configurable ports
-- Shared workspace
-- Agent coordination
-
-See vault/how-to/Dev Container Setup.md
-
----
-
-## Philosophy
-
-### Not Prescriptive
-Shows HOW to enforce conventions, not WHICH to enforce.
-
-### Language Agnostic
-Works with any stack. Framework is about PM, not code.
-
-### Minimal Example
-Todo app is ~100 lines. Easy to understand and delete.
-
-### Framework First
-Real value: `.claude/` patterns and `vault/` structure.
-
-### Convention Over Configuration
-Standard structure, predictable workflows, automated maintenance.
-
-### Determinism Over Flexibility
-Hooks enforce automatically. No relying on memory.
-
-### Token Efficiency First
-Every design optimizes for minimal context usage.
-
----
-
-## What Makes This Different
-
-**Not a framework**: No npm install, no CLI, just patterns
-**Not opinionated about code**: Only about PM and docs
-**Not language-specific**: Works with any stack
-**Teaching by example**: Minimal todo app shows patterns
-
----
-
-## Future: create-balustrade CLI
-
-May eventually build:
-```bash
-npx create-balustrade init
-```
-
-For now: **fork and modify**.
+| Command | Purpose |
+|---------|---------|
+| `/status` | Quick status (~500 tokens) |
+| `/p <desc>` | Plan new task |
+| `/s <ID>` | Start task |
+| `/c` | Close task |
+| `/ctx <note>` | Update context |
+| `/wrap` | Session summary |
+| `/call <agent>` | Invoke specialist |
 
 ---
 
 ## Documentation
 
-All docs in vault/how-to/:
-- Meta-Framework.md - Framework overview
-- Hooks and Automation.md - Hook details
-- Git Workflow.md - Commit conventions
-- PM-Hierarchy.md - Epics, Stories, Tasks, Bugs explained
-- Adding Your Conventions.md - Customize enforcement
-- Multi-Language Support.md - Any language
-- Dev Container Setup.md - Multi-agent setup
-- Obsidian Integration.md - Optional enhancement
+### Product
+- `vault/product/Product Vision.md` - What and why
+- `vault/product/Glossary.md` - Terminology
+- `vault/product/Design Philosophy.md` - Visual design
 
-Plus:
-- README.md - Main documentation
-- HOW-IT-WORKS.md - Visual walkthrough of the system
-- CUSTOMIZATION.md - Step-by-step customization
-- SUMMARY.md - This file - Complete summary
+### Architecture
+- `vault/architecture/System Architecture.md` - Technical design
+- `vault/architecture/Data Model.md` - Data structures
 
----
+### Features
+- `vault/features/Question Search.md` - Search functionality
+- `vault/features/Demographic Slicing.md` - Filtering
+- `vault/features/Data Contribution.md` - Voting system
 
-## File Count
-
-- **58 total files**
-- 5 hooks
-- 10 commands (/p, /s, /c, /ctx, /status, /wrap, /call, /review, +legacy)
-- 4 example agents (coordinator, full-stack-dev, code-reviewer, bug-hunter)
-- 4 example skills (refactor, test-setup, api-design, docs)
-- 9 how-to docs (including PM-Hierarchy.md)
-- 5 PM templates (Epic, Story, Task, Bug, Context)
-- 3 example product docs (delete)
-- 9 example PM files (epic, stories, tasks, bug, context)
-- 5 root docs (README, HOW-IT-WORKS, CUSTOMIZATION, SUMMARY, PROJECT_STATUS)
-- 1 dev container config
-- 1 .gitignore
-- 2 example app files
-
-**Lines of code**: ~100 (example app)
-**Lines of framework**: ~8000+ (docs, hooks, commands, agents, skills, templates, examples)
-
-Framework is documentation and patterns, not code.
+### Process
+- `vault/how-to/PM-Hierarchy.md` - Task management
+- `vault/how-to/Git Workflow.md` - Commit conventions
+- `HOW-IT-WORKS.md` - System walkthrough
+- `CUSTOMIZATION.md` - Framework customization
 
 ---
 
 ## Get Started
 
 ```bash
-# Fork repo
-# Delete example
-rm -rf example-app/
-
-# Add your code
-# (any language)
-
 # Install hooks
 bash .claude/hooks/install-hooks.sh
 
+# Check status
+/status
+
 # Start working
-/p Your first task
 /s T-2025-001
-# Build!
 ```
 
 ---
 
 ## License
 
-MIT - Use freely, modify, no attribution required.
-
----
-
-## The Point
-
-Balustrade is NOT:
-- A todo app
-- A Node.js framework
-- A prescriptive system
-
-Balustrade IS:
-- A reference implementation
-- Language-agnostic patterns
-- Customizable for YOUR project
-
-**Fork it. Delete the example. Make it yours.**
-
-The balustrade guides your path. Now build.
+MIT
