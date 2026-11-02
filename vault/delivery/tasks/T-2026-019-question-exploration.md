@@ -8,7 +8,9 @@ updated: 2026-11-02
 
 # Question exploration and vision coverage
 
-## Intended outcome
+[PR #18](https://github.com/bcooke/roughly/pull/18) contains the implementation and review.
+
+## Outcome
 
 Give question pages a clearer visual hierarchy and usable result exploration: format-appropriate distributions, percentage/count views, a semantic exact-count table, shareable view state, concise counting context, related navigation, and meaningful empty states. Add representative local fixtures through Commanded.
 
