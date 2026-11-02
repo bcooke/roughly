@@ -13,3 +13,5 @@ Transient navigation, search filters, and build artifacts do not need domain eve
 Event sourcing does not imply retaining every private value forever in an event envelope. The storage, linkage, and erasure of personal payloads need a deliberate [Participant Identity](Participant%20Identity.md) and privacy design before real collection.
 
 The [command router](../lib/roughly/router.ex) and [Commanded application](../lib/roughly/app.ex) are implementation entry points. [the domain flow proposal](discovery/validated-domain-flow.md) tracks the gap between the domain foundation and a complete collection flow.
+
+Commands, events, and aggregate state need contracts describing actual field values, including nullability and serialized representations. Transition specs describe reachable successes and refusals; runtime parsing and aggregate rules enforce admission. [Authorization](Authorization.md) makes the trusted actor and resource policy explicit. A typespec or projection constraint alone cannot enforce these rules.

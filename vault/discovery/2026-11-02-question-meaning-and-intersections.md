@@ -37,3 +37,13 @@ A useful domain event records a coherent fact with sufficient context. Breaking 
 [Domain Writes](../Domain%20Writes.md) preserves authority and revision history. [Read Models](../Read%20Models.md) can provide relational joins, cross-tabs, and graph-shaped views over that history. A conceptual graph does not require a graph database. A derived aggregate is also not evidence stronger than its source responses.
 
 [Development Fixtures](../Development%20Fixtures.md) reuse participant identities across questions to support testing intersections. Their invented distributions do not demonstrate real correlations or validate cohort methodology. [Claims and Evidence](../Claims%20and%20Evidence.md) and [the participation investigation](2026-11-02-participation-design.md) supply related constraints.
+
+## Proposed next implementation slice
+
+Build a complete question exploration path before broadening every subsystem. Establish immutable instrument identity, stable option identity, and validated answer semantics for a small set of formats; preserve existing event compatibility. The existing projection lists binary, multiple-choice, and scaled types, but the vote payload contains one option string and the result query counts option strings. This is not yet a general response or scale-analysis model.
+
+Exercise the model with one population predicate defined by an answer to another question, using a stated answer-selection cutoff and eligible denominator. Return aggregate results only, distinguish missing answers from nonqualifying answers, and test retractions and empty intersections. Use repeatable fixture scenarios with known overlaps and contrasting distributions rather than assuming independently generated answers provide useful comparison examples.
+
+Expose this as one working question page with an overall view, a population comparison, and appropriate alternative result presentations. Add a small multi-question exploration using the same analysis queries once the first comparison works. Keep chart presentation separate from question formats and analysis definitions, so later API consumers can reuse the same definitions.
+
+This is a recommended sequence, not an accepted schema or an implemented capability. The [visualization idea](ideas/data-led-visualizations.md) captures the broader direction; [collection variants](ideas/collection-context-variants.md) separates response formats from answering modes. Topic graph implementation can follow with a concrete discovery use case rather than requiring a complete graph system before this first exploration works.

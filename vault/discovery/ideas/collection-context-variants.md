@@ -23,6 +23,12 @@ Support more than one collection experience while preserving the conditions need
 
 Define the minimum useful context, shared run configuration, per-response differences, and access/retention rules before implementing fields. Do not turn the table into a mandate to collect all possible telemetry or personal information.
 
+## Formats and answering modes
+
+Question formats need explicit answer semantics: binary, single-choice, multiple-selection, ordered scale, numeric input, ranking, and open response are possibilities with different validation and analysis needs. A type label alone does not establish support. Selection counts for a multiple-selection question need not sum to its respondent denominator; scale categories are not automatically numeric intervals.
+
+Answering mode is a separate choice: answering one question, moving through related questions, or participating in a defined survey sequence can use the same underlying instrument while introducing different context. Preserve relevant order and preceding material. Relatedness helps navigation without establishing measurement equivalence.
+
 ## Analysis questions
 
 Which comparisons are defensible? Which variants should remain separate? Can an experiment identify an effect, or is participation into each method itself selective? What cannot be recovered from historical data? How should a public result expose its method and denominator?

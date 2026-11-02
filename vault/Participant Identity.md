@@ -10,4 +10,4 @@ An account can support continuity and one-response-per-account controls. It does
 
 Describe actual linkage, access, retention, and erasure behavior when making privacy assurances. [Domain Writes](Domain%20Writes.md) explains why event authority does not settle storage of sensitive personal values. [Polling Methodology](Polling%20Methodology.md) separates integrity controls from population inference.
 
-Policy alternatives and evidence needs belong in [the participation investigation](discovery/2026-11-02-participation-design.md) and [the participation investigation](discovery/2026-11-02-participation-design.md). This note does not prescribe accounts, anonymity, or identity-document collection.
+Policy alternatives and evidence needs belong in [the participation investigation](discovery/2026-11-02-participation-design.md) and [Authorization](Authorization.md). This note does not prescribe accounts, anonymity, or identity-document collection.
