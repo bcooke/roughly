@@ -6,21 +6,22 @@ created: 2026-11-02
 updated: 2026-11-02
 ---
 
-# Improve search and readable question links
+# Global search and readable question links
 
 ## Outcome
 
-- Search matches whitespace-separated words across prompts, topic names, and answer labels, retaining literal wildcard escaping and topic/pagination filters.
-- Live typing and native GET submission share the `q` parameter. An explicit search-all-topics action preserves the query when leaving a topic.
-- Public question URLs use readable slugs. Per-route event-sourced claims serialize concurrent collisions; only actual duplicates gain numbered suffixes. Instrument UUIDs remain internal.
-- Question result explanations distinguish multiple-selection denominators and use the current withdrawal terminology.
+[PR #17](https://github.com/bcooke/roughly/pull/17) makes search a shared discovery surface with inline suggestions, a header modal, keyboard selection, recent searches, and full results with topic and question-format filters. Result previews show aggregate response counts and a leading answer. The interface includes loading, empty, retry, and stale-request handling, with native GET navigation as a fallback.
+
+Retrieval matches prompt, topic, and answer wording using English stemming, literal fragments, and word-level typo tolerance. Examples covered by tests include “cofee,” “liking coffee,” and “What percentage of people like coffee?” Search does not infer instrument equivalence or synthesize statistical claims. [Search](../../Search.md) owns the retrieval and interaction contract.
+
+Public question URLs use readable slugs. Per-route event-sourced claims serialize concurrent collisions; actual duplicates receive numbered suffixes. Instrument UUIDs remain internal. [Question Links](../../Question%20Links.md) records the contract and reservation limits.
+
+Question explanations distinguish multiple-selection denominators and use withdrawal terminology. A larger question-page redesign remains the next separate milestone: representative formats, appropriate visualizations, and clearly defined population comparisons.
 
 ## Evidence
 
-Observed four failing regressions before implementation: multiword lookup, GET-form fallback, leaving a filtered search, and UUID-free concurrent slug allocation. Tests now cover those cases plus collisions with naturally numbered prompts and refusal to publish an unclaimed route. Invalid definitions do not reserve routes.
+Observed failing tests before implementation for multiword lookup, native GET fallback, leaving a filtered search, concurrent UUID-free slug allocation, richer retrieval, and frontend request-state behavior. Passing regressions cover natural numbered collisions, refusal to publish unclaimed routes, invalid definitions without reservations, malformed API input, format filters, and public output boundaries.
 
-Basic typing of “coffee” already worked in a fresh Chrome tab; the reported complete search failure was not reproduced there. The change addresses verified limitations without claiming an unidentified failure's cause.
+Validation: `mix precommit` passes 67 ExUnit tests, three frontend request-state tests, compilation, Credo, formatting, and vault checks. `mix assets.build` passes Vue/TypeScript and the production build. Native Safari checks exercise typo suggestions, arrow-key selection into a readable route, global Command K, session recents, and submission to the full results page. Desktop visuals were inspected; mobile device testing remains outstanding.
 
-[Question Links](../../Question%20Links.md) records the route contract. The next question-page work should use representative binary, ordered-scale, and multiple-selection examples to develop suitable visualizations and population comparisons; it is outside this repair's scope.
-
-Validation: `mix precommit` passes 61 tests plus compilation, Credo, formatting, and vault checks. `mix assets.build` passes.
+The disposable development databases were rebuilt through the normal seed path to exercise the new slug claim flow. The complete catalog reran without duplicate responses.

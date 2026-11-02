@@ -6,7 +6,7 @@ Roughly is intended to be free, open source, and community supported. See the [p
 
 ## Current application
 
-The local application browses persisted questions and aggregate responses, with topic filters, search, pagination, related questions, an About page, and shareable result links. Development setup seeds **204 questions across 17 topics, 360 invented participants, and 31,467 invented responses**. These are local fixtures, not researched polling data. Authentication, real voting, demographic slicing, and representative population estimates are not available.
+The local application browses persisted questions and aggregate responses, with topic filters, global search, pagination, related questions, an About page, and readable result URLs. Search includes live question/topic suggestions, Command/Ctrl K, keyboard navigation, session recents, typo tolerance, and a full results page with format filters. Development setup seeds **204 questions across 17 topics, 360 invented participants, and 31,467 invented responses**. These are local fixtures, not researched polling data. Authentication, real voting, demographic slicing, and representative population estimates are not available.
 
 ## Run locally
 
@@ -42,7 +42,7 @@ mise exec -- mix precommit
 mise exec -- mix assets.build
 ```
 
-The checks compile with warnings as errors, run Credo, check Elixir formatting, validate the vault graph, and run tests. The frontend build checks Vue/TypeScript and builds Vite assets. GitHub Actions runs these checks against PostgreSQL.
+The checks compile with warnings as errors, run Credo, check Elixir formatting, validate the vault graph, and run backend and frontend request-state tests. The frontend build checks Vue/TypeScript and builds Vite assets. GitHub Actions runs these checks against PostgreSQL.
 
 ## Architecture
 

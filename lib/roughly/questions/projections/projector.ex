@@ -17,6 +17,7 @@ defmodule Roughly.Questions.Projections.Projector do
     question = %Question{
       uuid: event.question_uuid,
       text: event.text,
+      search_document: Roughly.Search.Document.build(event.text, event.category, event.options),
       language: event.language,
       slug: event.slug,
       options: event.options || [],

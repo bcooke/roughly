@@ -73,7 +73,7 @@ defmodule RoughlyWeb.ExploreLiveTest do
 
   test "search has a GET fallback and live typing uses the same query parameter", %{conn: conn} do
     {:ok, view, _} = live(conn, ~p"/")
-    assert has_element?(view, "#question-search[method='get'][action='/']")
+    assert has_element?(view, "#question-search[method='get'][action='/search']")
     assert has_element?(view, "#search-query[name='q']")
     view |> form("#question-search", q: "coffee taste") |> render_change()
     assert has_element?(view, "#question-count", "1 question")

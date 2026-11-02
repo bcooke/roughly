@@ -17,9 +17,15 @@ defmodule RoughlyWeb.Router do
   scope "/", RoughlyWeb do
     pipe_through :browser
 
+    live "/search", SearchLive
     live "/about", AboutLive
     live "/", ExploreLive
     live "/questions/:slug", QuestionLive
+  end
+
+  scope "/api", RoughlyWeb do
+    pipe_through :api
+    get "/search/suggest", SearchController, :suggest
   end
 
   # Other scopes may use custom stacks.

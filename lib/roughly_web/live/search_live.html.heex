@@ -1,0 +1,141 @@
+<Layouts.app flash={@flash} socket={@socket}>
+  <section class="search-page">
+    <div class="search-page-heading">
+      <p class="search-page-kicker">ROUGHLY / SEARCH</p><h1>
+        {if @query == "", do: "Search Roughly", else: "Search results"}
+      </h1>
+    </div>
+    <.form
+      for={@form}
+      id="full-search-form"
+      action={~p"/search"}
+      method="get"
+      phx-change="refine"
+      phx-submit="submit"
+      class="full-search-form"
+    >
+      <div class="full-search-query">
+        <.icon name="hero-magnifying-glass" class="size-5" /><.input
+          field={@form[:q]}
+          id="full-search-input"
+          type="search"
+          placeholder="Search questions, topics, and percentages"
+          aria-label="Search Roughly"
+          maxlength="200"
+          phx-debounce="250"
+        /><button id="full-search-submit" type="submit" aria-label="Search"><.icon
+          name="hero-arrow-right"
+          class="size-5"
+        /></button>
+      </div>
+      <div class="search-filter-row">
+        <.input
+          field={@form[:format]}
+          id="search-format"
+          type="select"
+          options={@formats}
+          aria-label="Question format"
+        /><span :if={@query != ""} id="search-result-count">{number(@count)} {if @count == 1,
+          do: "question",
+          else: "questions"}</span><.link
+          :if={@category != "All topics"}
+          patch={~p"/search?#{filters(@query, "All topics", @format)}"}
+          class="search-active-topic"
+        >{@category} <.icon name="hero-x-mark" class="size-3" /></.link>
+      </div>
+    </.form>
+    <div class="search-page-grid">
+      <div class="search-main-results">
+        <div :if={@query == ""} id="search-start" class="search-start">
+          <.icon name="hero-magnifying-glass" class="size-8" /><h2>
+            Start with a question or a topic.
+          </h2><p>Search an experience, a preference, or a topic.</p><div class="search-starters">
+            <.link patch={~p"/search?q=coffee"}>Coffee habits
+            <.icon name="hero-arrow-up-right" class="size-4" /></.link><.link patch={
+              ~p"/search?q=life+experiences"
+            }>Life experiences <.icon name="hero-arrow-up-right" class="size-4" /></.link><.link patch={
+              ~p"/search?q=technology"
+            }>Technology <.icon name="hero-arrow-up-right" class="size-4" /></.link>
+          </div>
+        </div>
+        <div :if={@query != "" && @count == 0} id="search-no-results" class="search-no-results">
+          <.icon name="hero-magnifying-glass" class="size-8" /><h2>No matches for “{@query}”</h2><p>
+            Try fewer words or explore a broader topic.
+          </p><.link
+            :if={@format != "all" || @category != "All topics"}
+            id="search-reset-filters"
+            patch={~p"/search?#{filters(@query, "All topics", "all")}"}
+            class="text-link"
+          >Search all questions <.icon name="hero-arrow-right" class="size-4" /></.link>
+        </div>
+        <div id="search-results" phx-update="stream" class="search-result-list">
+          <article
+            :for={{id, question} <- @streams.results}
+            id={id}
+            class={["search-result", question.position == 1 && "search-result-first"]}
+          >
+            <div class="search-result-position">
+              {question.position |> Integer.to_string() |> String.pad_leading(2, "0")}
+            </div>
+            <div class="search-result-body">
+              <div class="search-result-meta">
+                <span>{question.category}</span><span>{format_name(question.question_type)}</span>
+              </div><.link navigate={~p"/questions/#{question.slug}"} class="search-result-title"><RoughlyWeb.SearchComponents.highlight
+                text={question.text}
+                query={@query}
+              /></.link><div class="search-result-bottom">
+                <span>{number(question.total)} {if question.total == 1,
+                  do: "response",
+                  else: "responses"}</span><.link navigate={~p"/questions/#{question.slug}"}>Explore results
+                <.icon name="hero-arrow-up-right" class="size-4" /></.link>
+              </div>
+            </div>
+            <div :if={leading(question)} class="search-result-stat">
+              <strong>{leading(question).percentage}<span>%</span></strong><span>{leading(
+                question
+              ).label}</span><small>of responses</small>
+            </div>
+          </article>
+        </div>
+        <nav
+          :if={@pages > 1}
+          id="search-pagination"
+          class="pagination"
+          aria-label="Search result pages"
+        >
+          <.link
+            :if={@page > 1}
+            id="search-previous-page"
+            patch={~p"/search?#{filters(@query, @category, @format, @page - 1)}"}
+          >Previous</.link><span>Page {@page} of {@pages}</span><.link
+            :if={@page < @pages}
+            id="search-next-page"
+            patch={~p"/search?#{filters(@query, @category, @format, @page + 1)}"}
+          >Next <.icon name="hero-arrow-right" class="size-4" /></.link>
+        </nav>
+      </div>
+      <aside class="search-sidebar">
+        <div class="search-topic-panel">
+          <div class="search-sidebar-heading">
+            <.icon name="hero-hashtag" class="size-4" /><h2>
+              {if @query == "", do: "Explore topics", else: "Related topics"}
+            </h2>
+          </div><div id="search-topics" phx-update="stream">
+            <.link
+              :for={{id, topic} <- @streams.topics}
+              id={id}
+              navigate={
+                if @query == "",
+                  do: ~p"/?#{%{topic: topic.name}}",
+                  else: ~p"/search?#{filters(@query, topic.name, @format)}"
+              }
+              class={["search-topic-link", @category == topic.name && "search-topic-selected"]}
+            ><span>{topic.name}</span><span>{number(topic.count)}
+            <.icon name="hero-arrow-up-right" class="size-3" /></span></.link>
+          </div><.link navigate={~p"/"} class="search-browse-all">Browse all topics
+          <.icon name="hero-arrow-right" class="size-4" /></.link>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layouts.app>

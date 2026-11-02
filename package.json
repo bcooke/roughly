@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "vite --config assets/vite.config.mjs",
-    "build": "vue-tsc --noEmit && vite build --config assets/vite.config.mjs"
+    "build": "vue-tsc --noEmit && vite build --config assets/vite.config.mjs",
+    "test:search": "node --test assets/vue/search-client.test.mjs"
   },
   "dependencies": {
     "vue": "^3.5.0"

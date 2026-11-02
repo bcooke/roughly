@@ -31,6 +31,8 @@ defmodule RoughlyWeb.Layouts do
     default: nil,
     doc: "the current [scope](https://phoenix.hexdocs.pm/scopes.html)"
 
+  attr :socket, :any, required: true
+
   slot :inner_block, required: true
 
   def app(assigns) do
@@ -44,6 +46,16 @@ defmodule RoughlyWeb.Layouts do
           id="nav-about"
           navigate={~p"/about"}
         >About</.link>
+        <div class="site-search-control">
+          <.link id="nav-search-fallback" navigate={~p"/search"} class="search-nav-fallback"><.icon
+            name="hero-magnifying-glass"
+            class="size-4"
+          /> Search</.link><RoughlyWeb.SearchComponents.box
+            id="site-search"
+            mode="header"
+            socket={@socket}
+          />
+        </div>
       </nav>
     </header>
     <main id="main-content">{render_slot(@inner_block)}</main>

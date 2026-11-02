@@ -112,7 +112,8 @@ defmodule Roughly.MixProject do
         "credo",
         "format --check-formatted",
         "docs.check",
-        "test"
+        "test",
+        "cmd npm run test:search"
       ]
     ]
   end
