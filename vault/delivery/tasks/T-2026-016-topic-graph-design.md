@@ -17,3 +17,5 @@ Review an implemented topic/relationship pattern and define a Roughly-specific m
 - [Question meaning and population intersections](../../discovery/2026-11-02-question-meaning-and-intersections.md) retains the associated measurement constraints.
 
 The research/design scope is complete; graph persistence and commands are not implemented. The proposal is open, and its first implementation slice is stated there. No taxonomy, inference policy, graph database, or automatic result pooling was introduced.
+
+[PR #13](https://github.com/bcooke/roughly/pull/13) records the design change and checks.
