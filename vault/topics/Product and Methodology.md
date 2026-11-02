@@ -25,14 +25,16 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 - [Polling Methodology](../Polling%20Methodology.md): samples, inference, and disclosure.
 - [Results Exposure](../Results%20Exposure.md): information before an answer.
 - [Participant Identity](../Participant%20Identity.md): identity, privacy, and integrity dimensions.
+- [Collection Context](../Collection%20Context.md): instruments, presentation, and observed conditions.
 - [Development Fixtures](../Development%20Fixtures.md): fictional examples and provenance.
 
 ## Investigation
 
+- [Ideas and open questions](../discovery/ideas/README.md): visualization, imagery, collection variants, and public data access.
+
 - [Question meaning and population intersections](../discovery/2026-11-02-question-meaning-and-intersections.md): conditional counts and preserving exact instruments.
 
 - [Participation design investigation](../discovery/2026-11-02-participation-design.md): dated alternatives and evidence needs.
-- [the participation investigation](../discovery/2026-11-02-participation-design.md): methodology work and outcome criteria.
 - [Historical proposals](../archive/README.md): superseded sketches for reference.
 
 ## Related maps

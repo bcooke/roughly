@@ -13,3 +13,5 @@ Navigation and participation design are also part of measurement: presentation c
 [Product Vision](Product%20Vision.md) supplies the purpose; UI proposals and usability findings belong in linked research or PR discussion rather than accumulating as a roadmap in this note.
 
 Public-facing explanatory pages, including About, describe the product and its use. Keep personal origin stories, development chronology, and repeated slogans out of that standing explanation. Historical writing can have its own dated home.
+
+[Data-led visualizations](discovery/ideas/data-led-visualizations.md) explores visual richness from the information itself. [Question imagery](discovery/ideas/question-imagery.md) considers icons and illustrations as possible aids to understanding and participation, alongside their possible measurement effects. Neither proposal establishes a visual style or a collection policy. [Collection Context](Collection%20Context.md) explains how presentation differences can remain available for analysis.

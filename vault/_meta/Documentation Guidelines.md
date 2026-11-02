@@ -18,6 +18,7 @@ Evergreen root notes have one clear subject, minimal `type: note` frontmatter, a
 | --- | --- | --- |
 | Evergreen root note | A concept, mechanism, principle, or documented contract | Progress logs, promises, and unqualified snapshots of changing arrangements |
 | Topic map | Short entry points and related-note links | Repeating the content it points to |
+| Idea in `discovery/ideas/` | A possibility, uncertainty, and useful investigation | Implying adoption or requiring a delivery task merely to capture a thought |
 | Dated discovery record | Research questions, scoped observations, sources, alternatives, uncertainty | Turning one observation into a permanent conclusion |
 | Decision record | Context, choice or proposal, rationale, alternatives, consequences, status | Describing a proposal as ratified or equating a decision with implementation |
 | Task and optional context | A meaningful change, its outcome, PR, and useful implementation findings | Mirrored issue state, exhaustive action logs, and compulsory backfilling |
@@ -33,6 +34,8 @@ Useful implementation facts still need an owner. Put operational commands in the
 Dates are appropriate in historical research and decisions. Separate what was observed, what was inferred, what was proposed, and what was demonstrated. An unresolved idea can inform a concept note without being described as shipped or proven. Do not let careful-sounding prose manufacture certainty.
 
 ## Decisions and evidence
+
+Use the [ideas parking lot](../discovery/ideas/README.md) for unresolved possibilities. Keep one subject per idea, link related concept notes, and distinguish exploration from an accepted decision. Promote findings into their owning notes and link implementation work only when it becomes useful.
 
 Record significant technical choices as ADRs and broader product/process choices as DRs in `decisions/`. Include a date and status (`proposed`, `accepted`, `superseded`, or `rejected`). Reference the work and knowledge they affect. When a choice changes, preserve the historical rationale and link its replacement; update active guidance separately.
 
