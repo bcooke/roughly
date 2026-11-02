@@ -2,7 +2,7 @@ defmodule Roughly.Questions.QuestionTest do
   @moduledoc """
   Tests for the Question aggregate.
 
-  Following TDD: These tests were written FIRST before implementation.
+  Aggregate lifecycle examples; new admission behavior has separate red/green evidence.
   """
   use ExUnit.Case
 
@@ -18,7 +18,7 @@ defmodule Roughly.Questions.QuestionTest do
         question_uuid: @question_uuid,
         text: "Do you like coffee?",
         question_type: :binary,
-        options: ["Yes", "No"],
+        options: choices(["Yes", "No"]),
         created_by: "user-1"
       }
 
@@ -26,7 +26,7 @@ defmodule Roughly.Questions.QuestionTest do
         question_uuid: @question_uuid,
         text: "Do you like coffee?",
         question_type: :binary,
-        options: ["Yes", "No"],
+        options: choices(["Yes", "No"]),
         created_by: "user-1"
       }
 
@@ -37,16 +37,16 @@ defmodule Roughly.Questions.QuestionTest do
       cmd = %CreateQuestion{
         question_uuid: @question_uuid,
         text: "What's your favorite season?",
-        question_type: :multiple_choice,
-        options: ["Spring", "Summer", "Fall", "Winter"],
+        question_type: :single_choice,
+        options: choices(["Spring", "Summer", "Fall", "Winter"]),
         created_by: "user-1"
       }
 
       expected_event = %QuestionCreated{
         question_uuid: @question_uuid,
         text: "What's your favorite season?",
-        question_type: :multiple_choice,
-        options: ["Spring", "Summer", "Fall", "Winter"],
+        question_type: :single_choice,
+        options: choices(["Spring", "Summer", "Fall", "Winter"]),
         created_by: "user-1"
       }
 
@@ -57,16 +57,16 @@ defmodule Roughly.Questions.QuestionTest do
       cmd = %CreateQuestion{
         question_uuid: @question_uuid,
         text: "How satisfied are you?",
-        question_type: :scaled,
-        options: ["1", "2", "3", "4", "5"],
+        question_type: :ordered_scale,
+        options: choices(["1", "2", "3", "4", "5"]),
         created_by: "user-1"
       }
 
       expected_event = %QuestionCreated{
         question_uuid: @question_uuid,
         text: "How satisfied are you?",
-        question_type: :scaled,
-        options: ["1", "2", "3", "4", "5"],
+        question_type: :ordered_scale,
+        options: choices(["1", "2", "3", "4", "5"]),
         created_by: "user-1"
       }
 
@@ -81,7 +81,7 @@ defmodule Roughly.Questions.QuestionTest do
         question_uuid: @question_uuid,
         text: "Do you like coffee?",
         question_type: :binary,
-        options: ["Yes", "No"],
+        options: choices(["Yes", "No"]),
         created_by: "user-1"
       }
 
@@ -127,7 +127,7 @@ defmodule Roughly.Questions.QuestionTest do
         question_uuid: @question_uuid,
         text: "Do you like coffee?",
         question_type: :binary,
-        options: ["Yes", "No"],
+        options: choices(["Yes", "No"]),
         created_by: "user-1"
       }
 
@@ -136,7 +136,7 @@ defmodule Roughly.Questions.QuestionTest do
       assert state.uuid == @question_uuid
       assert state.text == "Do you like coffee?"
       assert state.question_type == :binary
-      assert state.options == ["Yes", "No"]
+      assert Enum.map(state.options, & &1.label) == ["Yes", "No"]
       assert state.status == :active
       assert state.created_by == "user-1"
     end
@@ -155,4 +155,10 @@ defmodule Roughly.Questions.QuestionTest do
       assert state.status == :closed
     end
   end
+
+  defp choices(labels),
+    do:
+      Enum.map(labels, fn label ->
+        Roughly.Questions.Option.new(Roughly.Dev.Identity.uuid("test-option:#{label}"), label)
+      end)
 end

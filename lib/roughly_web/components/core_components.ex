@@ -157,7 +157,7 @@ defmodule RoughlyWeb.CoreComponents do
   a `value` to mark which option should be preselected.
 
   ```heex
-  <.input field={@form[:user_type]} type="select" options={["Admin": "admin", "User": "user"]} />
+  <.input field={@form[:user_type]} type="select" options={["Admin": "admin", "Principal": "principal"]} />
   ```
 
   For more information on what kind of data can be passed to `options` see
@@ -340,7 +340,7 @@ defmodule RoughlyWeb.CoreComponents do
 
   ## Examples
 
-      <.table id="users" rows={@users}>
+      <.table id="principals" rows={@users}>
         <:col :let={user} label="id">{user.id}</:col>
         <:col :let={user} label="username">{user.username}</:col>
       </.table>

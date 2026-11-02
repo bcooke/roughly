@@ -5,14 +5,15 @@ defmodule Roughly.Dev.Seeds do
   errors also protect against lagging projections. The dataset is not polling evidence.
   """
   import Ecto.Query
-  alias Roughly.{App, Repo}
+  alias Roughly.{Dispatch, Repo}
+  alias Roughly.Access.Actor
   alias Roughly.Dev.{Identity, SeedCatalog}
   alias Roughly.Questions.Commands.CreateQuestion
   alias Roughly.Questions.Projections.Question
-  alias Roughly.Users.Commands.RegisterUser
-  alias Roughly.Users.Projections.User
-  alias Roughly.Voting.Commands.CastVote
-  alias Roughly.Voting.Projections.Vote
+  alias Roughly.Identity.Commands.RegisterPrincipal
+  alias Roughly.Identity.Projections.Principal
+  alias Roughly.Participation.Commands.RecordResponse
+  alias Roughly.Participation.Projections.Response
 
   @participants 360
   @metadata %{"source" => "development-fixtures", "dataset" => "roughly-v1"}
@@ -28,12 +29,11 @@ defmodule Roughly.Dev.Seeds do
     try do
       questions = SeedCatalog.questions()
 
-      users =
+      principals =
         Enum.map(
           1..@participants,
-          &%RegisterUser{
-            user_uuid: Identity.uuid("participant:#{&1}"),
-            email: "participant-#{&1}@roughly-seed.invalid"
+          &%RegisterPrincipal{
+            principal_uuid: Identity.uuid("participant:#{&1}")
           }
         )
 
@@ -43,7 +43,7 @@ defmodule Roughly.Dev.Seeds do
         "Seeding #{length(questions)} questions across #{topic_count} topics and #{@participants} participants..."
       )
 
-      seed(User, users, :user_uuid, :user_already_exists)
+      seed(Principal, principals, :principal_uuid, :principal_already_exists)
 
       seed(
         Question,
@@ -53,8 +53,14 @@ defmodule Roughly.Dev.Seeds do
       )
 
       votes = Enum.flat_map(questions, &responses/1)
-      seed(Vote, votes, :vote_uuid, :vote_already_exists)
-      await_projections(questions, users, votes, System.monotonic_time(:millisecond) + 120_000)
+      seed(Response, votes, :response_uuid, :response_already_exists)
+
+      await_projections(
+        questions,
+        principals,
+        votes,
+        System.monotonic_time(:millisecond) + 120_000
+      )
 
       IO.puts(
         "Ready: #{length(questions)} questions, #{@participants} participants, #{length(votes)} responses. Rerunning preserves these counts."
@@ -80,11 +86,16 @@ defmodule Roughly.Dev.Seeds do
     bucket = :erlang.phash2({question.slug, index}, 100)
     option = pick_option(Enum.zip(question.options, question.weights), bucket)
 
-    %CastVote{
-      vote_uuid: Identity.uuid("response:#{question.slug}:#{index}"),
+    %RecordResponse{
+      response_uuid:
+        Roughly.Participation.identity(question.uuid, Identity.uuid("participant:#{index}")),
       question_uuid: question.uuid,
-      user_uuid: Identity.uuid("participant:#{index}"),
-      option_id: option
+      principal_uuid: Identity.uuid("participant:#{index}"),
+      option_ids: [option_id(question, option)],
+      context: %Roughly.Participation.Context{
+        mode: :development_fixture,
+        option_order: Enum.map(question.options, &option_id(question, &1))
+      }
     }
   end
 
@@ -94,13 +105,16 @@ defmodule Roughly.Dev.Seeds do
     end)
   end
 
+  defp option_id(question, label), do: Identity.uuid("option:#{question.uuid}:#{label}")
+
   defp question_command(question) do
     %CreateQuestion{
       question_uuid: question.uuid,
       text: question.text,
       category: question.category,
-      options: question.options,
-      question_type: if(length(question.options) == 2, do: :binary, else: :multiple_choice)
+      options:
+        Enum.map(question.options, &Roughly.Questions.Option.new(option_id(question, &1), &1)),
+      question_type: if(length(question.options) == 2, do: :binary, else: :single_choice)
     }
   end
 
@@ -113,7 +127,10 @@ defmodule Roughly.Dev.Seeds do
     |> Enum.with_index(1)
     |> Enum.each(fn {batch, index} ->
       batch
-      |> Task.async_stream(fn command -> App.dispatch(command, metadata: @metadata) end,
+      |> Task.async_stream(
+        fn command ->
+          Dispatch.dispatch(command, Actor.system("development-fixtures"), metadata: @metadata)
+        end,
         timeout: :infinity,
         max_concurrency: 8,
         ordered: false
@@ -130,15 +147,16 @@ defmodule Roughly.Dev.Seeds do
     end)
   end
 
-  defp await_projections(questions, users, votes, deadline) do
+  defp await_projections(questions, principals, votes, deadline) do
     question_ids = Enum.map(questions, & &1.uuid)
-    user_ids = Enum.map(users, & &1.user_uuid)
+    user_ids = Enum.map(principals, & &1.principal_uuid)
 
     ready? =
       Repo.aggregate(from(q in Question, where: q.uuid in ^question_ids), :count) ==
         length(questions) and
-        Repo.aggregate(from(u in User, where: u.uuid in ^user_ids), :count) == length(users) and
-        Repo.aggregate(from(v in Vote, where: v.question_uuid in ^question_ids), :count) ==
+        Repo.aggregate(from(u in Principal, where: u.uuid in ^user_ids), :count) ==
+          length(principals) and
+        Repo.aggregate(from(v in Response, where: v.question_uuid in ^question_ids), :count) ==
           length(votes)
 
     cond do
@@ -150,7 +168,7 @@ defmodule Roughly.Dev.Seeds do
 
       true ->
         Process.sleep(200)
-        await_projections(questions, users, votes, deadline)
+        await_projections(questions, principals, votes, deadline)
     end
   end
 end

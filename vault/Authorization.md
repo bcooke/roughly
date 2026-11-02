@@ -18,4 +18,4 @@ Enforce capability, resource scope, ownership, and lifecycle constraints beneath
 
 [Participant Identity](Participant%20Identity.md) separates continuity, assurance, and public attribution. Anonymous or pseudonymous participation can have explicitly scoped capabilities; registered accounts need not imply public attribution. The participation policy must decide which actions each condition permits. No KYC requirement, fixed role hierarchy, or anonymous collection policy follows from this distinction.
 
-The [domain flow proposal](discovery/validated-domain-flow.md) records implementation gaps and candidate context boundaries. These principles do not describe a completed authorization system.
+[Bounded Contexts](Bounded%20Contexts.md) separates identity/access ownership from domain-specific policy. [ADR-003](decisions/ADR-003-domain-admission-and-context-boundaries.md) defines the internal admission implementation, trusted actor boundary, system permissions, and consistency limits. This is a command foundation; public authentication and a complete participation policy remain separate work.

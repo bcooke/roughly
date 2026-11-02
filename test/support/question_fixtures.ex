@@ -2,7 +2,7 @@ defmodule Roughly.QuestionFixtures do
   @moduledoc "Read-side fixtures for query and interface tests; runtime seeds use commands."
   alias Roughly.Repo
   alias Roughly.Questions.Projections.Question
-  alias Roughly.Voting.Projections.Vote
+  alias Roughly.Participation.Projections.Response
 
   def question(attrs \\ %{}) do
     id = Ecto.UUID.generate()
@@ -11,8 +11,13 @@ defmodule Roughly.QuestionFixtures do
       uuid: id,
       text: "Do you like the taste of coffee?",
       slug: "coffee-#{id}",
-      question_type: :multiple_choice,
-      options: ["Yes", "No", "It depends"],
+      question_type: :single_choice,
+      language: "en",
+      options:
+        Enum.map(
+          ["Yes", "No", "It depends"],
+          &Roughly.Questions.Option.new(Ecto.UUID.generate(), &1)
+        ),
       category: "Food & drink",
       status: :active
     }
@@ -24,11 +29,15 @@ defmodule Roughly.QuestionFixtures do
     defaults = %{
       uuid: Ecto.UUID.generate(),
       question_uuid: question.uuid,
-      user_uuid: Ecto.UUID.generate(),
-      option_id: option,
+      principal_uuid: Ecto.UUID.generate(),
+      option_ids:
+        Enum.map(List.wrap(option), fn label ->
+          Enum.find(question.options, &(&1.label == label)).id
+        end),
+      context: %{},
       status: :active
     }
 
-    Repo.insert!(struct!(Vote, Map.merge(defaults, attrs)))
+    Repo.insert!(struct!(Response, Map.merge(defaults, attrs)))
   end
 end

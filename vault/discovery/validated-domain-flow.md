@@ -49,3 +49,7 @@ These are working boundaries to validate through concrete use cases in one appli
 Before adding public writes, demonstrate failing tests for malformed commands, invalid option/instrument combinations, missing authority, cross-participant mutation, and duplicate/concurrent response behavior. Establish truthful command/event/state types, transition and query specs, runtime parsing, and explicit actor admission as part of a narrow end-to-end feature. Prove refused dispatch writes no events, and preserve replay of historical events without applying new admission rules retroactively.
 
 The [exploration proposal](2026-11-02-question-meaning-and-intersections.md#proposed-next-implementation-slice) supplies a visible feature to exercise these boundaries. A small actor/capability matrix can precede it; final role names, anonymous participation rules, and sensitive-data lifecycle remain open. [Authorization](../Authorization.md) records the enduring distinctions.
+
+## Foundation implementation follow-up
+
+[T-2026-017](../delivery/tasks/T-2026-017-domain-foundation.md) addresses the contract and admission gaps identified above. The historical review remains an observation of the pre-change code. [ADR-003](../decisions/ADR-003-domain-admission-and-context-boundaries.md) records the implemented scope and limitations, and [Bounded Contexts](../Bounded%20Contexts.md) refines ownership of authentication and authorization. The public collection acceptance criteria are not all satisfied by the foundation.

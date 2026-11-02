@@ -6,6 +6,8 @@ type: topic
 
 Authority, derived reads, runtime boundaries, and architecture decisions.
 
+- [Bounded Contexts](../Bounded%20Contexts.md): model ownership and authentication placement.
+- [Domain admission decision](../decisions/ADR-003-domain-admission-and-context-boundaries.md): contracts, actors, instrument semantics, and consistency limits.
 - [System Architecture](../System%20Architecture.md): implementation entry points and boundaries.
 - [Authorization](../Authorization.md): trusted actors, capabilities, ownership, and domain admission.
 - [Domain Writes](../Domain%20Writes.md): event-sourced authority.

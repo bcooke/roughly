@@ -48,3 +48,7 @@ config :roughly, :start_projectors, false
 config :live_vue, enable_props_diff: false
 
 config :roughly, :serve_assets, false
+
+config :roughly, :system_capabilities, %{
+  "test-maintenance" => [:register_principals, :curate_questions, :manage_access]
+}

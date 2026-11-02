@@ -11,3 +11,8 @@ The [application supervision tree](../lib/roughly/application.ex) starts reposit
 Phoenix owns routes and server state. HEEx renders readable content; Vue through LiveVue supplies browser interactions. [Vite configuration](../assets/vite.config.mjs) resolves browser clients from locked Hex packages, keeping browser and server implementations aligned. Dependency changes require a clear purpose and license review.
 
 [Development Fixtures](Development%20Fixtures.md) identifies the development-only data source. The web layer reads question and vote projections through [the Questions entry point](../lib/roughly/questions.ex). [Project Status](../PROJECT_STATUS.md) identifies implemented capabilities, and [the domain flow proposal](discovery/validated-domain-flow.md) tracks the real-domain flow. [The foundation ADR](decisions/ADR-001-foundation-refresh.md) records the scaffold choice and its tradeoffs.
+
+
+[Bounded Contexts](Bounded%20Contexts.md) defines the working model boundaries. Trusted adapters use [Dispatch](../lib/roughly/dispatch.ex); the [router](../lib/roughly/router.ex) applies runtime validation and authorization before aggregates. [Access](../lib/roughly/access.ex) owns grants; participation owns response admission; questions owns instrument eligibility. [Analysis results](../lib/roughly/analysis/queries/results.ex) supplies aggregate read contracts to browsing.
+
+The [domain admission decision](decisions/ADR-003-domain-admission-and-context-boundaries.md) specifies authoritative admission reads, instrument/response semantics, and cross-stream limits. Event sourcing is not a requirement to store credentials or sessions in immutable history. Public authentication and collection adapters remain outside the implemented foundation.

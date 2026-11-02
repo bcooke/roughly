@@ -29,7 +29,7 @@ defmodule Roughly.Questions.QueriesTest do
     response_fixture(q, "Yes")
     response_fixture(q, "Yes")
     response_fixture(q, "No")
-    response_fixture(q, "No", %{status: :retracted})
+    response_fixture(q, "No", %{status: :withdrawn})
     result = Questions.get_question("coffee")
     assert result.total == 3
 
@@ -39,7 +39,7 @@ defmodule Roughly.Questions.QueriesTest do
              %{label: "It depends", count: 0, percentage: +0.0}
            ] = result.answers
 
-    refute Map.has_key?(result, :user_uuid)
+    refute Map.has_key?(result, :principal_uuid)
     assert Questions.get_question("missing") == nil
   end
 
@@ -51,5 +51,16 @@ defmodule Roughly.Questions.QueriesTest do
     assert Enum.all?(result.answers, &(&1.percentage == 0.0))
     assert [%{slug: "tea"}] = Questions.related_questions(result)
     assert %{entries: [], total: 0} = Questions.list_questions(search: "%")
+  end
+
+  test "multiple selections use respondent denominators rather than selection totals" do
+    q = question(%{question_type: :multiple_select})
+    response_fixture(q, ["Yes", "No"])
+    response_fixture(q, ["No"])
+    result = Questions.get_question(q.slug)
+    assert result.total == 2
+    assert Enum.find(result.answers, &(&1.label == "Yes")).percentage == 50.0
+    assert Enum.find(result.answers, &(&1.label == "No")).percentage == 100.0
+    assert Enum.sum(Enum.map(result.answers, & &1.percentage)) == 150.0
   end
 end

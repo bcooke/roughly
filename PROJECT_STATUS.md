@@ -4,7 +4,7 @@ Updated November 2, 2026.
 
 ## Current milestone
 
-A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and LiveVue 1.2.3 are integrated through Vite. Existing domain code and Git history are preserved.
+A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and LiveVue 1.2.3 are integrated through Vite. The unreleased domain model is being rebuilt around exact instruments, evidence context, and explicit domain admission.
 
 ## Available
 
@@ -14,6 +14,9 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 - Ecto and EventStore setup, supervised projectors, regression tests, and query/LiveView tests.
 - Shared contributor instructions, linked atomic notes, dated discovery, and decision records.
 - GitHub CI for backend checks, vault links, and frontend builds.
+- Internal domain admission: typed command/event/state/query contracts, runtime command validation, event-sourced capability grants, explicit actor attribution, response ownership checks, and stable response identities.
+- Stable option identities, four selection formats, collection context with per-field provenance, and respondent denominators for multiple-selection results.
+- Event-to-projection-to-query and serialization and replay coverage. See [T-2026-017](vault/delivery/tasks/T-2026-017-domain-foundation.md) and [ADR-003](vault/decisions/ADR-003-domain-admission-and-context-boundaries.md) for scope and consistency limits.
 
 ## Validation
 
@@ -32,6 +35,6 @@ The [vault index](vault/README.md) leads to connected product/methodology and en
 
 ## Open boundaries
 
-The retained aggregates are not a complete or hardened public voting backend. Public authentication, answer collection, demographic slices, representative estimates, and production deployment are not implemented. Nonprofit governance is an intention to explore, not an established organization.
+The internal foundation is not a complete public participation system. Public authentication, answer collection, demographic slices, representative estimates, and production deployment are not implemented. Nonprofit governance is an intention to explore, not an established organization.
 
 Historical design proposals under `vault/archive/` describe possible future behavior. Current runtime behavior and this status take precedence over those sketches.

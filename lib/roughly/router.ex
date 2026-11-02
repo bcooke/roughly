@@ -10,21 +10,32 @@ defmodule Roughly.Router do
   alias Roughly.Questions.Question
   alias Roughly.Questions.Commands.{CreateQuestion, CloseQuestion}
 
-  alias Roughly.Voting.Vote
-  alias Roughly.Voting.Commands.{CastVote, RetractVote, ChangeVote}
+  alias Roughly.Participation.Response
+  alias Roughly.Participation.Commands.{RecordResponse, WithdrawResponse, ChangeResponse}
 
-  alias Roughly.Users.User
-  alias Roughly.Users.Commands.{RegisterUser, UpdateProfile, DeactivateUser}
+  alias Roughly.Identity.Principal
+  alias Roughly.Identity.Commands.{RegisterPrincipal, DeactivatePrincipal}
 
   # Middlewares
+  middleware(Roughly.Validation.Middleware)
+  middleware(Roughly.Access.Middleware)
   middleware(Commanded.Middleware.Logger)
+
+  dispatch([Roughly.Access.Commands.GrantCapability, Roughly.Access.Commands.RevokeCapability],
+    to: Roughly.Access.Grants,
+    identity: :principal_uuid,
+    identity_prefix: "access-"
+  )
 
   # Questions
   dispatch([CreateQuestion, CloseQuestion], to: Question, identity: :question_uuid)
 
-  # Voting
-  dispatch([CastVote, RetractVote, ChangeVote], to: Vote, identity: :vote_uuid)
+  # Participation
+  dispatch([RecordResponse, WithdrawResponse, ChangeResponse],
+    to: Response,
+    identity: :response_uuid
+  )
 
-  # Users
-  dispatch([RegisterUser, UpdateProfile, DeactivateUser], to: User, identity: :user_uuid)
+  # Identity
+  dispatch([RegisterPrincipal, DeactivatePrincipal], to: Principal, identity: :principal_uuid)
 end

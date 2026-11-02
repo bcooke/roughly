@@ -49,7 +49,8 @@ The checks compile with warnings as errors, run Credo, check Elixir formatting, 
 - Phoenix 1.8 and LiveView own routes and server state.
 - Vue 3 through LiveVue handles client interactions; Tailwind 4 and custom CSS style the interface.
 - Commanded aggregates emit immutable events into PostgreSQL EventStore. Supervised projectors maintain Ecto read models.
-- Questions are read through named query modules and the Questions facade. Aggregate results exclude retracted responses and do not expose participant identities.
+- Trusted writes use the actor-aware Dispatch seam, domain command validation, and capability/ownership admission. Public authentication and voting remain disabled.
+- Questions are read through named query modules and the Questions facade. Aggregate results exclude withdrawn responses and do not expose participant identities.
 
 See [system architecture](vault/System%20Architecture.md), [documentation](vault/README.md), and [project status](PROJECT_STATUS.md).
 
@@ -57,7 +58,7 @@ See [system architecture](vault/System%20Architecture.md), [documentation](vault
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md). Shared instructions work with any coding assistant. No proprietary AI tool, subscription, or slash-command system is required.
 
-Dependencies should have a clear purpose and compatible open-source licenses. No PrimeVue or commercial component suite is required. Before real response collection, decide the participation model and implement response validation and the privacy and abuse safeguards in [Methodology](vault/Polling%20Methodology.md).
+Dependencies should have a clear purpose and compatible open-source licenses. No PrimeVue or commercial component suite is required. Before real response collection, decide the participation model, complete the collection and study-policy boundaries in [ADR-003](vault/decisions/ADR-003-domain-admission-and-context-boundaries.md), and implement the privacy and abuse safeguards in [Methodology](vault/Polling%20Methodology.md).
 
 ## Deployment
 

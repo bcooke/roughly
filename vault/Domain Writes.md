@@ -15,3 +15,5 @@ Event sourcing does not imply retaining every private value forever in an event 
 The [command router](../lib/roughly/router.ex) and [Commanded application](../lib/roughly/app.ex) are implementation entry points. [the domain flow proposal](discovery/validated-domain-flow.md) tracks the gap between the domain foundation and a complete collection flow.
 
 Commands, events, and aggregate state need contracts describing actual field values, including nullability and serialized representations. Transition specs describe reachable successes and refusals; runtime parsing and aggregate rules enforce admission. [Authorization](Authorization.md) makes the trusted actor and resource policy explicit. A typespec or projection constraint alone cannot enforce these rules.
+
+The [admission decision](decisions/ADR-003-domain-admission-and-context-boundaries.md) distinguishes serialized response-stream transitions from cross-stream checks. An authoritative read at admission is not an atomic transaction with another aggregate’s subsequent close or revocation. Historical replay must remain independent of today’s admission rules.

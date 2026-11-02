@@ -9,14 +9,32 @@ defmodule Roughly.Questions.Projections.Question do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @type t :: %__MODULE__{
+          uuid: Ecto.UUID.t(),
+          text: String.t(),
+          language: String.t(),
+          slug: String.t() | nil,
+          options: [Roughly.Questions.Option.t()],
+          category: String.t() | nil,
+          question_type: :binary | :single_choice | :multiple_select | :ordered_scale,
+          status: :active | :closed,
+          created_by: Ecto.UUID.t() | nil,
+          inserted_at: DateTime.t() | nil,
+          updated_at: DateTime.t() | nil
+        }
+
   @primary_key {:uuid, :binary_id, autogenerate: false}
 
   schema "questions" do
     field :text, :string
+    field :language, :string
     field :slug, :string
-    field :question_type, Ecto.Enum, values: [:binary, :multiple_choice, :scaled]
+
+    field :question_type, Ecto.Enum,
+      values: [:binary, :single_choice, :multiple_select, :ordered_scale]
+
     field :status, Ecto.Enum, values: [:active, :closed], default: :active
-    field :options, {:array, :string}, default: []
+    field :options, {:array, Roughly.Questions.Projections.OptionType}, default: []
     field :category, :string
     field :created_by, :binary_id
 
@@ -30,41 +48,14 @@ defmodule Roughly.Questions.Projections.Question do
     question
     |> cast(attrs, [
       :text,
+      :language,
       :slug,
       :question_type,
       :status,
       :options,
       :category
     ])
-    |> validate_required([:uuid, :text, :question_type])
-    |> generate_slug()
+    |> validate_required([:uuid, :text, :question_type, :slug])
     |> unique_constraint(:slug)
-  end
-
-  defp generate_slug(changeset) do
-    case get_field(changeset, :slug) do
-      nil ->
-        text = get_field(changeset, :text)
-
-        if text do
-          slug = slug_for(text)
-
-          put_change(changeset, :slug, slug)
-        else
-          changeset
-        end
-
-      _ ->
-        changeset
-    end
-  end
-
-  def slug_for(text) do
-    text
-    |> String.downcase()
-    |> String.replace(~r/[^a-z0-9\s-]/, "")
-    |> String.replace(~r/\s+/, "-")
-    |> String.trim("-")
-    |> String.slice(0, 100)
   end
 end
