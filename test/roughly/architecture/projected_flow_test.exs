@@ -43,7 +43,12 @@ defmodule Roughly.Architecture.ProjectedFlowTest do
     assert {:ok, events} = EventStore.read_stream_forward(vote)
 
     for event <- events do
-      metadata = %{handler_name: "vote-#{vote}", event_number: event.stream_version}
+      metadata = %{
+        handler_name: "vote-#{vote}",
+        event_number: event.event_number,
+        created_at: event.created_at
+      }
+
       assert :ok = ResponseProjector.handle(event.data, metadata)
       assert :ok = ResponseProjector.handle(event.data, metadata)
     end
@@ -69,7 +74,8 @@ defmodule Roughly.Architecture.ProjectedFlowTest do
     assert :ok =
              ResponseProjector.handle(retracted.data, %{
                handler_name: "vote-#{vote}",
-               event_number: 3
+               event_number: retracted.event_number,
+               created_at: retracted.created_at
              })
 
     assert Questions.get_question(first_projection.slug).total == 0

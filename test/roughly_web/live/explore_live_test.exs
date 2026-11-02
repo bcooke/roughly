@@ -59,8 +59,8 @@ defmodule RoughlyWeb.ExploreLiveTest do
   end
 
   test "unknown questions have a useful not-found state", %{conn: conn} do
-    {:ok, view, _html} = live(conn, ~p"/questions/unknown")
-    assert has_element?(view, "#question-not-found")
+    doc = conn |> get(~p"/questions/unknown") |> html_response(404) |> LazyHTML.from_document()
+    assert doc |> LazyHTML.query("#question-not-found") |> Enum.count() == 1
   end
 
   test "about is reachable from the site navigation", %{conn: conn} do

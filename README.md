@@ -6,7 +6,7 @@ Roughly is intended to be free, open source, and community supported. See the [p
 
 ## Current application
 
-The local application browses persisted questions and aggregate responses, with topic filters, global search, pagination, related questions, an About page, and readable result URLs. Search includes live question/topic suggestions, Command/Ctrl K, keyboard navigation, session recents, typo tolerance, and a full results page with format filters. Development setup seeds **206 questions across 17 topics, 360 invented participants, and 31,833 invented responses**. These are local fixtures, not researched polling data. Authentication, real voting, demographic slicing, and representative population estimates are not available.
+The local application browses persisted questions and aggregate responses, with topic filters, global search, pagination, related questions, an About page, and readable result URLs. Search includes live question/topic suggestions, Command/Ctrl K, keyboard navigation, session recents, typo tolerance, and a full results page with format filters. Development setup seeds **209 questions across 18 topics, 360 invented participants, and 33,177 invented responses**. These are local fixtures, not researched polling data. Question pages include dated trends, answer-defined population comparisons, and readable answer-specific URLs. Authentication, real voting, and representative population estimates are not available.
 
 ## Run locally
 
@@ -33,7 +33,7 @@ mise exec -- mix dev.seed
 
 The versioned catalog is `dev/roughly/dev/questions.json`. It contains curated prompts, answer choices, and invented weights. Stable UUIDs make seeding deterministic and resumable; reruns preserve counts rather than adding votes. Responses carry development-source event metadata. No real user data, external LLM service, Faker package, or credentials are needed.
 
-Only development config enables seed execution. Never use the seeded development database as public polling data. To reset local data intentionally, `mix ecto.reset` resets **both** Ecto and EventStore and reseeds the development database. Stop the server first. This deletes local data; it is not required for an ordinary seed rerun. Reset after changing the meaning or weights of existing fixtures: stable IDs deliberately do not rewrite their recorded history. The fixture generator does not delete existing data.
+Only development config enables seed execution. Never use the seeded development database as public polling data. To reset local data intentionally, `mix ecto.reset` resets **both** Ecto and EventStore and reseeds the development database. Stop the server first. This deletes local data; it is not required for an ordinary seed rerun. Reset after changing fixture meanings, weights, or a projection shape that requires replay: stable IDs deliberately do not rewrite their recorded history. The fixture generator does not delete existing data.
 
 ## Verify changes
 
@@ -67,3 +67,7 @@ This repository is a development preview. Production needs separate `DATABASE_UR
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Search discovery
+
+Question and answer views render their summary, counts, and Dataset microdata in initial HTML. Canonical metadata and bounded sitemap shards support later publication. Indexing remains disabled by default; only production with `ROUGHLY_PUBLIC_INDEXING=true` enables it. Replace fictional data and establish the publication policy before enabling that flag. See [Answer Discovery](vault/Answer%20Discovery.md).

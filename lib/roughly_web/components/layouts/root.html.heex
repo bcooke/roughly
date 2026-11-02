@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <% metadata = assigns[:page_metadata] || RoughlyWeb.PageMetadata.default() %>
+    <meta id="page-description" name="description" content={metadata.description} />
+    <meta id="page-robots" name="robots" content={metadata.robots} />
+    <link id="page-canonical" rel="canonical" href={metadata.canonical} />
+    <meta id="page-og-title" property="og:title" content={metadata.title} />
+    <meta id="page-og-description" property="og:description" content={metadata.description} />
+    <meta id="page-og-url" property="og:url" content={metadata.canonical} />
+    <meta property="og:type" content="website" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <.live_title
       default="An open collection of the world’s percentages"

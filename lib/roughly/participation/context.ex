@@ -68,7 +68,9 @@ defmodule Roughly.Participation.Context do
       collection_run_uuid: get(map, :collection_run_uuid),
       answered_at: decode_time!(get(map, :answered_at)),
       field_sources:
-        Map.new(get(map, :field_sources), fn {key, value} -> {key, enum!(value, @sources)} end)
+        Map.new(get(map, :field_sources), fn {key, value} ->
+          {enum!(key, @source_fields), enum!(value, @sources)}
+        end)
     }
   end
 

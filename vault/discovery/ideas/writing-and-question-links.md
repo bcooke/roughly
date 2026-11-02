@@ -20,3 +20,5 @@ Let a writer connect a statement, tentative assumption, or open question to the 
 A repository skill, editor integration, browser extension, or MCP interface could provide authoring assistance. No integration mechanism is selected. Start with usable stable links and a concrete writing workflow before adding another service. Author-specific configuration belongs with the writing environment; a reusable public contract belongs here.
 
 [Question Links](../../Question%20Links.md) defines implemented routes. [Claims and Evidence](../../Claims%20and%20Evidence.md) constrains what the linked evidence can support. [Results Exposure](../../Results%20Exposure.md) applies to participation invitations. [Open data access](open-api-and-dataset-releases.md) could support future tools.
+
+[Answer Discovery](../../Answer%20Discovery.md) implements readable focused-answer URLs and crawlable response summaries. Authoring integrations and versioned evidence citations remain open.

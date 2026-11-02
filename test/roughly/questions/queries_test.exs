@@ -74,4 +74,11 @@ defmodule Roughly.Questions.QueriesTest do
     assert %{entries: []} = Questions.list_questions(search: "coffee tea")
     assert %{entries: []} = Questions.list_questions(search: "%")
   end
+
+  test "closing collection preserves the instrument's public evidence address" do
+    q = question(%{slug: "closed-evidence", status: :closed})
+    response_fixture(q, "Yes")
+    assert %{total: 1} = Questions.get_question("closed-evidence")
+    assert "/questions/closed-evidence" in Roughly.Analysis.Queries.CrawlPages.call()
+  end
 end

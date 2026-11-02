@@ -11,3 +11,5 @@ An answer-first screen can delay information within that screen. It cannot estab
 A prediction about other people's answers measures a different thing from a person's own answer. It needs separate semantics and evaluation; combining them can introduce priming and interpretation problems. [Pew's survey-question guidance](https://www.pewresearch.org/writing-survey-questions/) provides background on wording and order effects, not validation of a Roughly design.
 
 See [Polling Methodology](Polling%20Methodology.md) for interpretation, [Question Links](Question%20Links.md) for exposure through sharing, and [the participation investigation](discovery/2026-11-02-participation-design.md) for dated alternatives and uncertainty.
+
+[Answer Discovery](Answer%20Discovery.md) adds another exposure route: a search result or answer-engine citation may reveal a distribution before the reader reaches the site. Crawlable answers and any future participation flow need distinct presentation and disclosure contracts.

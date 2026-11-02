@@ -36,7 +36,7 @@ defmodule Roughly.Architecture.ContractsTest do
     files =
       Path.wildcard("lib/roughly/analysis/queries/*.ex") ++
         Path.wildcard("lib/roughly/questions/queries/*.ex") ++
-        ~w(lib/roughly/questions.ex lib/roughly/identity.ex lib/roughly/participation.ex lib/roughly/access.ex)
+        ~w(lib/roughly/analysis.ex lib/roughly/analysis/answer_links.ex lib/roughly/questions.ex lib/roughly/identity.ex lib/roughly/participation.ex lib/roughly/access.ex)
 
     for file <- files do
       module = module_for(file)

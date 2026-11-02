@@ -8,6 +8,7 @@ defmodule RoughlyWeb.Router do
     plug :put_root_layout, html: {RoughlyWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug RoughlyWeb.PageMetadata
   end
 
   pipeline :api do
@@ -17,9 +18,12 @@ defmodule RoughlyWeb.Router do
   scope "/", RoughlyWeb do
     pipe_through :browser
 
+    get "/sitemap.xml", SitemapController, :index
+    get "/sitemaps/questions/:page", SitemapController, :questions
     live "/search", SearchLive
     live "/about", AboutLive
     live "/", ExploreLive
+    live "/questions/:slug/answers/:answer_slug", QuestionLive
     live "/questions/:slug", QuestionLive
   end
 
