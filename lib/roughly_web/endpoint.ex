@@ -1,5 +1,6 @@
 defmodule RoughlyWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :roughly
+  import PhoenixVite.Plug
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -7,13 +8,22 @@ defmodule RoughlyWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_roughly_key",
-    signing_salt: "c92NV7NY",
+    signing_salt: "jdjodCBT",
     same_site: "Lax"
   ]
 
   socket "/live", Phoenix.LiveView.Socket,
     websocket: [connect_info: [session: @session_options]],
     longpoll: [connect_info: [session: @session_options]]
+
+  plug :favicon, dev_server: {PhoenixVite.Components, :has_vite_watcher?, [__MODULE__]}
+
+  plug Plug.Static,
+    at: "/",
+    from: :roughly,
+    gzip: not code_reloading?,
+    only: ["assets"],
+    cache_control_for_etags: "public, max-age=31536000, immutable"
 
   # Serve at "/" the static files from "priv/static" directory.
   #

@@ -80,3 +80,8 @@ tmp/
 temp/
 *.tmp
 *.bak
+
+# Vite produces fingerprinted entries and public files.
+/priv/static/*
+!/priv/static/.gitkeep
+/priv/static/.vite/

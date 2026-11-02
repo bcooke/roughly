@@ -1,11 +1,2 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Roughly.Repo.insert!(%Roughly.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+# The preview catalog is read from priv/preview/questions.json.
+# Synthetic people and votes must not be seeded into persistent event history.

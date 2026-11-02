@@ -7,10 +7,20 @@
 # General application configuration
 import Config
 
+config :live_vue, ssr: false, shared_props: []
+
+config :phoenix_vite, PhoenixVite.Npm,
+  assets: [args: [], cd: Path.expand("..", __DIR__)],
+  vite: [
+    args: ~w(run dev --),
+    cd: Path.expand("..", __DIR__),
+    env: %{"MIX_BUILD_PATH" => Mix.Project.build_path()}
+  ]
+
 config :roughly,
   ecto_repos: [Roughly.Repo],
   event_stores: [Roughly.EventStore],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime, binary_id: true]
 
 # Configure the endpoint
 config :roughly, RoughlyWeb.Endpoint,
@@ -21,37 +31,12 @@ config :roughly, RoughlyWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Roughly.PubSub,
-  live_view: [signing_salt: "aRnE7ymu"]
+  live_view: [signing_salt: "vG59uIk5"]
 
-# Configure the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :roughly, Roughly.Mailer, adapter: Swoosh.Adapters.Local
-
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.25.4",
-  roughly: [
-    args:
-      ~w(js/app.js --bundle --target=es2022 --outdir=../priv/static/assets/js --external:/fonts/* --external:/images/* --alias:@=.),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
-  ]
-
-# Configure tailwind (the version is required)
-config :tailwind,
-  version: "4.1.12",
-  roughly: [
-    args: ~w(
-      --input=assets/css/app.css
-      --output=priv/static/assets/css/app.css
-    ),
-    cd: Path.expand("..", __DIR__)
-  ]
+# Configure LiveView
+config :phoenix_live_view,
+  # the attribute set on all root tags. Used for Phoenix.LiveView.ColocatedCSS.
+  root_tag_attribute: "phx-r"
 
 # Configure Elixir's Logger
 config :logger, :default_formatter,

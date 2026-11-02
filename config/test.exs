@@ -6,9 +6,10 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :roughly, Roughly.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
+  hostname: System.get_env("PGHOST", "localhost"),
+  port: String.to_integer(System.get_env("PGPORT", "5435")),
   database: "roughly_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
@@ -17,14 +18,8 @@ config :roughly, Roughly.Repo,
 # you can enable the server option below.
 config :roughly, RoughlyWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "Piukjt5uFwXRBu2XHF/rF0PBNszEUMTUdxH6YG+p6YKF1a7OatI9Gq6mIt4NtGkN",
+  secret_key_base: "pojK5ENoXRsRNJJjiaXSrY8+E3+RiP/03b2tbxdu+OP/fMfJy45Xp31P8gDddf1A",
   server: false
-
-# In test we don't send emails
-config :roughly, Roughly.Mailer, adapter: Swoosh.Adapters.Test
-
-# Disable swoosh api client as it is only required for production adapters
-config :swoosh, :api_client, false
 
 # Print only warnings and errors during test
 config :logger, level: :warning
@@ -40,11 +35,16 @@ config :phoenix_live_view,
 config :phoenix,
   sort_verified_routes_query_params: true
 
-# Configure EventStore for Commanded
 config :roughly, Roughly.EventStore,
   serializer: Commanded.Serialization.JsonSerializer,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
+  hostname: System.get_env("PGHOST", "localhost"),
+  port: String.to_integer(System.get_env("PGPORT", "5435")),
   database: "roughly_eventstore_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
-  pool_size: 10
+  pool_size: 5
+
+config :roughly, :start_projectors, false
+config :live_vue, enable_props_diff: false
+
+config :roughly, :serve_assets, false

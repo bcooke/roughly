@@ -1,450 +1,128 @@
-# AGENTS.md
+# Roughly contributor guidance
 
-This file provides guidance to AI coding assistants when working with code in this repository.
+Roughly is an open collection of the world's percentages. Read `README.md`, `PROJECT_STATUS.md`, and `vault/README.md` for the current product and engineering context.
 
-## Project Overview
+## Shared workflow
 
-Roughly is a Phoenix LiveView application that implements CQRS (Command Query Responsibility Segregation) with event sourcing via Commanded. It's building "Wikipedia for quantifiable human data" - a free, open, searchable database of polling data.
+- This file is the canonical guidance for all coding tools. CLAUDE.md imports it.
+- Keep product decisions, architecture, methodology, and contribution instructions public and impersonal. Keep personal notes, raw brain dumps, and unrelated private project context outside this repository.
+- For documentation, read `vault/_meta/Documentation Guidelines.md`. Search before creating notes; use atomic concepts, meaningful links, topic maps, dated research, and decision records. Keep provisional observations distinct from settled guidance.
+- Read the code before assuming a specification is implemented. Label synthetic data and never imply an open poll is a representative sample.
+- Use focused branches and ready PRs with relevant checks and a brief diff review. Use a small T/BUG/IMP record for meaningful work and a context file when there are findings worth retaining; avoid backfilling minor edits or mirroring issue state. Follow `vault/Project Workflow.md`. Do not publish or deploy without authorization.
+- Follow test-driven development for domain behavior: demonstrate a failing test, implement, then refactor. Test externally visible outcomes.
+- Use domain entry points and named query modules. Commands flow through Commanded; reads use Ecto projections. Start projectors after Roughly.App.
+- Define one module per file. Preserve serialized event module names and payload compatibility when changing existing streams.
+- Use Vue through LiveVue for interactive presentation, with Phoenix owning routes and server state. No PrimeVue. Review each new dependency for purpose and license; avoid adding libraries for simple UI.
+- Public pages expose aggregates, never private answer histories. A reviewed participation policy, consent, and privacy behavior are required before enabling collection.
+- Run `mix precommit` and the frontend production build before finishing application changes.
 
-**Technology Stack:**
-- Phoenix 1.7+ with LiveView
-- Elixir with Commanded for event sourcing
-- PostgreSQL with EventStore
-- Tailwind CSS
-- TDD from day one with ExUnit
+## Phoenix conventions
 
-## Project Values
+This is a web application written using the Phoenix web framework.
 
-1. **Free and open**: Wikipedia model, not VC-backed or paywalled like Gallup
-2. **Epistemological humility**: All data is approximate (hence "Roughly" and the ≈ symbol)
-3. **Transparency**: Show methodology, confidence levels, sample sizes
-4. **Privacy-first**: Accounts required, but individual responses are never public
-5. **Event-sourced**: Complete audit trail for every vote
+## Project guidelines
 
-## Privacy Model: "Anonymous but Accountable"
+- Use `mix precommit` alias when you are done with all changes and fix any pending issues
+- Use the already included and available `:req` (`Req`) library for HTTP requests, **avoid** `:httpoison`, `:tesla`, and `:httpc`. Req is included by default and is the preferred HTTP client for Phoenix apps
 
-This is a core architectural principle:
+### Phoenix v1.8 guidelines
 
-- **Accounts required to vote**: No anonymous voting - incentivizes quality responses
-- **Individual answers are NEVER public**: Only aggregate data is visible
-- **Demographic slicing**: Show "60% of women under 30 prefer X", never "user@email.com chose X"
-- **k-anonymity**: Consider thresholds (e.g., only show slices with 10+ responses)
-- **Potential encryption**: Consider encrypting individual vote records
+- **Always** begin your LiveView templates with `<Layouts.app flash={@flash} ...>` which wraps all inner content
+- The `RoughlyWeb.Layouts` module is aliased in the `roughly_web.ex` file, so you can use it without needing to alias it again
+- Phoenix v1.8 moved the `<.flash_group>` component to the `Layouts` module. You are **forbidden** from calling `<.flash_group>` outside of the `layouts.ex` module
+- Out of the box, `core_components.ex` imports an `<.icon name="hero-x-mark" class="w-5 h-5"/>` component for hero icons. **Always** use the `<.icon>` component for icons
+- **Always** use the imported `<.input>` component for form inputs from `core_components.ex` when available
 
-See [[Product Vision#Privacy Model]] for detailed rationale.
+### JS and CSS guidelines
 
-## Git Workflow - CRITICAL RULES
+- **Use Tailwind CSS classes and custom CSS rules** to create polished, responsive, and visually stunning interfaces
+- Tailwindcss v4 **no longer needs a tailwind.config.js** and uses a new import syntax in `app.css`
+- **Never** use `@apply` when writing raw css
+- Out of the box **only the app.js and app.css bundles are supported**
+- **Never write inline `<script>` tags within templates**
 
-**All changes to main require a PR:**
-- Squash merge only (linear history)
-- Delete branch after merge
-- One task = one branch = one PR
+## Elixir guidelines
 
-**Branch naming**: `feat/T-YYYY-NNN-description` or `fix/T-YYYY-NNN-description`
+- Elixir lists **do not support index based access via the access syntax**
 
-**Commit messages**: Follow conventional commits
-```
-feat: add question search functionality
-fix: correct vote count aggregation
-chore: update dependencies
-```
+  **Never do this (invalid)**:
+      mylist = ["blue", "green"]
+      mylist[0]
 
-**NEVER commit directly to main**. Always create a feature branch first.
+  Instead, **always** use `Enum.at`, pattern matching, or `List` for index based list access
 
-## Project Management (Balustrade)
+- Elixir variables are immutable, but can be rebound. For block expressions like `if`, `case`, `cond`, you *must* bind the result to a variable:
 
-This project uses the Balustrade PM system. Key files:
+      # VALID: bind the result
+      socket =
+        if connected?(socket) do
+          assign(socket, :val, val)
+        else
+          socket
+        end
 
-- **PROJECT_STATUS.md**: Single source of truth for project status
-- **vault/pm/tasks/**: Task definitions with checklists
-- **vault/pm/_context/**: Working context documents for active tasks
+- **Never** nest multiple modules in the same file
+- **Never** use map access syntax (`changeset[:field]`) on structs. Use `struct.field` or `Ecto.Changeset.get_field/2`
+- Don't use `String.to_atom/1` on user input (memory leak risk)
+- Predicate function names should end in `?`, not start with `is_`
+- Use `Task.async_stream(collection, callback, timeout: :infinity)` for concurrent enumeration
 
-**Workflow:**
-1. Check PROJECT_STATUS.md for current focus
-2. Use `/s T-YYYY-NNN` to start a task
-3. Create branch, implement, create PR
-4. Use `/c T-YYYY-NNN` to close task after merge
+## Mix guidelines
 
-## Development Commands
+- Read the docs before using tasks: `mix help task_name`
+- Debug test failures: `mix test test/my_test.exs` or `mix test --failed`
+- `mix deps.clean --all` is **almost never needed**
 
-### Setup
-```bash
-# Full project setup
-mix setup
+## Phoenix guidelines
 
-# Install dependencies
-mix deps.get
-
-# Setup databases (Ecto + EventStore)
-mix ecto.setup
-mix event_store.setup
-```
-
-### Development Server
-```bash
-# Start Phoenix server
-mix phx.server
-
-# Start with interactive shell
-iex -S mix phx.server
-```
-
-### Testing (TDD from Day One)
-```bash
-# Run all tests
-MIX_ENV=test mix test
-
-# Run specific test file
-MIX_ENV=test mix test test/roughly/questions_test.exs
-
-# Run tests in watch mode
-MIX_ENV=test mix test.watch
-
-# Run with coverage
-MIX_ENV=test mix test --cover
-```
-
-**Important**: Always run tests with `MIX_ENV=test`.
-
-### Code Quality
-```bash
-# Format code
-mix format
-
-# Run Credo linter
-mix credo
-
-# Pre-commit checks (format + credo + tests)
-mix precommit
-```
-
-### Database
-```bash
-# Run migrations
-mix ecto.migrate
-
-# Reset database
-mix ecto.reset
-
-# EventStore operations
-mix event_store.create
-mix event_store.init
-```
-
-## Architecture Overview
-
-### CQRS + Event Sourcing
-
-Roughly uses strict CQRS with Commanded:
-
-```
-User Action → Command → Aggregate → Event → Projector → Read Model
-```
-
-**Commands**: Write operations that may produce events
-**Queries**: Read operations against projected read models
-**Events**: Immutable facts about what happened
-**Projections**: Materialized views for fast reads
-
-### Project Structure
-
-```
-lib/roughly/
-├── questions/              # Questions domain
-│   ├── commands/           # CreateQuestion, UpdateQuestion
-│   ├── queries/            # GetQuestion, SearchQuestions
-│   ├── schemas/            # Question, AnswerOption
-│   ├── events/             # QuestionCreated, QuestionUpdated
-│   └── projectors/         # QuestionSummary projector
-├── voting/                 # Voting domain
-│   ├── commands/           # CastVote, RetractVote
-│   ├── queries/            # GetVoteCounts
-│   ├── schemas/            # Vote
-│   └── events/             # VoteCast, VoteRetracted
-├── users/                  # Users domain
-│   ├── commands/           # RegisterUser, UpdateProfile
-│   ├── queries/            # GetUser
-│   └── schemas/            # User, UserProfile
-├── demographics/           # Demographics domain
-└── questions.ex            # Context gateway
-
-lib/roughly_web/
-├── live/                   # LiveView modules
-├── components/             # Phoenix components
-└── controllers/            # REST controllers (if needed)
-```
-
-### Key Contexts
-
-**Questions**: Question creation, editing, categorization, search. Core domain for the polling questions.
-
-**Voting**: Vote casting, counting, demographic snapshot capture. Handles the core voting logic with privacy constraints.
-
-**Users**: Authentication, profiles, demographic data. Accounts are required for voting.
-
-**Demographics**: Demographic definitions, slicing logic, population overlap queries.
-
-### Communication Patterns
-
-**Command Execution**:
-```elixir
-# Commands mutate state via aggregates
-{:ok, result} = Questions.execute(%CreateQuestion{text: "...", options: [...]})
-
-# Queries fetch from read models
-{:ok, question} = Questions.execute(%GetQuestion{id: question_id})
-```
-
-**LiveView Integration**:
-```elixir
-def handle_event("cast_vote", %{"answer" => answer}, socket) do
-  command = %CastVote{
-    question_id: socket.assigns.question.id,
-    user_id: socket.assigns.current_user.id,
-    answer: answer
-  }
-
-  case Voting.execute(command) do
-    {:ok, _} -> {:noreply, put_flash(socket, :info, "Vote recorded")}
-    {:error, reason} -> {:noreply, put_flash(socket, :error, reason)}
-  end
-end
-```
-
-## Development Guidelines
-
-### TDD First
-
-Write tests before implementation:
-1. Write a failing test for the expected behavior
-2. Implement the minimum code to pass
-3. Refactor while keeping tests green
-
-### Event Sourcing Patterns
-
-**Aggregates**: Business logic lives in aggregates
-```elixir
-defmodule Roughly.Questions.Aggregates.Question do
-  use Commanded.Aggregates.Aggregate
-
-  def execute(%Question{}, %CreateQuestion{} = cmd) do
-    %QuestionCreated{
-      question_id: cmd.question_id,
-      text: cmd.text,
-      options: cmd.options
-    }
-  end
-
-  def apply(%Question{} = state, %QuestionCreated{} = event) do
-    %Question{state |
-      id: event.question_id,
-      text: event.text,
-      options: event.options
-    }
-  end
-end
-```
-
-**Projectors**: Build read models from events
-```elixir
-defmodule Roughly.Questions.Projectors.QuestionSummary do
-  use Commanded.Projections.Ecto
-
-  project %VoteCast{} = event, _metadata, fn multi ->
-    Ecto.Multi.update_all(multi, :inc_count,
-      from(q in QuestionSummary, where: q.question_id == ^event.question_id),
-      inc: [total_votes: 1]
-    )
-  end
-end
-```
-
-### CQRS Code Style
-
-**Commands**: Named as actions, always validate
-```elixir
-defmodule Roughly.Questions.Commands.CreateQuestion do
-  defstruct [:question_id, :text, :options, :category]
-
-  def execute(%__MODULE__{} = cmd) do
-    # Validation and dispatch
-  end
-end
-```
-
-**Queries**: Named as requests, return {:ok, result} or {:error, reason}
-```elixir
-defmodule Roughly.Questions.Queries.GetQuestion do
-  def execute(%{id: id}) do
-    case Repo.get(Question, id) do
-      nil -> {:error, :not_found}
-      question -> {:ok, question}
-    end
-  end
-end
-```
-
-### Context Isolation
-
-Contexts should only communicate through their public APIs:
-```elixir
-# Good: Use context function
-user = Users.get_user!(user_id)
-
-# Bad: Direct schema access across contexts
-user = Repo.get!(Roughly.Users.Schemas.User, user_id)
-```
-
-## Elixir Guidelines
-
-- **Use `mix precommit`** before committing
-- **Use `Req`** for HTTP requests (included by default)
-- **Lists don't support index access** - use `Enum.at/2` not `list[i]`
-- **Variable rebinding in blocks**: Bind the result of `if`/`case`/`cond` to a variable
-- **Never nest multiple modules** in the same file
-- **Don't use map access on structs** - use `struct.field` or `Ecto.Changeset.get_field/2`
-- **Predicate functions** end with `?`, don't start with `is_`
-- **Task.async_stream** for concurrent operations (usually with `timeout: :infinity`)
+- Router `scope` blocks include an optional alias prefixed for all routes. Be mindful to avoid duplicate prefixes
+- You **never** need to create your own `alias` for route definitions - the `scope` provides it
+- `Phoenix.View` is no longer included with Phoenix, don't use it
 
 ## Ecto Guidelines
 
-- **Always preload associations** that will be accessed in templates
-- **Use `:string` type** for text columns (not `:text`)
-- **Use `Ecto.Changeset.get_field/2`** to access changeset fields
-- **Don't cast user_id** or other programmatic fields - set explicitly
+- **Always** preload associations if accessed in templates
+- `Ecto.Schema` fields use `:string` type even for `:text` columns
+- Use `Ecto.Changeset.get_field(changeset, :field)` to access changeset fields
+- Fields set programmatically (like `user_id`) must not be in `cast` calls
 
-## Phoenix LiveView Guidelines
+## Phoenix HTML guidelines
 
-- **Use `<.link navigate={...}>`** not deprecated `live_redirect`
-- **Avoid LiveComponents** unless specifically needed
-- **Name LiveViews with `Live` suffix**: `RoughlyWeb.QuestionLive`
-- **Use streams for collections** to avoid memory issues
-- **Always give forms unique IDs**: `<.form for={@form} id="vote-form">`
+- Phoenix templates **always** use `~H` or .html.heex files, **never** `~E`
+- **Always** use `Phoenix.Component.form/1` and `to_form/2`, **never** `Phoenix.HTML.form_for`
+- **Always** add unique DOM IDs to key elements for testing
+- Elixir does NOT support `if/else if`. Use `cond` or `case` for multiple conditionals
+- HEEx class attrs must use list `[...]` syntax for multiple/conditional classes:
 
-### LiveView Streams
+      <a class={["px-2", @flag && "py-5"]}>Text</a>
 
-```elixir
-# Initialize stream
-socket = stream(socket, :questions, questions)
+- **Always** use `{...}` for interpolation in attributes, `<%= %>` only for block constructs in tag bodies
+- HEEx comments: `<%!-- comment --%>`
 
-# Reset stream (for filtering)
-socket = stream(socket, :questions, filtered_questions, reset: true)
+## Phoenix LiveView guidelines
 
-# Template
-<div id="questions" phx-update="stream">
-  <div :for={{id, question} <- @streams.questions} id={id}>
-    {question.text}
-  </div>
-</div>
-```
+- **Never** use deprecated `live_redirect`/`live_patch`. Use `<.link navigate={}>` or `push_navigate`
+- **Avoid LiveComponent's** unless specifically needed
+- LiveViews should be named with `Live` suffix: `RoughlyWeb.QuestionLive`
+- With `phx-hook`, you **must** also set `phx-update="ignore"` if the hook manages DOM
+- **Never** write embedded `<script>` tags in HEEx
 
-### Form Handling
+### LiveView streams
 
-```elixir
-# Always use to_form
-socket = assign(socket, form: to_form(changeset))
+- **Always** use streams for collections to avoid memory issues
+- Set `phx-update="stream"` on parent element with a DOM id
+- Streams are *not* enumerable. To filter, refetch and re-stream with `reset: true`
+- **Never** use deprecated `phx-update="append"` or `phx-update="prepend"`
 
-# Template
-<.form for={@form} id="question-form" phx-submit="save">
-  <.input field={@form[:text]} type="text" />
-</.form>
-```
+### LiveView tests
 
-## HEEx Template Guidelines
+- Use `Phoenix.LiveViewTest` and `LazyHTML` for assertions
+- **Always** reference key element IDs in tests
+- **Never** test against raw HTML - use `element/2`, `has_element/2`
+- Test outcomes, not implementation details
 
-- **Use `{...}` for interpolation** in attributes and values
-- **Use `<%= ... %>` only for block constructs** (if, for, cond, case)
-- **Class lists require `[...]`**: `class={["base", @flag && "conditional"]}`
-- **Use `:for` for iteration**: `<div :for={item <- @items}>`
-- **Comments**: `<%!-- comment --%>`
+### Form handling
 
-## Testing Guidelines
-
-### Unit Tests
-```elixir
-defmodule Roughly.Questions.Commands.CreateQuestionTest do
-  use Roughly.DataCase
-
-  describe "execute/1" do
-    test "creates question with valid params" do
-      params = %{text: "Do you like coffee?", options: ["Yes", "No"]}
-      assert {:ok, question} = CreateQuestion.execute(params)
-      assert question.text == "Do you like coffee?"
-    end
-
-    test "returns error with invalid params" do
-      assert {:error, changeset} = CreateQuestion.execute(%{})
-      assert "can't be blank" in errors_on(changeset).text
-    end
-  end
-end
-```
-
-### Integration Tests
-```elixir
-defmodule RoughlyWeb.QuestionLiveTest do
-  use RoughlyWeb.ConnCase
-  import Phoenix.LiveViewTest
-
-  test "displays question", %{conn: conn} do
-    question = insert(:question)
-    {:ok, view, _html} = live(conn, ~p"/questions/#{question.slug}")
-    assert has_element?(view, "#question-#{question.id}")
-  end
-end
-```
-
-## Agent System
-
-Roughly uses specialized agents in `.claude/agents/`:
-
-- **coordinator** - Orchestrates complex multi-domain work
-- **full-stack-dev** - Primary code author for end-to-end implementation
-- **bug-hunter** - Debugging specialist
-- **code-reviewer** - Code quality and review
-- **vault-writer** - Documentation creation
-- **product-manager** - Product vision and prioritization
-
-**For simple tasks**: Work directly
-**For complex tasks**: Use the coordinator agent
-
-## Skills System
-
-Skills in `.claude/skills/` provide auto-activating procedural guides:
-
-- **event-sourcing** - Commanded patterns for aggregates, commands, events
-- **liveview** - Phoenix LiveView patterns
-- **ecto** - Schema, migrations, queries
-- **test-setup** - ExUnit testing patterns
-- **api-design** - REST API patterns
-- **docs** - Documentation writing
-- **refactor** - Code refactoring patterns
-
-## Vault Documentation
-
-The `vault/` directory contains project documentation:
-
-- **vault/product/**: Product vision, glossary, design philosophy
-- **vault/architecture/**: System architecture, data model
-- **vault/features/**: Feature documentation
-- **vault/pm/**: Tasks, context docs, PM artifacts
-- **vault/how-to/**: Development guides
-
-When the user shares insights or decisions, update the relevant vault documentation to capture them.
-
-## Reference Materials
-
-The `_reference/` directory contains example projects:
-- **flojo**: CQRS patterns, LiveView + Vue hybrid
-- **goflojo**: Go implementation reference
-- **Eden**: Additional patterns
-
-Use these for inspiration but adapt patterns for Roughly's needs.
-
-## Key Documentation Links
-
-- [[Product Vision]] - What we're building and why
-- [[System Architecture]] - Technical architecture
-- [[Data Model]] - Question, vote, user schemas
-- [[Glossary]] - Key terminology
-- [[Design Philosophy]] - Visual design principles
+- **Always** use `to_form/2` in LiveView and `<.input>` component in template
+- **Never** access changesets directly in templates - use `@form[:field]`
+- Always give forms explicit, unique DOM IDs
