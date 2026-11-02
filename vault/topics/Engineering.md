@@ -11,6 +11,7 @@ Authority, derived reads, runtime boundaries, and architecture decisions.
 - [System Architecture](../System%20Architecture.md): implementation entry points and boundaries.
 - [Authorization](../Authorization.md): trusted actors, capabilities, ownership, and domain admission.
 - [Domain Writes](../Domain%20Writes.md): event-sourced authority.
+- [Historical analysis and answer publication decision](../decisions/ADR-004-historical-analysis-and-answer-publication.md): clocks, eligibility, withdrawals, and discovery boundaries.
 - [Response History](../Response%20History.md): revision projections, clocks, and public withdrawal semantics.
 - [Read Models](../Read%20Models.md): projections and query entry points.
 - [Development Fixtures](../Development%20Fixtures.md): fixture provenance.

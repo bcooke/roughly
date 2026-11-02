@@ -16,6 +16,8 @@ Build question pages that answer more than a current total: cumulative distribut
 
 [Response History](../../Response%20History.md), [Population Analysis](../../Population%20Analysis.md), and [Answer Discovery](../../Answer%20Discovery.md) own the implemented contracts. No response collection, representative estimate, full research API, graph-topic implementation, or dataset release is introduced.
 
+[ADR-004](../../decisions/ADR-004-historical-analysis-and-answer-publication.md) records the analysis and publication choices.
+
 ## Evidence
 
 Observed failing behavior tests before the history/intersection and discovery implementation. Tests cover revisions and duplicate delivery, clock differences, withdrawals, eligible overlap and missingness, small-group suppression, bounded trend checkpoints, readable option collisions, initial HTML answers, canonical/noindex metadata, and invalid option routes. A replay test exposed string keys in per-field provenance; explicit enum decoding fixes it.
