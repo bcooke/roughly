@@ -29,3 +29,5 @@ Establish a coherent path from a trusted actor through typed command contracts, 
 The foundation is internal. Public authentication and participation adapters, privacy/retention behavior, strict cross-stream ordering, study/run identities, richer collection/analysis, and the topic graph remain subsequent work. These limits are part of the accepted implementation scope, not evidence that those capabilities have shipped.
 
 Local verification: `mix precommit` passes 56 tests, Credo, formatting, compilation, and vault checks; `mix assets.build` passes. Integration is recorded by the associated PR.
+
+[PR #16](https://github.com/bcooke/roughly/pull/16) contains the implementation and integration checks.
