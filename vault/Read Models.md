@@ -11,3 +11,5 @@ Delivery can be repeated, and replay reconstructs older events through the same 
 A unique index in a projection protects that table; it does not alone define a correct concurrent command policy. Coordinate those requirements with [Domain Writes](Domain%20Writes.md).
 
 [Development Fixtures](Development%20Fixtures.md) create invented responses through the event-sourced path. Their projected counts exercise the same queries without becoming evidence about real people. [System Architecture](System%20Architecture.md) points to the runtime boundaries.
+
+Public queries should declare their input and result contracts, including empty, missing, and refused outcomes where applicable. Keep analytical definitions in the domain rather than recreating them in each UI or API adapter. Restricted query capabilities follow [Authorization](Authorization.md); aggregate-only output still needs an explicit publication boundary.
