@@ -18,6 +18,9 @@ Authority, derived reads, runtime boundaries, and architecture decisions.
 
 - [Development seed decision](../decisions/ADR-002-development-seeds.md): isolated invented history and real read paths.
 
+- [Topic Graph](../Topic%20Graph.md): membership, relation semantics, and authority.
+- [Topic graph model proposal](../discovery/2026-11-02-topic-graph-model.md): event streams, read models, and migration.
+
 ## Related maps
 
 - [Product and methodology](Product%20and%20Methodology.md).
