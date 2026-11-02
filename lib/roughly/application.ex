@@ -25,8 +25,8 @@ defmodule Roughly.Application do
       if Application.get_env(:roughly, :start_projectors, true) do
         [
           Roughly.Questions.Projections.Projector,
-          Roughly.Users.Projections.Projector,
-          Roughly.Voting.Projections.Projector
+          Roughly.Identity.Projections.Projector,
+          Roughly.Participation.Projections.Projector
         ]
       else
         []

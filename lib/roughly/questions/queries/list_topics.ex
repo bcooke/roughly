@@ -4,6 +4,7 @@ defmodule Roughly.Questions.Queries.ListTopics do
   alias Roughly.Repo
   alias Roughly.Questions.Queries.Base
 
+  @spec call() :: [%{name: String.t(), count: non_neg_integer()}]
   def call do
     from(q in Base.query(),
       where: not is_nil(q.category),

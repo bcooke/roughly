@@ -10,9 +10,11 @@ defmodule Roughly.Questions.Projections.ProjectorTest do
 
     event = %QuestionCreated{
       question_uuid: id,
+      slug: Roughly.Questions.Instrument.slug("Do you like coffee?", id),
       text: "Do you like coffee?",
       question_type: :binary,
-      options: ["Yes", "No"]
+      options: Enum.map(["Yes", "No"], &Roughly.Questions.Option.new(Ecto.UUID.generate(), &1)),
+      language: "en"
     }
 
     restored =
@@ -20,11 +22,11 @@ defmodule Roughly.Questions.Projections.ProjectorTest do
       |> JsonSerializer.serialize()
       |> JsonSerializer.deserialize(type: Atom.to_string(QuestionCreated))
 
-    assert restored.question_type == "binary"
+    assert restored.question_type == :binary
     metadata = %{handler_name: "test-#{id}", event_number: 1}
     assert :ok = Projector.handle(restored, metadata)
     assert %Question{question_type: :binary, status: :active} = Repo.get!(Question, id)
-    assert Repo.get!(Question, id).slug == "do-you-like-coffee"
+    assert Repo.get!(Question, id).slug == "do-you-like-coffee-#{id}"
     assert :ok = Projector.handle(restored, metadata)
 
     assert :ok =

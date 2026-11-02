@@ -83,3 +83,5 @@ config :roughly, Roughly.EventStore,
   pool_size: 5
 
 config :roughly, :allow_dev_seeds, true
+
+config :roughly, :system_capabilities, %{"development-fixtures" => [:seed]}

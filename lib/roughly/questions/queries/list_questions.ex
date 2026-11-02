@@ -2,8 +2,15 @@ defmodule Roughly.Questions.Queries.ListQuestions do
   @moduledoc "Bounded search and topic browsing over persisted read models."
   import Ecto.Query
   alias Roughly.Repo
-  alias Roughly.Questions.Queries.{Base, Results}
+  alias Roughly.Questions.Queries.Base
+  alias Roughly.Analysis.Queries.Results
 
+  @spec call(keyword()) :: %{
+          entries: [Roughly.Analysis.Result.t()],
+          total: non_neg_integer(),
+          page: pos_integer(),
+          total_pages: pos_integer()
+        }
   def call(filters \\ []) do
     query = Base.query() |> filter(filters)
     total = Repo.aggregate(query, :count)

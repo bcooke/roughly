@@ -3,5 +3,6 @@ defmodule Roughly.Questions.Queries.Base do
   import Ecto.Query
   alias Roughly.Questions.Projections.Question
 
+  @spec query() :: Ecto.Query.t()
   def query, do: from(q in Question, where: q.status == :active and not is_nil(q.slug))
 end

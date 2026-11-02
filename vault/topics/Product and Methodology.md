@@ -25,6 +25,7 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 - [Polling Methodology](../Polling%20Methodology.md): samples, inference, and disclosure.
 - [Results Exposure](../Results%20Exposure.md): information before an answer.
 - [Participant Identity](../Participant%20Identity.md): identity, privacy, and integrity dimensions.
+- [Question Instruments](../Question%20Instruments.md): exact wording, formats, and stable option identities.
 - [Collection Context](../Collection%20Context.md): instruments, presentation, and observed conditions.
 - [Development Fixtures](../Development%20Fixtures.md): fictional examples and provenance.
 

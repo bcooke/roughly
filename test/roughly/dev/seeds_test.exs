@@ -10,8 +10,12 @@ defmodule Roughly.Dev.SeedsTest do
     assert length(Enum.uniq_by(catalog, & &1.slug)) == length(catalog)
     first = hd(catalog)
     assert Seeds.responses(first) == Seeds.responses(first)
-    assert Enum.all?(Seeds.responses(first), &(&1.option_id in first.options))
-    ids = Enum.map(Seeds.responses(first), & &1.user_uuid)
+
+    assert Enum.all?(Seeds.responses(first), fn response ->
+             length(response.option_ids) == 1 and response.context.mode == :development_fixture
+           end)
+
+    ids = Enum.map(Seeds.responses(first), & &1.principal_uuid)
     assert length(ids) == length(Enum.uniq(ids))
   end
 
