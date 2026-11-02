@@ -22,4 +22,4 @@ Replace the small in-memory preview with a repeatable development dataset and re
 
 Local checks pass 41 tests plus compilation, Credo, formatting, and vault links. The frontend build passes. Full seeding and a rerun preserved counts without duplicates; extending the catalog added only new questions/responses. Browser checks exercised question results, related-question navigation, and About.
 
-See [context](../_context/T-2026-015-context.md), [the seed decision](../../decisions/ADR-002-development-seeds.md), and the PR linked with this task. Completion means implementation and local validation; the PR records integration. Public participation and data-source ingestion remain outside scope.
+See [context](../_context/T-2026-015-context.md), [the seed decision](../../decisions/ADR-002-development-seeds.md), and [PR #12](https://github.com/bcooke/roughly/pull/12). Completion means implementation and local validation; the PR records integration. Public participation and data-source ingestion remain outside scope.

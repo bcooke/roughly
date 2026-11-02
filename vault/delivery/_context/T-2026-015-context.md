@@ -14,4 +14,4 @@ Queries return aggregate counts without participant identities, exclude retracti
 
 The product scope includes experiences and actions, not only preferences. [Quantifiable Human Facts](../../Quantifiable%20Human%20Facts.md) and [Claims and Evidence](../../Claims%20and%20Evidence.md) capture that distinction. [Question meaning and intersections](../../discovery/2026-11-02-question-meaning-and-intersections.md) is an open proposal, not a claim of implemented cohort analysis or canonicalization.
 
-[T-2026-015](../tasks/T-2026-015-development-fixtures.md) identifies validation. No real polling evidence was generated and no public collection or production deployment was enabled.
+[T-2026-015](../tasks/T-2026-015-development-fixtures.md) and [PR #12](https://github.com/bcooke/roughly/pull/12) identify validation. No real polling evidence was generated and no public collection or production deployment was enabled.
