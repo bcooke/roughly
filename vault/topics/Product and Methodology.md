@@ -9,6 +9,8 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 ## Purpose and presentation
 
 - [Product Vision](../Product%20Vision.md): purpose and values.
+- [Population Analysis](../Population%20Analysis.md): answer-defined intersections, eligible denominators, and disclosure limits.
+- [Answer Discovery](../Answer%20Discovery.md): visible answers, stable option routes, and crawling contracts.
 - [Result Presentation](../Result%20Presentation.md): visual forms, exact tables, and denominator preservation.
 - [Design Philosophy](../Design%20Philosophy.md): data and context in the interface.
 - [Glossary](../Glossary.md): shared language.

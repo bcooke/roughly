@@ -7,7 +7,7 @@ defmodule Roughly.Questions.Queries.GetQuestion do
 
   @spec call(String.t()) :: Roughly.Analysis.Result.t() | nil
   def call(slug) do
-    case Repo.one(from(q in Base.query(), where: q.slug == ^slug)) do
+    case Repo.one(from(q in Base.published(), where: q.slug == ^slug)) do
       nil -> nil
       question -> question |> List.wrap() |> Results.attach() |> hd()
     end

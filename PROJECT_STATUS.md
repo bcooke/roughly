@@ -10,9 +10,10 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 
 - Browsing over persisted question projections, topic filters, pagination, related questions, and aggregate response counts.
 - Global search with live suggestions, keyboard navigation, session recents, typo tolerance, word variants, result previews, and shareable filtered results. Readable question URLs use event-sourced collision claims. See [T-2026-018](vault/delivery/tasks/T-2026-018-search-and-question-links.md).
+- Event-derived historical snapshots, date/response-count trends, cutoff-aware population intersections, and focused answer URLs with server-rendered discovery metadata. See [T-2026-020](vault/delivery/tasks/T-2026-020-evidence-exploration.md).
 - Question exploration with distribution/table views, percentage/count display, ordered-scale columns, multiple-selection bars, and shareable view state. See [T-2026-019](vault/delivery/tasks/T-2026-019-question-exploration.md).
 - A plain About page and a simplified interface without repeated fixture notices or promotional slogans.
-- Development fixtures seeded through Commanded: 206 questions across 17 topics, 360 invented participants, and 31,833 responses. Reruns preserve counts. These are invented local development data, not collected polling evidence.
+- Development fixtures seeded through Commanded: 209 questions across 18 topics, 360 invented participants, and 33,177 responses. Reruns preserve counts. These are invented local development data, not collected polling evidence.
 - Ecto and EventStore setup, supervised projectors, regression tests, and query/LiveView tests.
 - Shared contributor instructions, linked atomic notes, dated discovery, and decision records.
 - GitHub CI for backend checks, vault links, and frontend builds.
@@ -39,6 +40,6 @@ The [vault index](vault/README.md) leads to connected product/methodology and en
 
 ## Open boundaries
 
-The internal foundation is not a complete public participation system. Public authentication, answer collection, demographic slices, representative estimates, and production deployment are not implemented. Nonprofit governance is an intention to explore, not an established organization.
+The internal foundation is not a complete public participation system. Public authentication, answer collection, representative estimates, and production deployment are not implemented. Population comparisons are aggregate previews over fictional development responses; they do not establish a real-world demographic dataset or a complete privacy policy. Nonprofit governance is an intention to explore, not an established organization.
 
 Historical design proposals under `vault/archive/` describe possible future behavior. Current runtime behavior and this status take precedence over those sketches.

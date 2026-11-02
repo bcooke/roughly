@@ -16,6 +16,10 @@ import Config
 #
 # Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
 # script that automatically sets the env var above.
+config :roughly,
+       :public_indexing,
+       config_env() == :prod && System.get_env("ROUGHLY_PUBLIC_INDEXING") == "true"
+
 if System.get_env("PHX_SERVER") do
   config :roughly, RoughlyWeb.Endpoint, server: true
 end

@@ -14,3 +14,9 @@ The [open API and dataset release idea](discovery/ideas/open-api-and-dataset-rel
 
 
 Public slugs describe the question; internal instrument UUIDs remain separate. [Route claims](../lib/roughly/questions/slugs.ex) reserve a name before publication. Only a real collision adds a numbered suffix, such as `do-you-like-coffee-2`. Claims serialize per actual route, including collisions with a naturally numbered prompt, rather than relying on a lagging read-model uniqueness check. A reserved route whose publication fails remains reserved; recovery can retry the same instrument identity.
+
+[Answer Discovery](Answer%20Discovery.md) defines readable option-specific routes and canonical metadata. [Response History](Response%20History.md) and [Population Analysis](Population%20Analysis.md) define shareable live exploration state; none of these views constitutes an immutable evidence release.
+
+Closing collection preserves the question and answer evidence addresses. Active browsing can omit closed instruments while direct reads and the sitemap retain them; collection admission remains closed.
+
+Closing collection preserves the question and answer evidence addresses. Active browsing can omit closed instruments while direct reads and the sitemap retain them; collection admission remains closed.

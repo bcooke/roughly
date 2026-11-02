@@ -32,12 +32,24 @@ defmodule RoughlyWeb.Layouts do
     doc: "the current [scope](https://phoenix.hexdocs.pm/scopes.html)"
 
   attr :socket, :any, required: true
+  attr :page_metadata, :map, default: nil
 
   slot :inner_block, required: true
 
   def app(assigns) do
     ~H"""
     <a href="#main-content" class="skip-link">Skip to content</a>
+    <div
+      id="live-page-metadata"
+      phx-hook="PageMetadata"
+      phx-update="ignore"
+      hidden
+      data-description={(@page_metadata || RoughlyWeb.PageMetadata.default()).description}
+      data-canonical={(@page_metadata || RoughlyWeb.PageMetadata.default()).canonical}
+      data-robots={(@page_metadata || RoughlyWeb.PageMetadata.default()).robots}
+      data-title={(@page_metadata || RoughlyWeb.PageMetadata.default()).title}
+    >
+    </div>
     <header id="site-header" class="site-header">
       <.link navigate={~p"/"} class="wordmark" aria-label="Roughly home"><span aria-hidden="true">≈</span>
       roughly<span class="wordmark-period">.</span></.link>

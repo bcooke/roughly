@@ -7,7 +7,11 @@ defmodule RoughlyWeb.AboutLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} socket={@socket}>
+    <Layouts.app
+      flash={@flash}
+      socket={@socket}
+      page_metadata={RoughlyWeb.PageMetadata.default("/about", "About Roughly")}
+    >
       <article class="about-page">
         <h1 id="about-title">About Roughly</h1>
         <p>

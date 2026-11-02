@@ -1,5 +1,67 @@
 [
   {
+    "text": "Which age group are you in?",
+    "category": "About you",
+    "options": [
+      "18–24",
+      "25–34",
+      "35–44",
+      "45–54",
+      "55–64",
+      "65 or older",
+      "Prefer not to say"
+    ],
+    "weights": [
+      16,
+      20,
+      20,
+      16,
+      14,
+      12,
+      2
+    ]
+  },
+  {
+    "text": "How do you describe your gender?",
+    "category": "About you",
+    "options": [
+      "Woman",
+      "Man",
+      "Non-binary",
+      "Self-described",
+      "Prefer not to say"
+    ],
+    "weights": [
+      46,
+      46,
+      4,
+      1,
+      3
+    ]
+  },
+  {
+    "text": "Which region do you currently live in?",
+    "category": "About you",
+    "options": [
+      "Africa",
+      "Asia",
+      "Europe",
+      "North America",
+      "Oceania",
+      "South America",
+      "Prefer not to say"
+    ],
+    "weights": [
+      10,
+      25,
+      25,
+      25,
+      5,
+      8,
+      2
+    ]
+  },
+  {
     "text": "Do you like the taste of coffee?",
     "category": "Food & drink",
     "options": [
