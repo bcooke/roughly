@@ -14,15 +14,20 @@ defmodule Roughly.Questions.Projections.Projector do
   alias Roughly.Questions.Projections.Question
 
   project(%QuestionCreated{} = event, _metadata, fn multi ->
-    Ecto.Multi.insert(multi, :question, %Question{
+    question = %Question{
       uuid: event.question_uuid,
       text: event.text,
-      question_type: event.question_type,
       options: event.options || [],
       category: event.category,
       created_by: event.created_by,
       status: :active
-    })
+    }
+
+    # JSON event payloads contain strings; cast through the schema's enum type.
+    changeset =
+      Ecto.Changeset.cast(question, %{question_type: event.question_type}, [:question_type])
+
+    Ecto.Multi.insert(multi, :question, changeset)
   end)
 
   project(%QuestionClosed{} = event, _metadata, fn multi ->

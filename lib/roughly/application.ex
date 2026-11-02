@@ -1,5 +1,5 @@
 defmodule Roughly.Application do
-  # See https://hexdocs.pm/elixir/Application.html
+  # See https://elixir.hexdocs.pm/Application.html
   # for more information on OTP Applications
   @moduledoc false
 
@@ -12,16 +12,28 @@ defmodule Roughly.Application do
       Roughly.Repo,
       {DNSCluster, query: Application.get_env(:roughly, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Roughly.PubSub},
-      # Event sourcing infrastructure (EventStore is started by Commanded.App)
       Roughly.App,
       # Start to serve requests, typically the last entry
       RoughlyWeb.Endpoint
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
+    # See https://elixir.hexdocs.pm/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Roughly.Supervisor]
-    Supervisor.start_link(children, opts)
+
+    projectors =
+      if Application.get_env(:roughly, :start_projectors, true) do
+        [
+          Roughly.Questions.Projections.Projector,
+          Roughly.Users.Projections.Projector,
+          Roughly.Voting.Projections.Projector
+        ]
+      else
+        []
+      end
+
+    {infrastructure, [endpoint]} = Enum.split(children, -1)
+    Supervisor.start_link(infrastructure ++ projectors ++ [endpoint], opts)
   end
 
   # Tell Phoenix to update the endpoint configuration

@@ -1,90 +1,39 @@
 # Project Status
 
-**Last Updated**: 2026-02-03
-**Project**: The Roughly Project (roughly.io)
+Updated November 2, 2026.
 
----
+## Current milestone
 
-## Current Focus
+A local browsing preview on a fresh Phoenix 1.8.16 foundation. Vue 3 and LiveVue 1.2.3 are integrated through Vite. Existing domain code and Git history are preserved.
 
-**Active Task**: None - select from backlog
-**Branch**: main
-**Goal**: Phoenix foundation complete, ready for feature development
+## Available
 
----
+- Searchable synthetic questions, topic filters, shareable search URLs, and an empty state.
+- Stable question pages, horizontal answer breakdowns, response counts, and results/methodology anchors.
+- Clear synthetic-data labeling. No real responses are collected.
+- A small LiveVue interaction for copying result links; no prediction exercise.
+- Questions, voting, and users aggregates, separate command/event modules, Ecto projections, migrations, and supervised projectors.
+- Regression coverage for JSON event projection, close transitions, and duplicate event delivery.
+- Dedicated development PostgreSQL container, repeatable setup for Ecto and EventStore, and pinned local runtimes.
+- Shared AGENTS.md instructions, a thin Claude import, contributor documentation, and an atomic, interlinked public Markdown vault.
+- CI definition for backend checks and frontend build. Hosted CI will run when a branch is pushed.
 
-## Recently Completed (Last 3)
+## Validation
 
-- ✅ **T-2026-013** - Create database migrations for projections
-- ✅ **T-2026-012** - Refactor to Commanded event-sourcing with TDD
-- ✅ **T-2026-009** - Implement CQRS code structure
+`mix precommit` and `mix assets.build` are the required local gates. A runtime smoke check dispatched create/close commands through persisted events and the supervised question projector into Ecto. The preview is also checked interactively in Chrome.
 
----
+## Work and review
 
-## Next Up (Top 3 Priorities)
+- [R-001](vault/delivery/R-001-foundation.md): foundation refresh and contribution process, under review.
+- [R-002](vault/delivery/R-002-participation-methodology.md): participation and data-quality investigation, open.
+- [R-003](vault/delivery/R-003-domain-flow.md): validated real-domain flow, open.
 
-1. **T-2026-008** - Create design system and Tailwind theme
-2. **T-2026-004** - Expand Glossary and User Personas
-3. **T-2026-005** - Improve Feature Documentation Quality
+These repository records own detailed scope, acceptance criteria, and outcomes. GitHub issues link to them for discussion. [DR-001](vault/decisions/DR-001-portable-project-knowledge.md) proposes this portable arrangement for maintainer review; a board or Wiki is not required.
 
----
+The [vault index](vault/README.md) provides topic maps for product/methodology, engineering, and contributing. Evergreen notes, dated research, decision records, and historical proposals have separate roles. The public vault contains shared project knowledge; private reflection and raw references stay outside the repository.
 
-## Backlog
+## Open boundaries
 
-### Foundation (P1)
-- Database schema refinement (after data model review)
+The retained aggregates are not a complete or hardened voting backend. Public authentication, answer collection, demographic slices, representative estimates, and production deployment are not implemented. Nonprofit governance is an intention to explore, not an established organization.
 
-### Design & Docs (P2)
-- **T-2026-008** - Create design system and Tailwind theme
-- **T-2026-004** - Expand Glossary and User Personas
-- **T-2026-005** - Improve Feature Documentation Quality
-
----
-
-## Open Questions / Blockers
-
-- Data model: How to efficiently query population overlaps?
-- Polling methodology: How to detect and handle bad-faith responses?
-- Identity: Require verified human identities for voting?
-- **Privacy model**: Accounts required (no anonymous voting), but individual answers private
-  - Only aggregate data visible publicly
-  - Consider encrypting individual vote records
-  - k-anonymity threshold for demographic slices?
-
----
-
-## Key Decisions
-
-- **Tech Stack**: Phoenix/Elixir with LiveView, Commanded for event sourcing, PostgreSQL
-- **TDD Mandatory**: All code changes must follow Red → Green → Refactor. Never write implementation without failing test first
-- **Event-Sourced Architecture**: Commanded aggregates for write side, Ecto projections for read side. Never query aggregates directly
-- **No Demographics Context**: Demographics are just questions - no separate context needed
-- **Design Philosophy**: Minimal, white/gray base, functional accent colors (538-inspired)
-- **Logo Concept**: ≈ symbol with "APPROXIMATE.LY" / "ROUGHLY" branding
-- **Values**: Free, open source, Wikipedia model (not monetized like Gallup)
-- **Privacy**: Accounts required to vote (no anonymous), but individual responses are private (aggregate-only public data)
-- **Git Workflow**: Squash and merge only, linear history, PRs required for main
-- **Task Granularity**: Small, focused tasks with individual PRs
-
----
-
-## Workflow Rules
-
-- All changes to main require a PR
-- Squash merge only (linear history)
-- Delete branch after merge
-- One task = one branch = one PR
-
----
-
-## Files Recently Modified
-
-<!-- Auto-updated by post-commit hook -->
-
----
-
-## Notes
-
-- This file is the **single source of truth** for project status
-- Kept in sync with `vault/pm/` via hooks and slash commands
-- Read this file first before asking "what's the status?"
+Historical design proposals under `vault/archive/` describe possible future behavior. Current runtime behavior and this status take precedence over those sketches.

@@ -1,0 +1,106 @@
+<Layouts.app flash={@flash}>
+  <section class="explore-intro">
+    <div class="eyebrow">
+      <span class="status-dot"></span> AN OPEN COLLECTION OF THE WORLD’S PERCENTAGES
+    </div>
+    <h1>There’s a whole world<br />outside your <span>bubble.</span></h1>
+    <p>
+      What do people think, feel, and do? Start with a question.<br class="hidden sm:block" />
+      You might be surprised by the answers.
+    </p>
+    <.form
+      for={@form}
+      id="question-search"
+      phx-submit="search"
+      phx-change="search"
+      class="search-box"
+    >
+      <.icon name="hero-magnifying-glass" class="size-5 text-stone-500" />
+      <.input
+        field={@form[:q]}
+        id="search-query"
+        type="search"
+        placeholder="What are you curious about?"
+        aria-label="Search questions"
+        phx-debounce="200"
+      />
+      <button type="submit" id="search-submit" aria-label="Search" class="search-submit"><.icon
+        name="hero-arrow-right"
+        class="size-5"
+      /></button>
+    </.form>
+    <p class="search-hint">Try coffee, morning people, or working together.</p>
+  </section>
+
+  <section class="explore-content" aria-labelledby="explore-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">A LITTLE CURIOSITY GOES A LONG WAY</span><h2 id="explore-title">
+          Explore the questions
+        </h2>
+      </div><span class="result-count">{@count} {if @count == 1, do: "question", else: "questions"}</span>
+    </div>
+    <nav aria-label="Question topics" class="topic-list">
+      <.link
+        :for={topic <- @topics}
+        id={"topic-#{topic_id(topic)}"}
+        patch={~p"/?#{filters(@search, topic)}"}
+        aria-current={if topic == @category, do: "true"}
+        class={["topic", topic == @category && "topic-active"]}
+      >{topic}</.link>
+    </nav>
+    <div id="preview-notice" class="preview-notice">
+      <.icon name="hero-beaker" class="size-4 shrink-0" /><p>
+        <strong>A first look at Roughly.</strong>
+        These are sample questions with fictional results. Explore the idea; real responses come later.
+      </p>
+    </div>
+    <div id="questions" phx-update="stream" class="question-grid">
+      <article :for={{id, question} <- @streams.questions} id={id} class="question-card">
+        <div class="card-topline">
+          <span>{question.category}</span><span class="sample-label">SAMPLE DATA</span>
+        </div>
+        <.link navigate={~p"/questions/#{question.slug}"} class="question-link"><h3>
+          {question.text}
+        </h3></.link>
+        <p class="question-description">{question.description}</p>
+        <div class="mini-results" aria-hidden="true">
+          <span
+            :for={{answer, index} <- Enum.with_index(question.answers)}
+            class={"answer-color-#{index}"}
+            style={"width: #{answer.percentage}%"}
+          ></span>
+        </div>
+        <div class="card-bottom">
+          <span>{number(question.total)} example responses</span><.link
+            navigate={~p"/questions/#{question.slug}"}
+            class="view-results"
+            aria-label={"Explore: #{question.text}"}
+          >Explore <.icon name="hero-arrow-up-right" class="size-4" /></.link>
+        </div>
+      </article>
+    </div>
+    <div :if={@count == 0} id="empty-results" class="empty-results">
+      <.icon name="hero-magnifying-glass" class="size-8" /><h3>No questions found</h3><p>
+        Try another search or explore a different topic.
+      </p><.link id="clear-filters" patch={~p"/"} class="text-link">Clear filters</.link>
+    </div>
+  </section>
+  <section class="principles">
+    <p class="eyebrow">CURIOSITY, WITH CONTEXT</p><h2>Percentages are a starting point.</h2><div class="principle-grid">
+      <div>
+        <span>01 / OPEN BY DESIGN</span><p>
+          Knowledge should be something we share. Free to explore, built in the open.
+        </p>
+      </div><div>
+        <span>02 / PEOPLE, NOT ASSUMPTIONS</span><p>
+          Your experience is one perspective. Questions help us look beyond it.
+        </p>
+      </div><div>
+        <span>03 / APPROXIMATELY, ALWAYS</span><p>
+          Who answered matters. Every result needs its sample, source, and limitations.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layouts.app>

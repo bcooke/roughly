@@ -1,0 +1,82 @@
+<Layouts.app flash={@flash}>
+  <div :if={@question} class="question-page">
+    <.link navigate={~p"/"} class="back-link"><.icon name="hero-arrow-left" class="size-4" />
+    All questions</.link>
+    <div class="question-heading">
+      <span class="eyebrow">{@question.category}</span><h1 id="question-title">
+        {@question.text}
+      </h1><p>{@question.description}</p><div class="question-meta">
+        <span class="sample-label">SAMPLE DATA</span><span>{@question.total} fictional responses</span>
+      </div>
+    </div>
+    <div id="preview-notice" class="preview-notice">
+      <.icon name="hero-beaker" class="size-4 shrink-0" /><p>
+        This is an example, with synthetic counts. These percentages describe no real sample or population.
+      </p>
+    </div>
+    <div class="question-detail-grid">
+      <section id="results" class="results-panel" aria-labelledby="results-title">
+        <div class="section-heading">
+          <h2 id="results-title">The answer breakdown</h2><a
+            id="results-permalink"
+            href={(~p"/questions/#{@question.slug}" <> "#results")}
+            aria-label="Link to these results"
+          ><.icon name="hero-link" class="size-5" /></a>
+        </div>
+        <div
+          :for={{answer, index} <- Enum.with_index(@question.answers)}
+          id={"answer-#{index}"}
+          class="answer-row"
+        >
+          <div><span>{answer.label}</span><strong>{answer.percentage}%</strong></div><div class="answer-track">
+            <div
+              class={"answer-fill answer-color-#{index}"}
+              style={"width: #{answer.percentage}%"}
+            >
+            </div>
+          </div><p>{answer.count} example responses</p>
+        </div>
+        <p class="results-footnote">Unweighted · Synthetic example · Not a population estimate</p>
+      </section>
+      <aside class="context-panel">
+        <span class="eyebrow">A NUMBER ISN’T THE WHOLE STORY</span><h2>
+          Who answered<br />matters.
+        </h2><p>A percentage can describe a sample without representing the wider world.</p><p>
+          Look for the source, the wording, and how people were invited to take part.
+        </p><a href="#methodology" class="text-link">Read the context
+        <.icon name="hero-arrow-down" class="size-4" /></a><.vue
+          id="share-question"
+          v-component="ShareQuestion"
+          v-socket={@socket}
+          v-ssr={false}
+          path={(~p"/questions/#{@question.slug}" <> "#results")}
+        />
+      </aside>
+    </div>
+    <section id="methodology" class="methodology-panel">
+      <span class="eyebrow">BEHIND THE NUMBERS</span><h2>Every percentage needs context.</h2><p>
+        These results are <strong>synthetic examples</strong>
+        created to explore Roughly’s interface. There is no collection period, sampling frame, or real respondent data behind them.
+      </p><p>
+        When real responses are available, an open poll will tell us about the people who answered. It won’t automatically represent everyone. Sample selection, question wording, and response bias all matter.
+      </p><div class="methodology-facts">
+        <div><span>SOURCE</span><strong>Interface sample</strong></div><div>
+          <span>REPRESENTATIVENESS</span><strong>Not applicable</strong>
+        </div><div><span>RESPONSE COLLECTION</span><strong>Not yet open</strong></div>
+      </div>
+    </section>
+    <div class="share-note">
+      <.icon name="hero-link" class="size-5" /><p>
+        A question worth sharing?
+        <a class="text-link" href={(~p"/questions/#{@question.slug}" <> "#results")}>Link directly to the results</a>
+        from a conversation or article. Include the sample context.
+      </p>
+    </div>
+  </div>
+  <section :if={!@question} id="question-not-found" class="empty-results">
+    <h1>We couldn’t find that question.</h1><p>There are more questions to explore.</p><.link
+      navigate={~p"/"}
+      class="text-link"
+    >Back to all questions</.link>
+  </section>
+</Layouts.app>

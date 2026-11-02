@@ -1,3 +1,23 @@
+# Roughly contributor guidance
+
+Roughly is an open collection of the world's percentages. Read `README.md`, `PROJECT_STATUS.md`, and `vault/README.md` for the current product and engineering context.
+
+## Shared workflow
+
+- This file is the canonical guidance for all coding tools. CLAUDE.md imports it.
+- Keep product decisions, architecture, methodology, and contribution instructions public and impersonal. Keep personal notes, raw brain dumps, and unrelated private project context outside this repository.
+- For documentation, read `vault/_meta/Documentation Guidelines.md`. Search before creating notes; use atomic concepts, meaningful links, topic maps, dated research, and decision records. Keep provisional observations distinct from settled guidance.
+- Read the code before assuming a specification is implemented. Label synthetic data and never imply an open poll is a representative sample.
+- Use feature branches and PRs. Repo-owned `vault/delivery/` records track substantial work; forge issues provide discussion and point to them. Follow `vault/Project Workflow.md` and respect the proposed status of its decision record. Do not publish or deploy without authorization.
+- Follow test-driven development for domain behavior: demonstrate a failing test, implement, then refactor. Test externally visible outcomes.
+- Use domain entry points and named query modules. Commands flow through Commanded; reads use Ecto projections. Start projectors after Roughly.App.
+- Define one module per file. Preserve serialized event module names and payload compatibility when changing existing streams.
+- Use Vue through LiveVue for interactive presentation, with Phoenix owning routes and server state. No PrimeVue. Review each new dependency for purpose and license; avoid adding libraries for simple UI.
+- Public pages expose aggregates, never private answer histories. A reviewed participation policy, consent, and privacy behavior are required before enabling collection.
+- Run `mix precommit` and the frontend production build before finishing application changes.
+
+## Phoenix conventions
+
 This is a web application written using the Phoenix web framework.
 
 ## Project guidelines

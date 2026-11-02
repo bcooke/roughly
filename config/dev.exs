@@ -1,10 +1,12 @@
 import Config
+config :live_vue, vite_host: "http://localhost:5293", ssr: false
 
 # Configure your database
 config :roughly, Roughly.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
+  hostname: System.get_env("PGHOST", "localhost"),
+  port: String.to_integer(System.get_env("PGPORT", "5435")),
   database: "roughly_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
@@ -19,15 +21,13 @@ config :roughly, Roughly.Repo,
 config :roughly, RoughlyWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}],
+  http: [ip: {127, 0, 0, 1}, port: 4070],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "JwrCDDD+OPwv82Pt5eio7kQ/jMaR4fThUohe8Y8wdk7m9j+yk3wp7HzkAMKW0zVk",
-  watchers: [
-    esbuild: {Esbuild, :install_and_run, [:roughly, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:roughly, ~w(--watch)]}
-  ]
+  secret_key_base: "brC/PsFD8Xp8c1L+myfx7QcfjrrRYyRTcSDyp7GLdWqWoumQ9ETi2FbvqfEz6M14",
+  watchers: [vite: {PhoenixVite.Npm, :run, [:vite, ~w(dev)]}],
+  static_url: [host: "localhost", port: 5293]
 
 # ## SSL Support
 #
@@ -52,21 +52,6 @@ config :roughly, RoughlyWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
-# Reload browser tabs when matching files change.
-config :roughly, RoughlyWeb.Endpoint,
-  live_reload: [
-    web_console_logger: true,
-    patterns: [
-      # Static assets, except user uploads
-      ~r"priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$",
-      # Gettext translations
-      ~r"priv/gettext/.*\.po$",
-      # Router, Controllers, LiveViews and LiveComponents
-      ~r"lib/roughly_web/router\.ex$",
-      ~r"lib/roughly_web/(controllers|live|components)/.*\.(ex|heex)$"
-    ]
-  ]
-
 # Enable dev routes for dashboard and mailbox
 config :roughly, dev_routes: true
 
@@ -88,14 +73,11 @@ config :phoenix_live_view,
   # Enable helpful, but potentially expensive runtime checks
   enable_expensive_runtime_checks: true
 
-# Disable swoosh api client as it is only required for production adapters.
-config :swoosh, :api_client, false
-
-# Configure EventStore for Commanded
 config :roughly, Roughly.EventStore,
   serializer: Commanded.Serialization.JsonSerializer,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
+  hostname: System.get_env("PGHOST", "localhost"),
+  port: String.to_integer(System.get_env("PGPORT", "5435")),
   database: "roughly_eventstore_dev",
-  hostname: "localhost",
-  pool_size: 10
+  pool_size: 5

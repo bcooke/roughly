@@ -17,7 +17,8 @@ defmodule RoughlyWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+  # assets/ is served separately, by a dedicated Plug.Static plug
+  def static_paths, do: ~w(fonts images favicon.ico robots.txt)
 
   def router do
     quote do
@@ -81,6 +82,18 @@ defmodule RoughlyWeb do
     quote do
       # Translation
       use Gettext, backend: RoughlyWeb.Gettext
+
+      # Add support for Vue components
+      use LiveVue
+
+      # Generate component for each vue file, so you can use <.ComponentName> syntax
+      # instead of <.vue v-component="ComponentName">
+      use LiveVue.Components, vue_root: ["./assets/vue", "./lib/roughly_web"]
+
+      # Override ~H sigil to inject shared props into <.vue> tags
+      # Configure shared props in config :live_vue, :shared_props
+      import Phoenix.Component, except: [sigil_H: 2]
+      import LiveVue.SharedPropsView, only: [sigil_H: 2]
 
       # HTML escaping functionality
       import Phoenix.HTML
