@@ -25,7 +25,7 @@ defmodule Roughly.Questions.Projections.Projector do
 
     # JSON event payloads contain strings; cast through the schema's enum type.
     changeset =
-      Ecto.Changeset.cast(question, %{question_type: event.question_type}, [:question_type])
+      Question.changeset(question, %{question_type: event.question_type})
 
     Ecto.Multi.insert(multi, :question, changeset)
   end)

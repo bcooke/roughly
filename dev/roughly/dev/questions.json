@@ -1,0 +1,2908 @@
+[
+  {
+    "text": "Do you like the taste of coffee?",
+    "category": "Food & drink",
+    "options": [
+      "Yes",
+      "No",
+      "It depends"
+    ],
+    "weights": [
+      62,
+      28,
+      10
+    ]
+  },
+  {
+    "text": "Do you prefer chocolate or vanilla?",
+    "category": "Food & drink",
+    "options": [
+      "Chocolate",
+      "Vanilla",
+      "No preference"
+    ],
+    "weights": [
+      54,
+      36,
+      10
+    ]
+  },
+  {
+    "text": "How do you usually take your coffee?",
+    "category": "Food & drink",
+    "options": [
+      "Black",
+      "With milk or cream",
+      "Sweetened",
+      "I don't drink coffee"
+    ],
+    "weights": [
+      24,
+      38,
+      17,
+      21
+    ]
+  },
+  {
+    "text": "Do you prefer sweet or savory breakfasts?",
+    "category": "Food & drink",
+    "options": [
+      "Sweet",
+      "Savory",
+      "No preference"
+    ],
+    "weights": [
+      29,
+      57,
+      14
+    ]
+  },
+  {
+    "text": "How spicy do you like your food?",
+    "category": "Food & drink",
+    "options": [
+      "Not spicy",
+      "Mild",
+      "Medium",
+      "Very spicy"
+    ],
+    "weights": [
+      15,
+      31,
+      38,
+      16
+    ]
+  },
+  {
+    "text": "Would you rather cook at home or eat out?",
+    "category": "Food & drink",
+    "options": [
+      "Cook at home",
+      "Eat out",
+      "No preference"
+    ],
+    "weights": [
+      48,
+      37,
+      15
+    ]
+  },
+  {
+    "text": "Do you like cilantro?",
+    "category": "Food & drink",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      68,
+      24,
+      8
+    ]
+  },
+  {
+    "text": "Do you prefer crunchy or smooth peanut butter?",
+    "category": "Food & drink",
+    "options": [
+      "Crunchy",
+      "Smooth",
+      "Neither"
+    ],
+    "weights": [
+      34,
+      54,
+      12
+    ]
+  },
+  {
+    "text": "How often do you try a food you've never eaten before?",
+    "category": "Food & drink",
+    "options": [
+      "Weekly",
+      "Monthly",
+      "A few times a year",
+      "Rarely"
+    ],
+    "weights": [
+      18,
+      34,
+      35,
+      13
+    ]
+  },
+  {
+    "text": "Do you put pineapple on pizza?",
+    "category": "Food & drink",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      29,
+      53,
+      18
+    ]
+  },
+  {
+    "text": "Do you prefer sparkling or still water?",
+    "category": "Food & drink",
+    "options": [
+      "Sparkling",
+      "Still",
+      "No preference"
+    ],
+    "weights": [
+      26,
+      61,
+      13
+    ]
+  },
+  {
+    "text": "Do you usually follow a recipe or improvise?",
+    "category": "Food & drink",
+    "options": [
+      "Follow a recipe",
+      "Improvise",
+      "A bit of both"
+    ],
+    "weights": [
+      24,
+      21,
+      55
+    ]
+  },
+  {
+    "text": "Are you a morning person or a night owl?",
+    "category": "Everyday life",
+    "options": [
+      "Morning person",
+      "Night owl",
+      "Somewhere in between"
+    ],
+    "weights": [
+      35,
+      43,
+      22
+    ]
+  },
+  {
+    "text": "Do you make your bed most mornings?",
+    "category": "Everyday life",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      47,
+      36,
+      17
+    ]
+  },
+  {
+    "text": "How many alarms do you set to wake up?",
+    "category": "Everyday life",
+    "options": [
+      "None",
+      "One",
+      "Two",
+      "Three or more"
+    ],
+    "weights": [
+      12,
+      47,
+      25,
+      16
+    ]
+  },
+  {
+    "text": "Do you prefer texting or talking on the phone?",
+    "category": "Everyday life",
+    "options": [
+      "Texting",
+      "Phone calls",
+      "It depends"
+    ],
+    "weights": [
+      56,
+      18,
+      26
+    ]
+  },
+  {
+    "text": "How often do you take a nap?",
+    "category": "Everyday life",
+    "options": [
+      "Most days",
+      "Weekly",
+      "Occasionally",
+      "Never"
+    ],
+    "weights": [
+      9,
+      18,
+      49,
+      24
+    ]
+  },
+  {
+    "text": "Do you usually arrive early, on time, or late?",
+    "category": "Everyday life",
+    "options": [
+      "Early",
+      "On time",
+      "Late"
+    ],
+    "weights": [
+      38,
+      45,
+      17
+    ]
+  },
+  {
+    "text": "Do you prefer making plans or being spontaneous?",
+    "category": "Everyday life",
+    "options": [
+      "Making plans",
+      "Being spontaneous",
+      "A mix of both"
+    ],
+    "weights": [
+      42,
+      22,
+      36
+    ]
+  },
+  {
+    "text": "Do you like having background noise while you work?",
+    "category": "Everyday life",
+    "options": [
+      "Yes",
+      "No",
+      "It depends"
+    ],
+    "weights": [
+      46,
+      34,
+      20
+    ]
+  },
+  {
+    "text": "How often do you check the weather forecast?",
+    "category": "Everyday life",
+    "options": [
+      "Daily",
+      "A few times a week",
+      "Occasionally",
+      "Rarely"
+    ],
+    "weights": [
+      43,
+      28,
+      23,
+      6
+    ]
+  },
+  {
+    "text": "Do you keep a handwritten to-do list?",
+    "category": "Everyday life",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      32,
+      48,
+      20
+    ]
+  },
+  {
+    "text": "Do you find it easy to ask for help?",
+    "category": "Everyday life",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      28,
+      49,
+      23
+    ]
+  },
+  {
+    "text": "Would you rather have an extra hour in the morning or evening?",
+    "category": "Everyday life",
+    "options": [
+      "Morning",
+      "Evening",
+      "No preference"
+    ],
+    "weights": [
+      31,
+      57,
+      12
+    ]
+  },
+  {
+    "text": "Do you prefer TypeScript or JavaScript?",
+    "category": "Technology",
+    "options": [
+      "TypeScript",
+      "JavaScript",
+      "No preference"
+    ],
+    "weights": [
+      64,
+      24,
+      12
+    ]
+  },
+  {
+    "text": "Which device do you use most for browsing the internet?",
+    "category": "Technology",
+    "options": [
+      "Phone",
+      "Laptop",
+      "Desktop",
+      "Tablet"
+    ],
+    "weights": [
+      52,
+      29,
+      13,
+      6
+    ]
+  },
+  {
+    "text": "Do you use a password manager?",
+    "category": "Technology",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      48,
+      46,
+      6
+    ]
+  },
+  {
+    "text": "Do you prefer light mode or dark mode?",
+    "category": "Technology",
+    "options": [
+      "Light mode",
+      "Dark mode",
+      "I switch between them"
+    ],
+    "weights": [
+      24,
+      56,
+      20
+    ]
+  },
+  {
+    "text": "How often do you use an AI assistant?",
+    "category": "Technology",
+    "options": [
+      "Daily",
+      "Weekly",
+      "Occasionally",
+      "Never"
+    ],
+    "weights": [
+      28,
+      24,
+      31,
+      17
+    ]
+  },
+  {
+    "text": "Do you turn off most app notifications?",
+    "category": "Technology",
+    "options": [
+      "Yes",
+      "No",
+      "Only some"
+    ],
+    "weights": [
+      39,
+      15,
+      46
+    ]
+  },
+  {
+    "text": "How long do you usually keep a smartphone?",
+    "category": "Technology",
+    "options": [
+      "Under two years",
+      "Two to three years",
+      "Four to five years",
+      "Over five years"
+    ],
+    "weights": [
+      14,
+      43,
+      32,
+      11
+    ]
+  },
+  {
+    "text": "Do you prefer physical books or e-readers?",
+    "category": "Technology",
+    "options": [
+      "Physical books",
+      "E-readers",
+      "No preference"
+    ],
+    "weights": [
+      55,
+      29,
+      16
+    ]
+  },
+  {
+    "text": "Do you cover your laptop's webcam?",
+    "category": "Technology",
+    "options": [
+      "Yes",
+      "No",
+      "I don't use a laptop"
+    ],
+    "weights": [
+      31,
+      60,
+      9
+    ]
+  },
+  {
+    "text": "Would you rather repair a device or replace it?",
+    "category": "Technology",
+    "options": [
+      "Repair it",
+      "Replace it",
+      "It depends on the cost"
+    ],
+    "weights": [
+      38,
+      12,
+      50
+    ]
+  },
+  {
+    "text": "Do you use keyboard shortcuts regularly?",
+    "category": "Technology",
+    "options": [
+      "Yes",
+      "No",
+      "A few"
+    ],
+    "weights": [
+      48,
+      18,
+      34
+    ]
+  },
+  {
+    "text": "Do you prefer wired or wireless headphones?",
+    "category": "Technology",
+    "options": [
+      "Wired",
+      "Wireless",
+      "No preference"
+    ],
+    "weights": [
+      21,
+      66,
+      13
+    ]
+  },
+  {
+    "text": "Do you prefer working alone or with others?",
+    "category": "Work & learning",
+    "options": [
+      "Alone",
+      "With others",
+      "A mix of both"
+    ],
+    "weights": [
+      28,
+      22,
+      50
+    ]
+  },
+  {
+    "text": "Where do you prefer to do focused work?",
+    "category": "Work & learning",
+    "options": [
+      "At home",
+      "In an office",
+      "In a library",
+      "In a cafe"
+    ],
+    "weights": [
+      42,
+      24,
+      20,
+      14
+    ]
+  },
+  {
+    "text": "Do you learn better by reading, watching, or doing?",
+    "category": "Work & learning",
+    "options": [
+      "Reading",
+      "Watching",
+      "Doing",
+      "A combination"
+    ],
+    "weights": [
+      15,
+      22,
+      39,
+      24
+    ]
+  },
+  {
+    "text": "Do you prefer handwritten or typed notes?",
+    "category": "Work & learning",
+    "options": [
+      "Handwritten",
+      "Typed",
+      "It depends"
+    ],
+    "weights": [
+      37,
+      40,
+      23
+    ]
+  },
+  {
+    "text": "How often do you learn a new skill outside work?",
+    "category": "Work & learning",
+    "options": [
+      "Weekly",
+      "Monthly",
+      "A few times a year",
+      "Rarely"
+    ],
+    "weights": [
+      24,
+      33,
+      30,
+      13
+    ]
+  },
+  {
+    "text": "Do you prefer a fixed schedule or flexible hours?",
+    "category": "Work & learning",
+    "options": [
+      "Fixed schedule",
+      "Flexible hours",
+      "No preference"
+    ],
+    "weights": [
+      29,
+      60,
+      11
+    ]
+  },
+  {
+    "text": "Are meetings usually a good use of your time?",
+    "category": "Work & learning",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      18,
+      53,
+      29
+    ]
+  },
+  {
+    "text": "Do you work better with a deadline?",
+    "category": "Work & learning",
+    "options": [
+      "Yes",
+      "No",
+      "It depends"
+    ],
+    "weights": [
+      63,
+      16,
+      21
+    ]
+  },
+  {
+    "text": "Would you rather specialize or learn a little about many things?",
+    "category": "Work & learning",
+    "options": [
+      "Specialize",
+      "Learn broadly",
+      "A balance of both"
+    ],
+    "weights": [
+      24,
+      33,
+      43
+    ]
+  },
+  {
+    "text": "Do you prefer written feedback or a conversation?",
+    "category": "Work & learning",
+    "options": [
+      "Written feedback",
+      "A conversation",
+      "Both together"
+    ],
+    "weights": [
+      24,
+      32,
+      44
+    ]
+  },
+  {
+    "text": "How do you usually approach a difficult problem?",
+    "category": "Work & learning",
+    "options": [
+      "Try it myself first",
+      "Ask someone",
+      "Research it",
+      "It depends"
+    ],
+    "weights": [
+      36,
+      17,
+      34,
+      13
+    ]
+  },
+  {
+    "text": "Do you enjoy teaching other people a skill?",
+    "category": "Work & learning",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      59,
+      16,
+      25
+    ]
+  },
+  {
+    "text": "Do you finish every book you start?",
+    "category": "Books & reading",
+    "options": [
+      "Almost always",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      24,
+      56,
+      20
+    ]
+  },
+  {
+    "text": "Do you prefer fiction or nonfiction?",
+    "category": "Books & reading",
+    "options": [
+      "Fiction",
+      "Nonfiction",
+      "No preference"
+    ],
+    "weights": [
+      49,
+      35,
+      16
+    ]
+  },
+  {
+    "text": "How many books did you finish in the last year?",
+    "category": "Books & reading",
+    "options": [
+      "None",
+      "One to five",
+      "Six to twelve",
+      "Thirteen or more"
+    ],
+    "weights": [
+      17,
+      38,
+      24,
+      21
+    ]
+  },
+  {
+    "text": "Do you reread books?",
+    "category": "Books & reading",
+    "options": [
+      "Often",
+      "Sometimes",
+      "Rarely",
+      "Never"
+    ],
+    "weights": [
+      17,
+      40,
+      31,
+      12
+    ]
+  },
+  {
+    "text": "Do you prefer short chapters or long chapters?",
+    "category": "Books & reading",
+    "options": [
+      "Short chapters",
+      "Long chapters",
+      "No preference"
+    ],
+    "weights": [
+      57,
+      13,
+      30
+    ]
+  },
+  {
+    "text": "How do you usually find your next book?",
+    "category": "Books & reading",
+    "options": [
+      "Friends",
+      "Online recommendations",
+      "Browsing a bookshop",
+      "Browsing a library"
+    ],
+    "weights": [
+      27,
+      34,
+      23,
+      16
+    ]
+  },
+  {
+    "text": "Do you listen to audiobooks?",
+    "category": "Books & reading",
+    "options": [
+      "Regularly",
+      "Occasionally",
+      "Never"
+    ],
+    "weights": [
+      23,
+      32,
+      45
+    ]
+  },
+  {
+    "text": "Do you read more than one book at a time?",
+    "category": "Books & reading",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Never"
+    ],
+    "weights": [
+      29,
+      37,
+      34
+    ]
+  },
+  {
+    "text": "Do you write or highlight in books?",
+    "category": "Books & reading",
+    "options": [
+      "Often",
+      "Sometimes",
+      "Never"
+    ],
+    "weights": [
+      18,
+      29,
+      53
+    ]
+  },
+  {
+    "text": "Do you prefer a happy ending or an ambiguous ending?",
+    "category": "Books & reading",
+    "options": [
+      "Happy ending",
+      "Ambiguous ending",
+      "It depends on the story"
+    ],
+    "weights": [
+      39,
+      17,
+      44
+    ]
+  },
+  {
+    "text": "When do you do most of your reading?",
+    "category": "Books & reading",
+    "options": [
+      "Morning",
+      "Afternoon",
+      "Evening",
+      "Before bed"
+    ],
+    "weights": [
+      12,
+      11,
+      29,
+      48
+    ]
+  },
+  {
+    "text": "Do you discuss books with other people?",
+    "category": "Books & reading",
+    "options": [
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      23,
+      49,
+      28
+    ]
+  },
+  {
+    "text": "Do you prefer watching movies at home or in a cinema?",
+    "category": "Film & television",
+    "options": [
+      "At home",
+      "In a cinema",
+      "No preference"
+    ],
+    "weights": [
+      54,
+      32,
+      14
+    ]
+  },
+  {
+    "text": "Do you watch with subtitles on?",
+    "category": "Film & television",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely",
+      "Never"
+    ],
+    "weights": [
+      35,
+      29,
+      24,
+      12
+    ]
+  },
+  {
+    "text": "Would you rather watch a new movie or rewatch a favorite?",
+    "category": "Film & television",
+    "options": [
+      "A new movie",
+      "A favorite",
+      "It depends"
+    ],
+    "weights": [
+      43,
+      29,
+      28
+    ]
+  },
+  {
+    "text": "Do you prefer weekly episodes or a whole season at once?",
+    "category": "Film & television",
+    "options": [
+      "Weekly episodes",
+      "A whole season",
+      "No preference"
+    ],
+    "weights": [
+      32,
+      51,
+      17
+    ]
+  },
+  {
+    "text": "How often do you watch a documentary?",
+    "category": "Film & television",
+    "options": [
+      "Weekly",
+      "Monthly",
+      "Occasionally",
+      "Never"
+    ],
+    "weights": [
+      16,
+      28,
+      43,
+      13
+    ]
+  },
+  {
+    "text": "Do you read reviews before choosing a movie?",
+    "category": "Film & television",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      37,
+      42,
+      21
+    ]
+  },
+  {
+    "text": "Do you prefer movies or television series?",
+    "category": "Film & television",
+    "options": [
+      "Movies",
+      "Television series",
+      "No preference"
+    ],
+    "weights": [
+      35,
+      46,
+      19
+    ]
+  },
+  {
+    "text": "Do you avoid spoilers?",
+    "category": "Film & television",
+    "options": [
+      "Always",
+      "Usually",
+      "I don't mind them"
+    ],
+    "weights": [
+      46,
+      36,
+      18
+    ]
+  },
+  {
+    "text": "How often do you stop watching a series before the end?",
+    "category": "Film & television",
+    "options": [
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      28,
+      53,
+      19
+    ]
+  },
+  {
+    "text": "Do you like watching the same movie with someone who's never seen it?",
+    "category": "Film & television",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      64,
+      14,
+      22
+    ]
+  },
+  {
+    "text": "Do you prefer animated or live-action films?",
+    "category": "Film & television",
+    "options": [
+      "Animated",
+      "Live-action",
+      "No preference"
+    ],
+    "weights": [
+      21,
+      48,
+      31
+    ]
+  },
+  {
+    "text": "Do you stay for the credits?",
+    "category": "Film & television",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      22,
+      38,
+      40
+    ]
+  },
+  {
+    "text": "Do you listen to music every day?",
+    "category": "Music",
+    "options": [
+      "Yes",
+      "No",
+      "Most days"
+    ],
+    "weights": [
+      64,
+      14,
+      22
+    ]
+  },
+  {
+    "text": "Do you prefer discovering new music or listening to favorites?",
+    "category": "Music",
+    "options": [
+      "Discovering new music",
+      "Favorites",
+      "A mix of both"
+    ],
+    "weights": [
+      26,
+      38,
+      36
+    ]
+  },
+  {
+    "text": "Do you prefer live recordings or studio recordings?",
+    "category": "Music",
+    "options": [
+      "Live recordings",
+      "Studio recordings",
+      "No preference"
+    ],
+    "weights": [
+      17,
+      58,
+      25
+    ]
+  },
+  {
+    "text": "How do you usually listen to music?",
+    "category": "Music",
+    "options": [
+      "Headphones",
+      "Speakers",
+      "In the car",
+      "At live performances"
+    ],
+    "weights": [
+      42,
+      24,
+      30,
+      4
+    ]
+  },
+  {
+    "text": "Can you play a musical instrument?",
+    "category": "Music",
+    "options": [
+      "Yes",
+      "I used to",
+      "No"
+    ],
+    "weights": [
+      28,
+      25,
+      47
+    ]
+  },
+  {
+    "text": "Do you make playlists?",
+    "category": "Music",
+    "options": [
+      "Often",
+      "Sometimes",
+      "Never"
+    ],
+    "weights": [
+      33,
+      39,
+      28
+    ]
+  },
+  {
+    "text": "Do you pay attention to lyrics?",
+    "category": "Music",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      46,
+      37,
+      17
+    ]
+  },
+  {
+    "text": "Do you prefer albums or individual songs?",
+    "category": "Music",
+    "options": [
+      "Albums",
+      "Individual songs",
+      "Both"
+    ],
+    "weights": [
+      25,
+      39,
+      36
+    ]
+  },
+  {
+    "text": "How often do you attend a live music performance?",
+    "category": "Music",
+    "options": [
+      "Monthly",
+      "A few times a year",
+      "Once a year or less",
+      "Never"
+    ],
+    "weights": [
+      12,
+      37,
+      34,
+      17
+    ]
+  },
+  {
+    "text": "Do you sing along when you listen to music?",
+    "category": "Music",
+    "options": [
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      36,
+      43,
+      21
+    ]
+  },
+  {
+    "text": "Do you enjoy listening to music in languages you don't understand?",
+    "category": "Music",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      43,
+      22,
+      35
+    ]
+  },
+  {
+    "text": "Do you prefer silence or music while cooking?",
+    "category": "Music",
+    "options": [
+      "Silence",
+      "Music",
+      "It depends"
+    ],
+    "weights": [
+      18,
+      60,
+      22
+    ]
+  },
+  {
+    "text": "Would you rather visit a city or spend time in nature?",
+    "category": "Travel",
+    "options": [
+      "A city",
+      "Nature",
+      "A mix of both"
+    ],
+    "weights": [
+      26,
+      42,
+      32
+    ]
+  },
+  {
+    "text": "Do you prefer planning a trip in detail or leaving room to explore?",
+    "category": "Travel",
+    "options": [
+      "Detailed plans",
+      "Room to explore",
+      "A balance of both"
+    ],
+    "weights": [
+      27,
+      29,
+      44
+    ]
+  },
+  {
+    "text": "Do you prefer traveling alone or with others?",
+    "category": "Travel",
+    "options": [
+      "Alone",
+      "With others",
+      "It depends"
+    ],
+    "weights": [
+      19,
+      49,
+      32
+    ]
+  },
+  {
+    "text": "Would you rather travel by train or by plane?",
+    "category": "Travel",
+    "options": [
+      "Train",
+      "Plane",
+      "It depends on the trip"
+    ],
+    "weights": [
+      37,
+      25,
+      38
+    ]
+  },
+  {
+    "text": "Do you like returning to places you've visited before?",
+    "category": "Travel",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      57,
+      15,
+      28
+    ]
+  },
+  {
+    "text": "What matters most when choosing somewhere to stay?",
+    "category": "Travel",
+    "options": [
+      "Price",
+      "Location",
+      "Comfort",
+      "Local character"
+    ],
+    "weights": [
+      31,
+      37,
+      23,
+      9
+    ]
+  },
+  {
+    "text": "Do you prefer a beach holiday or a mountain holiday?",
+    "category": "Travel",
+    "options": [
+      "Beach",
+      "Mountains",
+      "No preference"
+    ],
+    "weights": [
+      43,
+      38,
+      19
+    ]
+  },
+  {
+    "text": "Do you try to learn local phrases before a trip?",
+    "category": "Travel",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      38,
+      41,
+      21
+    ]
+  },
+  {
+    "text": "How far ahead do you usually book a trip?",
+    "category": "Travel",
+    "options": [
+      "Under a month",
+      "One to three months",
+      "Four to six months",
+      "More than six months"
+    ],
+    "weights": [
+      21,
+      42,
+      25,
+      12
+    ]
+  },
+  {
+    "text": "Do you unpack as soon as you get home?",
+    "category": "Travel",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      31,
+      47,
+      22
+    ]
+  },
+  {
+    "text": "Would you rather take one long trip or several short trips?",
+    "category": "Travel",
+    "options": [
+      "One long trip",
+      "Several short trips",
+      "No preference"
+    ],
+    "weights": [
+      37,
+      49,
+      14
+    ]
+  },
+  {
+    "text": "Do you enjoy getting lost in an unfamiliar place?",
+    "category": "Travel",
+    "options": [
+      "Yes",
+      "No",
+      "Only if I have time"
+    ],
+    "weights": [
+      27,
+      35,
+      38
+    ]
+  },
+  {
+    "text": "Would you rather live in a city or the countryside?",
+    "category": "Home & living",
+    "options": [
+      "A city",
+      "The countryside",
+      "Somewhere in between"
+    ],
+    "weights": [
+      36,
+      42,
+      22
+    ]
+  },
+  {
+    "text": "Do you prefer a small home in a central location or a larger home farther away?",
+    "category": "Home & living",
+    "options": [
+      "Small and central",
+      "Larger and farther away",
+      "It depends"
+    ],
+    "weights": [
+      38,
+      44,
+      18
+    ]
+  },
+  {
+    "text": "Do you keep houseplants?",
+    "category": "Home & living",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      61,
+      39
+    ]
+  },
+  {
+    "text": "How often do you rearrange the furniture in your home?",
+    "category": "Home & living",
+    "options": [
+      "Several times a year",
+      "About once a year",
+      "Rarely",
+      "Never"
+    ],
+    "weights": [
+      17,
+      22,
+      45,
+      16
+    ]
+  },
+  {
+    "text": "Do you prefer a tidy desk or a desk with everything within reach?",
+    "category": "Home & living",
+    "options": [
+      "Tidy desk",
+      "Everything within reach",
+      "A bit of both"
+    ],
+    "weights": [
+      43,
+      27,
+      30
+    ]
+  },
+  {
+    "text": "Do you enjoy having people stay overnight?",
+    "category": "Home & living",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      38,
+      27,
+      35
+    ]
+  },
+  {
+    "text": "Would you rather have a garden or a balcony with a view?",
+    "category": "Home & living",
+    "options": [
+      "A garden",
+      "A balcony with a view",
+      "No preference"
+    ],
+    "weights": [
+      52,
+      34,
+      14
+    ]
+  },
+  {
+    "text": "Do you repair small things around your home yourself?",
+    "category": "Home & living",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      36,
+      43,
+      21
+    ]
+  },
+  {
+    "text": "Do you prefer living alone or sharing a home?",
+    "category": "Home & living",
+    "options": [
+      "Alone",
+      "Sharing a home",
+      "It depends"
+    ],
+    "weights": [
+      35,
+      42,
+      23
+    ]
+  },
+  {
+    "text": "Do you take your shoes off at the door?",
+    "category": "Home & living",
+    "options": [
+      "Always",
+      "Usually",
+      "Rarely"
+    ],
+    "weights": [
+      55,
+      27,
+      18
+    ]
+  },
+  {
+    "text": "How do you feel about doing household chores?",
+    "category": "Home & living",
+    "options": [
+      "I enjoy them",
+      "I don't mind them",
+      "I dislike them"
+    ],
+    "weights": [
+      12,
+      44,
+      44
+    ]
+  },
+  {
+    "text": "Do you prefer warmer or cooler rooms?",
+    "category": "Home & living",
+    "options": [
+      "Warmer",
+      "Cooler",
+      "No preference"
+    ],
+    "weights": [
+      32,
+      53,
+      15
+    ]
+  },
+  {
+    "text": "Do you consider yourself a dog person or a cat person?",
+    "category": "Nature & pets",
+    "options": [
+      "Dog person",
+      "Cat person",
+      "Both",
+      "Neither"
+    ],
+    "weights": [
+      39,
+      28,
+      25,
+      8
+    ]
+  },
+  {
+    "text": "Do you have a pet?",
+    "category": "Nature & pets",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      58,
+      42
+    ]
+  },
+  {
+    "text": "Do you enjoy gardening?",
+    "category": "Nature & pets",
+    "options": [
+      "Yes",
+      "No",
+      "I've never tried it"
+    ],
+    "weights": [
+      45,
+      32,
+      23
+    ]
+  },
+  {
+    "text": "Would you rather live near the ocean or a forest?",
+    "category": "Nature & pets",
+    "options": [
+      "Ocean",
+      "Forest",
+      "No preference"
+    ],
+    "weights": [
+      49,
+      36,
+      15
+    ]
+  },
+  {
+    "text": "Do you enjoy being outside in the rain?",
+    "category": "Nature & pets",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      24,
+      49,
+      27
+    ]
+  },
+  {
+    "text": "Can you identify common birds where you live?",
+    "category": "Nature & pets",
+    "options": [
+      "Most of them",
+      "A few",
+      "Very few"
+    ],
+    "weights": [
+      18,
+      54,
+      28
+    ]
+  },
+  {
+    "text": "Do you prefer hot weather or cold weather?",
+    "category": "Nature & pets",
+    "options": [
+      "Hot weather",
+      "Cold weather",
+      "Mild weather"
+    ],
+    "weights": [
+      26,
+      23,
+      51
+    ]
+  },
+  {
+    "text": "How often do you spend time in a park?",
+    "category": "Nature & pets",
+    "options": [
+      "Weekly",
+      "Monthly",
+      "Occasionally",
+      "Rarely"
+    ],
+    "weights": [
+      42,
+      25,
+      24,
+      9
+    ]
+  },
+  {
+    "text": "Do you like camping?",
+    "category": "Nature & pets",
+    "options": [
+      "Yes",
+      "No",
+      "It depends on the campsite"
+    ],
+    "weights": [
+      44,
+      31,
+      25
+    ]
+  },
+  {
+    "text": "Do you find it easy to keep plants alive?",
+    "category": "Nature & pets",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      37,
+      35,
+      28
+    ]
+  },
+  {
+    "text": "Would you rather see a sunrise or a sunset?",
+    "category": "Nature & pets",
+    "options": [
+      "Sunrise",
+      "Sunset",
+      "No preference"
+    ],
+    "weights": [
+      24,
+      57,
+      19
+    ]
+  },
+  {
+    "text": "Do you notice the phases of the moon?",
+    "category": "Nature & pets",
+    "options": [
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      22,
+      43,
+      35
+    ]
+  },
+  {
+    "text": "Do you prefer exercising indoors or outdoors?",
+    "category": "Health & fitness",
+    "options": [
+      "Indoors",
+      "Outdoors",
+      "No preference"
+    ],
+    "weights": [
+      32,
+      49,
+      19
+    ]
+  },
+  {
+    "text": "How often do you go for a walk just for enjoyment?",
+    "category": "Health & fitness",
+    "options": [
+      "Daily",
+      "Weekly",
+      "Occasionally",
+      "Rarely"
+    ],
+    "weights": [
+      29,
+      38,
+      25,
+      8
+    ]
+  },
+  {
+    "text": "Do you prefer exercising alone or with someone else?",
+    "category": "Health & fitness",
+    "options": [
+      "Alone",
+      "With someone else",
+      "It depends"
+    ],
+    "weights": [
+      46,
+      31,
+      23
+    ]
+  },
+  {
+    "text": "Do you usually get enough sleep to feel rested?",
+    "category": "Health & fitness",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      32,
+      47,
+      21
+    ]
+  },
+  {
+    "text": "Do you prefer exercising in the morning or evening?",
+    "category": "Health & fitness",
+    "options": [
+      "Morning",
+      "Evening",
+      "No preference"
+    ],
+    "weights": [
+      41,
+      38,
+      21
+    ]
+  },
+  {
+    "text": "How often do you stretch?",
+    "category": "Health & fitness",
+    "options": [
+      "Daily",
+      "Weekly",
+      "Occasionally",
+      "Rarely"
+    ],
+    "weights": [
+      19,
+      27,
+      35,
+      19
+    ]
+  },
+  {
+    "text": "Do you track your daily steps?",
+    "category": "Health & fitness",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      35,
+      45,
+      20
+    ]
+  },
+  {
+    "text": "Do you enjoy swimming?",
+    "category": "Health & fitness",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      61,
+      19,
+      20
+    ]
+  },
+  {
+    "text": "Would you rather cycle or run?",
+    "category": "Health & fitness",
+    "options": [
+      "Cycle",
+      "Run",
+      "Neither"
+    ],
+    "weights": [
+      44,
+      31,
+      25
+    ]
+  },
+  {
+    "text": "Do you take breaks from sitting during the day?",
+    "category": "Health & fitness",
+    "options": [
+      "Regularly",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      31,
+      48,
+      21
+    ]
+  },
+  {
+    "text": "Do you prefer a routine or variety in exercise?",
+    "category": "Health & fitness",
+    "options": [
+      "A routine",
+      "Variety",
+      "A mix of both"
+    ],
+    "weights": [
+      30,
+      28,
+      42
+    ]
+  },
+  {
+    "text": "Do you feel better after spending time outdoors?",
+    "category": "Health & fitness",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      73,
+      22,
+      5
+    ]
+  },
+  {
+    "text": "Do you prefer playing sports or watching them?",
+    "category": "Sports",
+    "options": [
+      "Playing",
+      "Watching",
+      "Both",
+      "Neither"
+    ],
+    "weights": [
+      28,
+      32,
+      27,
+      13
+    ]
+  },
+  {
+    "text": "Do you follow a favorite sports team?",
+    "category": "Sports",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      57,
+      43
+    ]
+  },
+  {
+    "text": "Do you prefer team sports or individual sports?",
+    "category": "Sports",
+    "options": [
+      "Team sports",
+      "Individual sports",
+      "No preference"
+    ],
+    "weights": [
+      42,
+      36,
+      22
+    ]
+  },
+  {
+    "text": "Have you ever run an organized race?",
+    "category": "Sports",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      36,
+      64
+    ]
+  },
+  {
+    "text": "Do you prefer watching sports live or on television?",
+    "category": "Sports",
+    "options": [
+      "Live",
+      "Television",
+      "No preference"
+    ],
+    "weights": [
+      43,
+      41,
+      16
+    ]
+  },
+  {
+    "text": "Do you enjoy trying a sport you're not good at?",
+    "category": "Sports",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      39,
+      26,
+      35
+    ]
+  },
+  {
+    "text": "Do you play any sports regularly?",
+    "category": "Sports",
+    "options": [
+      "Weekly",
+      "Monthly",
+      "Occasionally",
+      "Never"
+    ],
+    "weights": [
+      28,
+      16,
+      31,
+      25
+    ]
+  },
+  {
+    "text": "Do you prefer competitive or casual games?",
+    "category": "Sports",
+    "options": [
+      "Competitive",
+      "Casual",
+      "It depends"
+    ],
+    "weights": [
+      34,
+      40,
+      26
+    ]
+  },
+  {
+    "text": "Do you enjoy watching the Olympics?",
+    "category": "Sports",
+    "options": [
+      "Yes",
+      "No",
+      "Some events"
+    ],
+    "weights": [
+      43,
+      17,
+      40
+    ]
+  },
+  {
+    "text": "Would you rather play tennis or golf?",
+    "category": "Sports",
+    "options": [
+      "Tennis",
+      "Golf",
+      "Neither"
+    ],
+    "weights": [
+      35,
+      31,
+      34
+    ]
+  },
+  {
+    "text": "Do you keep score when playing a casual game?",
+    "category": "Sports",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      48,
+      35,
+      17
+    ]
+  },
+  {
+    "text": "Does the weather affect whether you exercise?",
+    "category": "Sports",
+    "options": [
+      "A lot",
+      "A little",
+      "Not much"
+    ],
+    "weights": [
+      35,
+      46,
+      19
+    ]
+  },
+  {
+    "text": "Do you prefer paying by card, phone, or cash?",
+    "category": "Money",
+    "options": [
+      "Card",
+      "Phone",
+      "Cash",
+      "No preference"
+    ],
+    "weights": [
+      43,
+      34,
+      16,
+      7
+    ]
+  },
+  {
+    "text": "Do you keep a household budget?",
+    "category": "Money",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      42,
+      35,
+      23
+    ]
+  },
+  {
+    "text": "Would you rather buy fewer high-quality things or more inexpensive things?",
+    "category": "Money",
+    "options": [
+      "Fewer high-quality things",
+      "More inexpensive things",
+      "It depends"
+    ],
+    "weights": [
+      59,
+      16,
+      25
+    ]
+  },
+  {
+    "text": "Do you usually compare prices before buying something?",
+    "category": "Money",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      58,
+      32,
+      10
+    ]
+  },
+  {
+    "text": "Do you enjoy browsing secondhand shops?",
+    "category": "Money",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      43,
+      25,
+      32
+    ]
+  },
+  {
+    "text": "How do you feel about negotiating a price?",
+    "category": "Money",
+    "options": [
+      "Comfortable",
+      "Uncomfortable",
+      "It depends"
+    ],
+    "weights": [
+      23,
+      44,
+      33
+    ]
+  },
+  {
+    "text": "Do you prefer saving for an experience or a physical item?",
+    "category": "Money",
+    "options": [
+      "An experience",
+      "A physical item",
+      "It depends"
+    ],
+    "weights": [
+      47,
+      24,
+      29
+    ]
+  },
+  {
+    "text": "Do you wait for sales before making nonessential purchases?",
+    "category": "Money",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      45,
+      41,
+      14
+    ]
+  },
+  {
+    "text": "Do you check your bank balance regularly?",
+    "category": "Money",
+    "options": [
+      "Daily",
+      "Weekly",
+      "Monthly",
+      "Less often"
+    ],
+    "weights": [
+      28,
+      42,
+      23,
+      7
+    ]
+  },
+  {
+    "text": "Would you rather receive a gift or choose something yourself?",
+    "category": "Money",
+    "options": [
+      "Receive a gift",
+      "Choose something myself",
+      "No preference"
+    ],
+    "weights": [
+      31,
+      53,
+      16
+    ]
+  },
+  {
+    "text": "Do you subscribe to services you rarely use?",
+    "category": "Money",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      36,
+      49,
+      15
+    ]
+  },
+  {
+    "text": "Do you usually buy groceries with a shopping list?",
+    "category": "Money",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      48,
+      33,
+      19
+    ]
+  },
+  {
+    "text": "Do you prefer a small group of close friends or a large social circle?",
+    "category": "Relationships",
+    "options": [
+      "A small close group",
+      "A large circle",
+      "A mix of both"
+    ],
+    "weights": [
+      59,
+      15,
+      26
+    ]
+  },
+  {
+    "text": "Do you find it easy to start a conversation with a stranger?",
+    "category": "Relationships",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      26,
+      43,
+      31
+    ]
+  },
+  {
+    "text": "Do you prefer spending time with friends one-on-one or in a group?",
+    "category": "Relationships",
+    "options": [
+      "One-on-one",
+      "In a group",
+      "No preference"
+    ],
+    "weights": [
+      45,
+      30,
+      25
+    ]
+  },
+  {
+    "text": "How do you usually keep in touch with distant friends?",
+    "category": "Relationships",
+    "options": [
+      "Messages",
+      "Phone calls",
+      "Video calls",
+      "In-person visits"
+    ],
+    "weights": [
+      54,
+      20,
+      18,
+      8
+    ]
+  },
+  {
+    "text": "Do you enjoy hosting gatherings?",
+    "category": "Relationships",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      37,
+      28,
+      35
+    ]
+  },
+  {
+    "text": "Do you remember people's birthdays without reminders?",
+    "category": "Relationships",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      25,
+      39,
+      36
+    ]
+  },
+  {
+    "text": "Do you prefer giving gifts or receiving them?",
+    "category": "Relationships",
+    "options": [
+      "Giving",
+      "Receiving",
+      "No preference"
+    ],
+    "weights": [
+      52,
+      23,
+      25
+    ]
+  },
+  {
+    "text": "How often do you make new friends?",
+    "category": "Relationships",
+    "options": [
+      "Frequently",
+      "Occasionally",
+      "Rarely"
+    ],
+    "weights": [
+      17,
+      49,
+      34
+    ]
+  },
+  {
+    "text": "Do you like surprise parties?",
+    "category": "Relationships",
+    "options": [
+      "Yes",
+      "No",
+      "It depends"
+    ],
+    "weights": [
+      25,
+      46,
+      29
+    ]
+  },
+  {
+    "text": "Do you prefer making plans well ahead or at the last minute?",
+    "category": "Relationships",
+    "options": [
+      "Well ahead",
+      "At the last minute",
+      "It depends"
+    ],
+    "weights": [
+      53,
+      19,
+      28
+    ]
+  },
+  {
+    "text": "Do you find it easy to say no to an invitation?",
+    "category": "Relationships",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      30,
+      42,
+      28
+    ]
+  },
+  {
+    "text": "Do you prefer a quiet evening or a night out with friends?",
+    "category": "Relationships",
+    "options": [
+      "A quiet evening",
+      "A night out",
+      "It depends"
+    ],
+    "weights": [
+      43,
+      23,
+      34
+    ]
+  },
+  {
+    "text": "Do you enjoy learning about space?",
+    "category": "Science & environment",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      61,
+      14,
+      25
+    ]
+  },
+  {
+    "text": "Have you ever looked through a telescope?",
+    "category": "Science & environment",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      49,
+      45,
+      6
+    ]
+  },
+  {
+    "text": "Would you rather explore the deep ocean or outer space?",
+    "category": "Science & environment",
+    "options": [
+      "Deep ocean",
+      "Outer space",
+      "Neither"
+    ],
+    "weights": [
+      31,
+      51,
+      18
+    ]
+  },
+  {
+    "text": "Do you separate recyclable materials at home?",
+    "category": "Science & environment",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely",
+      "No local collection"
+    ],
+    "weights": [
+      61,
+      21,
+      10,
+      8
+    ]
+  },
+  {
+    "text": "Do you enjoy visiting science museums?",
+    "category": "Science & environment",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      58,
+      16,
+      26
+    ]
+  },
+  {
+    "text": "Do you find statistics interesting?",
+    "category": "Science & environment",
+    "options": [
+      "Yes",
+      "No",
+      "It depends on the topic"
+    ],
+    "weights": [
+      37,
+      24,
+      39
+    ]
+  },
+  {
+    "text": "How often do you check the source of a scientific claim?",
+    "category": "Science & environment",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      28,
+      49,
+      23
+    ]
+  },
+  {
+    "text": "Do you repair clothes rather than replace them?",
+    "category": "Science & environment",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      23,
+      43,
+      34
+    ]
+  },
+  {
+    "text": "Would you rather learn about dinosaurs or ancient civilizations?",
+    "category": "Science & environment",
+    "options": [
+      "Dinosaurs",
+      "Ancient civilizations",
+      "Both equally"
+    ],
+    "weights": [
+      29,
+      38,
+      33
+    ]
+  },
+  {
+    "text": "Do you bring a reusable bag when shopping?",
+    "category": "Science & environment",
+    "options": [
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "weights": [
+      58,
+      29,
+      13
+    ]
+  },
+  {
+    "text": "Have you ever taken part in a citizen science project?",
+    "category": "Science & environment",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      15,
+      73,
+      12
+    ]
+  },
+  {
+    "text": "Do you enjoy puzzles that involve numbers?",
+    "category": "Science & environment",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      41,
+      27,
+      32
+    ]
+  },
+  {
+    "text": "Do you prefer board games or video games?",
+    "category": "Games",
+    "options": [
+      "Board games",
+      "Video games",
+      "Both",
+      "Neither"
+    ],
+    "weights": [
+      28,
+      37,
+      27,
+      8
+    ]
+  },
+  {
+    "text": "Do you enjoy cooperative games?",
+    "category": "Games",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      54,
+      19,
+      27
+    ]
+  },
+  {
+    "text": "Would you rather play a short game or a long game?",
+    "category": "Games",
+    "options": [
+      "Short game",
+      "Long game",
+      "It depends"
+    ],
+    "weights": [
+      41,
+      26,
+      33
+    ]
+  },
+  {
+    "text": "Do you read the rules before starting a new game?",
+    "category": "Games",
+    "options": [
+      "Always",
+      "Usually",
+      "I learn as I play"
+    ],
+    "weights": [
+      24,
+      35,
+      41
+    ]
+  },
+  {
+    "text": "Do you enjoy doing crossword puzzles?",
+    "category": "Games",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      32,
+      37,
+      31
+    ]
+  },
+  {
+    "text": "Do you prefer strategy games or games of chance?",
+    "category": "Games",
+    "options": [
+      "Strategy",
+      "Chance",
+      "A mix of both"
+    ],
+    "weights": [
+      51,
+      16,
+      33
+    ]
+  },
+  {
+    "text": "Do you play games on your phone?",
+    "category": "Games",
+    "options": [
+      "Daily",
+      "Weekly",
+      "Occasionally",
+      "Never"
+    ],
+    "weights": [
+      26,
+      19,
+      32,
+      23
+    ]
+  },
+  {
+    "text": "Do you like replaying a game you've already finished?",
+    "category": "Games",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes"
+    ],
+    "weights": [
+      38,
+      30,
+      32
+    ]
+  },
+  {
+    "text": "Do you prefer games with a story or games without one?",
+    "category": "Games",
+    "options": [
+      "With a story",
+      "Without a story",
+      "No preference"
+    ],
+    "weights": [
+      48,
+      21,
+      31
+    ]
+  },
+  {
+    "text": "Do you enjoy escape rooms?",
+    "category": "Games",
+    "options": [
+      "Yes",
+      "No",
+      "I've never tried one"
+    ],
+    "weights": [
+      37,
+      22,
+      41
+    ]
+  },
+  {
+    "text": "Do you prefer learning a new game or playing a familiar one?",
+    "category": "Games",
+    "options": [
+      "Learning a new game",
+      "A familiar one",
+      "It depends"
+    ],
+    "weights": [
+      28,
+      42,
+      30
+    ]
+  },
+  {
+    "text": "Do you enjoy playing chess?",
+    "category": "Games",
+    "options": [
+      "Yes",
+      "No",
+      "Sometimes",
+      "I've never learned"
+    ],
+    "weights": [
+      28,
+      27,
+      25,
+      20
+    ]
+  },
+  {
+    "text": "Have you ever swum in the ocean?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No",
+      "I don't remember"
+    ],
+    "weights": [
+      67,
+      29,
+      4
+    ]
+  },
+  {
+    "text": "Have you ever lived in a country other than the one you were born in?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      24,
+      76
+    ]
+  },
+  {
+    "text": "Have you ever seen snow in person?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      74,
+      26
+    ]
+  },
+  {
+    "text": "Have you ever flown in an airplane?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      71,
+      29
+    ]
+  },
+  {
+    "text": "Have you ever spent a night in a tent?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      58,
+      42
+    ]
+  },
+  {
+    "text": "Have you ever learned to ride a bicycle?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      83,
+      17
+    ]
+  },
+  {
+    "text": "Have you ever met someone with the same birthday as you?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      55,
+      36,
+      9
+    ]
+  },
+  {
+    "text": "Have you ever experienced a total solar eclipse?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      14,
+      74,
+      12
+    ]
+  },
+  {
+    "text": "Have you ever held a conversation in a language you learned after childhood?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      46,
+      54
+    ]
+  },
+  {
+    "text": "Have you ever broken a bone?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      38,
+      62
+    ]
+  },
+  {
+    "text": "Have you ever volunteered for a local organization?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "weights": [
+      53,
+      47
+    ]
+  },
+  {
+    "text": "Have you ever seen the Milky Way with the naked eye?",
+    "category": "Life experiences",
+    "options": [
+      "Yes",
+      "No",
+      "I'm not sure"
+    ],
+    "weights": [
+      37,
+      42,
+      21
+    ]
+  }
+]

@@ -32,7 +32,8 @@ defmodule Roughly.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "dev", "test/support"]
+  defp elixirc_paths(:dev), do: ["lib", "dev"]
   defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
@@ -89,7 +90,7 @@ defmodule Roughly.MixProject do
         "event_store.init",
         "run priv/repo/seeds.exs"
       ],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      "ecto.reset": ["ecto.drop", "event_store.drop", "ecto.setup"],
       test: [
         "ecto.create --quiet",
         "ecto.migrate --quiet",
@@ -104,6 +105,7 @@ defmodule Roughly.MixProject do
       "assets.deploy": [
         "assets.build"
       ],
+      "dev.seed": ["run priv/repo/seeds.exs"],
       "docs.check": ["run --no-start scripts/check_vault.exs"],
       precommit: [
         "compile --warnings-as-errors",

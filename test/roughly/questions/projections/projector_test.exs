@@ -24,6 +24,7 @@ defmodule Roughly.Questions.Projections.ProjectorTest do
     metadata = %{handler_name: "test-#{id}", event_number: 1}
     assert :ok = Projector.handle(restored, metadata)
     assert %Question{question_type: :binary, status: :active} = Repo.get!(Question, id)
+    assert Repo.get!(Question, id).slug == "do-you-like-coffee"
     assert :ok = Projector.handle(restored, metadata)
 
     assert :ok =

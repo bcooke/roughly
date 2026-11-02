@@ -29,14 +29,12 @@ defmodule Roughly.Questions.Projections.Question do
   def changeset(question, attrs) do
     question
     |> cast(attrs, [
-      :uuid,
       :text,
       :slug,
       :question_type,
       :status,
       :options,
-      :category,
-      :created_by
+      :category
     ])
     |> validate_required([:uuid, :text, :question_type])
     |> generate_slug()
@@ -49,12 +47,7 @@ defmodule Roughly.Questions.Projections.Question do
         text = get_field(changeset, :text)
 
         if text do
-          slug =
-            text
-            |> String.downcase()
-            |> String.replace(~r/[^a-z0-9\s-]/, "")
-            |> String.replace(~r/\s+/, "-")
-            |> String.slice(0, 100)
+          slug = slug_for(text)
 
           put_change(changeset, :slug, slug)
         else
@@ -64,5 +57,14 @@ defmodule Roughly.Questions.Projections.Question do
       _ ->
         changeset
     end
+  end
+
+  def slug_for(text) do
+    text
+    |> String.downcase()
+    |> String.replace(~r/[^a-z0-9\s-]/, "")
+    |> String.replace(~r/\s+/, "-")
+    |> String.trim("-")
+    |> String.slice(0, 100)
   end
 end

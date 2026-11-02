@@ -26,4 +26,4 @@ AGENTS.md is the shared instruction source; CLAUDE.md imports it. Contributors m
 
 ## Data and dependencies
 
-Never publish individual responses or imply that a convenience sample represents a population. Synthetic examples must be labeled at the point of use. Review dependencies for license, maintenance, necessity, and transitive cost; prefer platform capabilities and small components.
+Never publish individual responses or imply that a convenience sample represents a population. Document development-fixture provenance in the tooling and README; keep fixture data isolated from production and avoid repeating engineering notices throughout the local product interface. Review dependencies for license, maintenance, necessity, and transitive cost; prefer platform capabilities and small components.

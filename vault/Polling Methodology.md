@@ -10,4 +10,4 @@ Wording, response options, collection mode, participation incentives, exclusions
 
 [Results Exposure](Results%20Exposure.md) concerns the information shown before an answer. [Participant Identity](Participant%20Identity.md) separates privacy and abuse-control choices. Neither is resolved by adding an account system or a larger sample.
 
-[Synthetic Preview Data](Synthetic%20Preview%20Data.md) describes examples that provide no evidence about respondents. An internal audit trail under [Domain Writes](Domain%20Writes.md) records application facts; it does not by itself make the collected answers truthful.
+[Development Fixtures](Development%20Fixtures.md) describes examples that provide no evidence about respondents. An internal audit trail under [Domain Writes](Domain%20Writes.md) records application facts; it does not by itself make the collected answers truthful.

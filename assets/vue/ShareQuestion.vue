@@ -17,7 +17,7 @@ async function copyLink() {
 <template>
   <div class="share-widget">
     <button id="copy-result-link" class="copy-button" @click="copyLink">{{ copied ? 'Link copied' : 'Copy result link' }}</button>
-    <p v-if="copied" role="status">Include the sample context when you share.</p>
+    <span class="sr-only" role="status">{{ copied ? 'Link copied' : '' }}</span>
     <p v-if="fallback" role="status">Copy this link: <a :href="fallback">{{ fallback }}</a></p>
   </div>
 </template>

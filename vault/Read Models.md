@@ -10,4 +10,4 @@ Delivery can be repeated, and replay reconstructs older events through the same 
 
 A unique index in a projection protects that table; it does not alone define a correct concurrent command policy. Coordinate those requirements with [Domain Writes](Domain%20Writes.md).
 
-The read-only [Synthetic Preview Data](Synthetic%20Preview%20Data.md) catalog is a fixture source, not a projection of collected responses. [System Architecture](System%20Architecture.md) points to the runtime boundaries.
+[Development Fixtures](Development%20Fixtures.md) create invented responses through the event-sourced path. Their projected counts exercise the same queries without becoming evidence about real people. [System Architecture](System%20Architecture.md) points to the runtime boundaries.

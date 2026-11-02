@@ -2,11 +2,11 @@
 
 An open collection of the world's percentages. Explore questions about human preferences, behavior, and attitudes, with transparent counts and methodology.
 
-Roughly is intended to be free, open source, and community supported. The concept began as **Kwibbl**. See the [product vision](vault/Product%20Vision.md).
+Roughly is intended to be free, open source, and community supported. See the [product vision](vault/Product%20Vision.md).
 
 ## Current application
 
-A local preview provides searchable questions, topic filters, question pages, synthetic answer breakdowns, and shareable result links. **All preview counts are fictional.** Authentication, real voting, demographic slicing, and representative population estimates are not available.
+The local application browses persisted questions and aggregate responses, with topic filters, search, pagination, related questions, an About page, and shareable result links. Development setup seeds **204 questions across 17 topics, 360 invented participants, and 31,467 invented responses**. These are local fixtures, not researched polling data. Authentication, real voting, demographic slicing, and representative population estimates are not available.
 
 ## Run locally
 
@@ -23,7 +23,17 @@ Open **http://localhost:4070**. Phoenix starts the Vite development watcher on p
 
 Without mise, use the Elixir, Erlang, and Node versions recorded in `mise.toml`. A compatible PostgreSQL installation can replace Docker.
 
-`mix setup` fetches Elixir dependencies, creates and migrates the read database, initializes EventStore, installs locked npm dependencies, and builds assets. It does not drop existing databases. Preview examples live in `priv/preview/questions.json`; they never create fictional users or votes.
+`mix setup` fetches Elixir dependencies, creates and migrates the read database, initializes EventStore, installs locked npm dependencies, and builds assets. It does not drop existing databases. In development it seeds invented participants, questions, and responses through Commanded. The UI reads their Ecto projections. Seed code lives in `dev/` and is excluded from production compilation.
+
+## Development fixtures
+
+```sh
+mise exec -- mix dev.seed
+```
+
+The versioned catalog is `dev/roughly/dev/questions.json`. It contains curated prompts, answer choices, and invented weights. Stable UUIDs make seeding deterministic and resumable; reruns preserve counts rather than adding votes. Responses carry development-source event metadata. No real user data, external LLM service, Faker package, or credentials are needed.
+
+Only development config enables seed execution. Never use the seeded development database as public polling data. To reset local data intentionally, `mix ecto.reset` resets **both** Ecto and EventStore and reseeds the development database. Stop the server first. This deletes local data; it is not required for an ordinary seed rerun. Reset after changing the meaning or weights of existing fixtures: stable IDs deliberately do not rewrite their recorded history. The fixture generator does not delete existing data.
 
 ## Verify changes
 
@@ -39,7 +49,7 @@ The checks compile with warnings as errors, run Credo, check Elixir formatting, 
 - Phoenix 1.8 and LiveView own routes and server state.
 - Vue 3 through LiveVue handles client interactions; Tailwind 4 and custom CSS style the interface.
 - Commanded aggregates emit immutable events into PostgreSQL EventStore. Supervised projectors maintain Ecto read models.
-- The preview catalog is a separate read-only fixture source. Its named queries and facade demonstrate the entry-point pattern without pretending synthetic counts are real responses.
+- Questions are read through named query modules and the Questions facade. Aggregate results exclude retracted responses and do not expose participant identities.
 
 See [system architecture](vault/System%20Architecture.md), [documentation](vault/README.md), and [project status](PROJECT_STATUS.md).
 

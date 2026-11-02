@@ -13,14 +13,21 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 - [Glossary](../Glossary.md): shared language.
 - [Question Links](../Question%20Links.md): stable routes and citation context.
 
+## Facts and evidence
+
+- [Quantifiable Human Facts](../Quantifiable%20Human%20Facts.md): experiences, actions, circumstances, and preferences.
+- [Claims and Evidence](../Claims%20and%20Evidence.md): target quantities, observations, and inference.
+
 ## Data and participation
 
 - [Polling Methodology](../Polling%20Methodology.md): samples, inference, and disclosure.
 - [Results Exposure](../Results%20Exposure.md): information before an answer.
 - [Participant Identity](../Participant%20Identity.md): identity, privacy, and integrity dimensions.
-- [Synthetic Preview Data](../Synthetic%20Preview%20Data.md): fictional examples and provenance.
+- [Development Fixtures](../Development%20Fixtures.md): fictional examples and provenance.
 
 ## Investigation
+
+- [Question meaning and population intersections](../discovery/2026-11-02-question-meaning-and-intersections.md): conditional counts and preserving exact instruments.
 
 - [Participation design investigation](../discovery/2026-11-02-participation-design.md): dated alternatives and evidence needs.
 - [the participation investigation](../discovery/2026-11-02-participation-design.md): methodology work and outcome criteria.
