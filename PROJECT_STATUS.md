@@ -21,7 +21,8 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 
 ## Product direction
 
-- Use the preview to refine question presentation, navigation, and visual direction.
+- Use the seeded application to refine question presentation, navigation, and visual direction.
+- [Topic graph proposal](vault/discovery/2026-11-02-topic-graph-model.md): replace the interim single-category field with overlapping memberships and typed relationships; this is not implemented.
 - [Participation investigation](vault/discovery/2026-11-02-participation-design.md): results exposure, identity, honesty, sampling, and privacy remain open.
 - [Validated domain flow proposal](vault/discovery/validated-domain-flow.md): connect domain commands and projected reads to the application before real collection.
 

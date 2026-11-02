@@ -13,6 +13,8 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 - [Glossary](../Glossary.md): shared language.
 - [Question Links](../Question%20Links.md): stable routes and citation context.
 
+- [Topic Graph](../Topic%20Graph.md): connections beyond a single category.
+
 ## Facts and evidence
 
 - [Quantifiable Human Facts](../Quantifiable%20Human%20Facts.md): experiences, actions, circumstances, and preferences.
