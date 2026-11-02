@@ -12,6 +12,7 @@ defmodule Roughly.Questions.Projections.Question do
   @type t :: %__MODULE__{
           uuid: Ecto.UUID.t(),
           text: String.t(),
+          search_document: String.t(),
           language: String.t(),
           slug: String.t() | nil,
           options: [Roughly.Questions.Option.t()],
@@ -27,6 +28,7 @@ defmodule Roughly.Questions.Projections.Question do
 
   schema "questions" do
     field :text, :string
+    field :search_document, :string, default: ""
     field :language, :string
     field :slug, :string
 

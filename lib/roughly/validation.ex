@@ -2,6 +2,7 @@ defmodule Roughly.Validation do
   @moduledoc "Domain-owned command shapes. Pure parsing runs before authorization or aggregate execution."
   @commands [
     Roughly.Questions.Commands.CreateQuestion,
+    Roughly.Questions.Commands.ClaimSlug,
     Roughly.Questions.Commands.CloseQuestion,
     Roughly.Participation.Commands.RecordResponse,
     Roughly.Participation.Commands.ChangeResponse,
@@ -51,6 +52,11 @@ defmodule Roughly.Validation do
     length(values) in 1..20 and Enum.all?(values, &valid?(&1, :uuid)) and
       Enum.uniq(values) == values
   end
+
+  defp valid?(value, :slug),
+    do:
+      is_binary(value) and String.length(value) in 1..100 and
+        Regex.match?(~r/^[a-z0-9]+(?:-[a-z0-9]+)*$/, value)
 
   defp valid?(_, _), do: false
 end

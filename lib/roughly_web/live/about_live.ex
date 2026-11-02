@@ -7,7 +7,7 @@ defmodule RoughlyWeb.AboutLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash}>
+    <Layouts.app flash={@flash} socket={@socket}>
       <article class="about-page">
         <h1 id="about-title">About Roughly</h1>
         <p>

@@ -63,4 +63,15 @@ defmodule Roughly.Questions.QueriesTest do
     assert Enum.find(result.answers, &(&1.label == "No")).percentage == 100.0
     assert Enum.sum(Enum.map(result.answers, & &1.percentage)) == 150.0
   end
+
+  test "search matches words across the prompt, topic, and answer labels" do
+    q = question(%{text: "Do you like the taste of coffee?", slug: "taste-coffee"})
+    question(%{text: "Do you drink tea?", slug: "drink-tea", category: "Technology"})
+    assert %{entries: [%{uuid: id}]} = Questions.list_questions(search: "COFFEE taste")
+    assert id == q.uuid
+    assert %{entries: [%{uuid: ^id}]} = Questions.list_questions(search: "food coffee")
+    assert %{entries: [%{uuid: ^id}]} = Questions.list_questions(search: "depends coffee")
+    assert %{entries: []} = Questions.list_questions(search: "coffee tea")
+    assert %{entries: []} = Questions.list_questions(search: "%")
+  end
 end

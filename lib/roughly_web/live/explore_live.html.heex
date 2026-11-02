@@ -1,37 +1,70 @@
-<Layouts.app flash={@flash}>
+<Layouts.app flash={@flash} socket={@socket}>
   <section class="explore-intro">
     <h1>The world’s <span>percentages.</span></h1>
     <p>Search questions about people’s experiences, habits, and preferences.</p>
-    <.form
-      for={@form}
-      id="question-search"
-      phx-submit="search"
-      phx-change="search"
-      class="search-box"
-    >
-      <.icon name="hero-magnifying-glass" class="size-5 text-stone-500" />
-      <.input
-        field={@form[:q]}
-        id="search-query"
-        type="search"
-        placeholder="Search questions"
-        aria-label="Search questions"
-        phx-debounce="200"
-      />
-      <button type="submit" id="search-submit" aria-label="Search" class="search-submit"><.icon
-        name="hero-arrow-right"
-        class="size-5"
-      /></button>
-    </.form>
+    <div class="search-entry">
+      <.form
+        for={@form}
+        id="question-search"
+        action={~p"/search"}
+        method="get"
+        phx-submit="search"
+        phx-change="search"
+        class="search-box search-fallback"
+      >
+        <.input
+          :if={@category != "All topics"}
+          id="search-topic"
+          type="hidden"
+          name="topic"
+          value={@category}
+        />
+        <.icon name="hero-magnifying-glass" class="size-5 text-stone-500" />
+        <.input
+          field={@form[:q]}
+          id="search-query"
+          type="search"
+          placeholder="Search questions"
+          aria-label="Search questions"
+          phx-debounce="200"
+        />
+        <button type="submit" id="search-submit" aria-label="Search" class="search-submit"><.icon
+          name="hero-arrow-right"
+          class="size-5"
+        /></button>
+      </.form>
+      <RoughlyWeb.SearchComponents.box id="home-search" mode="hero" socket={@socket} />
+    </div>
+    <div class="search-examples">
+      <span>Explore</span><.link navigate={~p"/search?q=coffee"}>coffee</.link><.link navigate={
+        ~p"/search?q=life+experiences"
+      }>life experiences</.link><.link navigate={~p"/search?q=technology"}>technology</.link>
+    </div>
   </section>
   <section class="explore-content" aria-labelledby="explore-title">
     <div class="section-heading">
       <h2 id="explore-title">
-        {if @category == "All topics", do: "All questions", else: @category}
+        {cond do
+          @search != "" -> "Search results"
+          @category == "All topics" -> "All questions"
+          true -> @category
+        end}
       </h2><span id="question-count" class="result-count">{number(@count)} {if @count == 1,
         do: "question",
         else: "questions"}</span>
     </div>
+    <p
+      :if={@search != "" && @category != "All topics"}
+      id="search-scope"
+      class="mb-4 text-sm text-stone-600"
+    >
+      Searching in {@category}.
+      <.link
+        id="search-all-topics"
+        patch={~p"/?#{filters(@search, "All topics")}"}
+        class="text-link"
+      >Search all topics</.link>
+    </p>
     <nav aria-label="Question topics" class="topic-list">
       <.link
         id="topic-all-topics"

@@ -46,8 +46,6 @@ defmodule Roughly.Questions.Instrument do
       Enum.find(@kinds, &(Atom.to_string(&1) == value)) ||
         raise(ArgumentError, "invalid instrument format")
 
-  @spec slug(String.t(), Ecto.UUID.t()) :: String.t()
-  def slug(text, id), do: slug_base(text) <> "-" <> id
   @spec slug_base(String.t()) :: String.t()
   def slug_base(text) do
     text
@@ -56,5 +54,10 @@ defmodule Roughly.Questions.Instrument do
     |> String.replace(~r/\s+/, "-")
     |> String.trim("-")
     |> String.slice(0, 100)
+    |> String.trim_trailing("-")
+    |> case do
+      "" -> "question"
+      slug -> slug
+    end
   end
 end

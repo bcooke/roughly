@@ -22,7 +22,16 @@ defmodule Roughly.QuestionFixtures do
       status: :active
     }
 
-    Repo.insert!(struct!(Question, Map.merge(defaults, attrs)))
+    values = Map.merge(defaults, attrs)
+
+    values =
+      Map.put(
+        values,
+        :search_document,
+        Roughly.Search.Document.build(values.text, values.category, values.options)
+      )
+
+    Repo.insert!(struct!(Question, values))
   end
 
   def response_fixture(question, option, attrs \\ %{}) do

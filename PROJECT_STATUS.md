@@ -8,7 +8,8 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 
 ## Available
 
-- Browsing and search over persisted question projections, with topic filters, bounded pagination, related questions, aggregate response counts, and stable result links.
+- Browsing over persisted question projections, topic filters, pagination, related questions, and aggregate response counts.
+- Global search with live suggestions, keyboard navigation, session recents, typo tolerance, word variants, result previews, and shareable filtered results. Readable question URLs use event-sourced collision claims. See [T-2026-018](vault/delivery/tasks/T-2026-018-search-and-question-links.md).
 - A plain About page and a simplified interface without repeated fixture notices or promotional slogans.
 - Development fixtures seeded through Commanded: 204 questions across 17 topics, 360 invented participants, and 31,467 responses. Reruns preserve counts. These are invented local development data, not collected polling evidence.
 - Ecto and EventStore setup, supervised projectors, regression tests, and query/LiveView tests.
@@ -20,7 +21,7 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 
 ## Validation
 
-`mix precommit` and `mix assets.build` are the local gates. Seed runs exercised the full command/event/projector/read-model path; rerunning the complete catalog appended no duplicate responses. The UI is checked in Chrome.
+`mix precommit` and `mix assets.build` are the local gates. Seed runs exercised the full command/event/projector/read-model path; rerunning the complete catalog appended no duplicate responses. The UI has been checked in Chrome and search interactions in Safari. Mobile device testing remains outstanding.
 
 ## Product direction
 

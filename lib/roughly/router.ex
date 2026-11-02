@@ -27,6 +27,12 @@ defmodule Roughly.Router do
     identity_prefix: "access-"
   )
 
+  dispatch(Roughly.Questions.Commands.ClaimSlug,
+    to: Roughly.Questions.Slug,
+    identity: :slug,
+    identity_prefix: "question-slug:"
+  )
+
   # Questions
   dispatch([CreateQuestion, CloseQuestion], to: Question, identity: :question_uuid)
 

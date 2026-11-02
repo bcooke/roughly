@@ -129,7 +129,7 @@ defmodule Roughly.Dev.Seeds do
       batch
       |> Task.async_stream(
         fn command ->
-          Dispatch.dispatch(command, Actor.system("development-fixtures"), metadata: @metadata)
+          dispatch(command)
         end,
         timeout: :infinity,
         max_concurrency: 8,
@@ -146,6 +146,15 @@ defmodule Roughly.Dev.Seeds do
       )
     end)
   end
+
+  defp dispatch(%CreateQuestion{} = command),
+    do:
+      Roughly.Questions.publish(Actor.system("development-fixtures"), command,
+        metadata: @metadata
+      )
+
+  defp dispatch(command),
+    do: Dispatch.dispatch(command, Actor.system("development-fixtures"), metadata: @metadata)
 
   defp await_projections(questions, principals, votes, deadline) do
     question_ids = Enum.map(questions, & &1.uuid)

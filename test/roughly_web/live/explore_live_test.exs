@@ -22,7 +22,7 @@ defmodule RoughlyWeb.ExploreLiveTest do
     assert has_element?(view, "#question-do-you-like-the-taste-of-coffee")
     refute has_element?(view, "#preview-notice")
     refute has_element?(view, ".sample-label")
-    view |> form("#question-search", search: %{q: "coffee"}) |> render_submit()
+    view |> form("#question-search", q: "coffee") |> render_submit()
     refute has_element?(view, "#question-do-you-prefer-typescript-or-javascript")
     view |> element("#topic-technology") |> render_click()
     assert has_element?(view, "#empty-results")
@@ -69,5 +69,22 @@ defmodule RoughlyWeb.ExploreLiveTest do
     {:ok, about, _html} = live(conn, ~p"/about")
     assert has_element?(about, "#about-title", "About Roughly")
     assert has_element?(about, "#about-source[href='https://github.com/bcooke/roughly']")
+  end
+
+  test "search has a GET fallback and live typing uses the same query parameter", %{conn: conn} do
+    {:ok, view, _} = live(conn, ~p"/")
+    assert has_element?(view, "#question-search[method='get'][action='/search']")
+    assert has_element?(view, "#search-query[name='q']")
+    view |> form("#question-search", q: "coffee taste") |> render_change()
+    assert has_element?(view, "#question-count", "1 question")
+    assert has_element?(view, "#question-do-you-like-the-taste-of-coffee")
+  end
+
+  test "search can leave an empty topic without throwing away the query", %{conn: conn} do
+    {:ok, view, _} = live(conn, ~p"/?q=coffee&topic=Technology")
+    assert has_element?(view, "#empty-results")
+    view |> element("#search-all-topics") |> render_click()
+    assert_patch(view, ~p"/?q=coffee")
+    assert has_element?(view, "#question-do-you-like-the-taste-of-coffee")
   end
 end

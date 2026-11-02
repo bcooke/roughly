@@ -20,7 +20,7 @@ Rewrite development schemas and rebuild fixtures when the model changes. Do not 
 
 ## Instruments and evidence
 
-A question UUID identifies one exact, immutable instrument: wording, language, format, ordered option definitions, and stable option UUIDs. Similar wording or topic membership does not merge results. URLs include instrument identity, allowing equal-worded instruments without collisions. [Question Instruments](../Question%20Instruments.md) distinguishes format from presentation.
+A question UUID identifies one exact, immutable instrument: wording, language, format, ordered option definitions, and stable option UUIDs. Similar wording or topic membership does not merge results. Readable public routes are allocated separately from internal instrument identity. An event-sourced claim serializes ownership of each actual route; collisions receive numbered suffixes without exposing UUIDs. [Question Instruments](../Question%20Instruments.md) distinguishes format from presentation.
 
 Support binary, single-choice, multiple-selection, and ordered-scale selection semantics. Store selected option UUIDs as a set, not labels or incidental click order. Repeated option IDs are refused. Scales retain category order without assuming equal intervals or computing an unjustified mean. Numeric, ranking, and open-response semantics remain separate future formats.
 

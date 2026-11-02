@@ -22,15 +22,28 @@ defmodule Roughly.Questions do
     command =
       struct(
         CreateQuestion,
-        Map.merge(Map.take(attrs, [:text, :language, :question_type, :options, :category]), %{
-          question_uuid: id,
-          created_by: actor.id
-        })
+        Map.merge(
+          Map.take(attrs, [:text, :language, :question_type, :options, :category, :slug]),
+          %{
+            question_uuid: id,
+            created_by: actor.id
+          }
+        )
       )
 
-    case Roughly.Dispatch.dispatch(command, actor) do
+    case publish(actor, command) do
       :ok -> {:ok, id}
       error -> error
+    end
+  end
+
+  @doc false
+  @spec publish(Actor.t(), CreateQuestion.t(), keyword()) :: :ok | {:error, term()}
+  def publish(actor, command, opts \\ []) do
+    with {:ok, parsed} <- Roughly.Validation.parse(command),
+         {:ok, slug} <-
+           Roughly.Questions.Slugs.claim(actor, parsed.question_uuid, parsed.slug, opts) do
+      Roughly.Dispatch.dispatch(%{parsed | slug: slug}, actor, opts)
     end
   end
 

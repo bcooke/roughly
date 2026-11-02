@@ -13,6 +13,7 @@ Authority, derived reads, runtime boundaries, and architecture decisions.
 - [Domain Writes](../Domain%20Writes.md): event-sourced authority.
 - [Read Models](../Read%20Models.md): projections and query entry points.
 - [Development Fixtures](../Development%20Fixtures.md): fixture provenance.
+- [Search](../Search.md): public retrieval and interaction contracts.
 - [Question Links](../Question%20Links.md): implemented route contracts.
 - [Foundation ADR](../decisions/ADR-001-foundation-refresh.md): scaffold and dependency choices.
 - [the domain flow proposal](../discovery/validated-domain-flow.md): validated real-domain flow.

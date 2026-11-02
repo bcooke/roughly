@@ -38,11 +38,23 @@ defmodule Roughly.Questions.Queries.ListQuestions do
 
     query = if exclude, do: where(query, [q], q.uuid != ^exclude), else: query
 
-    if search == "" do
-      query
-    else
-      escaped = String.replace(search, ["\\", "%", "_"], fn char -> "\\" <> char end)
-      where(query, [q], ilike(q.text, ^("%" <> escaped <> "%")))
-    end
+    search
+    |> String.split(~r/\s+/u, trim: true)
+    |> Enum.uniq()
+    |> Enum.reduce(query, fn term, matching ->
+      escaped = String.replace(term, ["\\", "%", "_"], fn char -> "\\" <> char end)
+      pattern = "%" <> escaped <> "%"
+
+      where(
+        matching,
+        [q],
+        ilike(q.text, ^pattern) or ilike(q.category, ^pattern) or
+          fragment(
+            "EXISTS (SELECT 1 FROM unnest(?) AS choice(option) WHERE choice.option->>'label' ILIKE ?)",
+            q.options,
+            ^pattern
+          )
+      )
+    end)
   end
 end
