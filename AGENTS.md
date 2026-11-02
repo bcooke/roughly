@@ -8,7 +8,7 @@ Roughly is an open collection of the world's percentages. Read `README.md`, `PRO
 - Keep product decisions, architecture, methodology, and contribution instructions public and impersonal. Keep personal notes, raw brain dumps, and unrelated private project context outside this repository.
 - For documentation, read `vault/_meta/Documentation Guidelines.md`. Search before creating notes; use atomic concepts, meaningful links, topic maps, dated research, and decision records. Keep provisional observations distinct from settled guidance.
 - Read the code before assuming a specification is implemented. Label synthetic data and never imply an open poll is a representative sample.
-- Use feature branches and PRs. Repo-owned `vault/delivery/` records track substantial work; forge issues provide discussion and point to them. Follow `vault/Project Workflow.md` and respect the proposed status of its decision record. Do not publish or deploy without authorization.
+- Use focused branches and ready PRs with relevant checks and a brief diff review. Use a small T/BUG/IMP record for meaningful work and a context file when there are findings worth retaining; avoid backfilling minor edits or mirroring issue state. Follow `vault/Project Workflow.md`. Do not publish or deploy without authorization.
 - Follow test-driven development for domain behavior: demonstrate a failing test, implement, then refactor. Test externally visible outcomes.
 - Use domain entry points and named query modules. Commands flow through Commanded; reads use Ecto projections. Start projectors after Roughly.App.
 - Define one module per file. Preserve serialized event module names and payload compatibility when changing existing streams.

@@ -2,13 +2,11 @@
 
 Start with the README setup and `PROJECT_STATUS.md`. Discuss substantial feature or methodology changes before implementation. Use a focused feature branch and describe the behavior, validation, and remaining limitations in a pull request.
 
-## Work and pull requests
+## Pull requests
 
-Work records in `vault/delivery/` own scope, completion criteria, status, and durable outcomes. Use a stable repository ID such as `R-001`, with GitHub issues as optional public discussion and discovery. Small fixes can use a PR alone. Reconcile useful discussion outcomes through a PR rather than leaving essential reasoning only on the hosting platform.
+Use focused branches and ready PRs with a short explanation, relevant checks, and material limitations. Inspect the diff and resolve real failures before a squash merge. Drafts are optional for unfinished work; a separate formal review ceremony is not required for early development.
 
-Use a focused branch and a draft PR while work is incomplete. Link the work record and any external issue. Before merging, review the diff, resolve material findings, and check CI. Prefer squash merges. A merged PR is not automatically a production deployment.
-
-[Project Workflow](vault/Project%20Workflow.md) describes the working process; [DR-001](vault/decisions/DR-001-portable-project-knowledge.md) marks the portability arrangement as a proposal under maintainer review. No board, Wiki, task hierarchy, or AI tool is required.
+For meaningful work, a small T/BUG/IMP record and an optional context file preserve scope, findings, and the PR link. Small edits do not need backfilled tasks. Issues can help public discussion, but a mirrored tracker or board is not required. Keep useful product and technical reasoning in the vault so it moves with the repository. [Project Workflow](vault/Project%20Workflow.md) describes the small process and [DR-001](vault/decisions/DR-001-portable-project-knowledge.md) records its rationale.
 
 ## Engineering
 

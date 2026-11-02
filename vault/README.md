@@ -11,6 +11,6 @@ Start with a topic map and follow links into focused notes. The vault is shared 
 - [Contributing](topics/Contributing.md): work, review, documentation, and public/private boundaries.
 - [Project status](../PROJECT_STATUS.md): dated implementation state and active work.
 
-Evergreen notes live at the vault root. `topics/` contains navigation maps; `discovery/` contains dated investigation; `decisions/` contains decision records; `delivery/` contains small portable work records; `archive/` preserves historical proposals. [_meta/Documentation Guidelines](_meta/Documentation%20Guidelines.md) defines how these forms fit together.
+Evergreen notes live at the vault root. `topics/` contains navigation maps; `discovery/` contains dated investigation; `decisions/` contains decision records; `delivery/` holds small task/context records when useful; `archive/` preserves historical proposals. [_meta/Documentation Guidelines](_meta/Documentation%20Guidelines.md) defines how these forms fit together.
 
 Use relative Markdown links so the same links work in GitHub and Obsidian. [Obsidian supports Markdown internal links](https://obsidian.md/help/links) as well as wikilinks; an Obsidian-specific publishing service is not required.

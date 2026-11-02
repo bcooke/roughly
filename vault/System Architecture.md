@@ -10,4 +10,4 @@ The [application supervision tree](../lib/roughly/application.ex) starts reposit
 
 Phoenix owns routes and server state. HEEx renders readable content; Vue through LiveVue supplies browser interactions. [Vite configuration](../assets/vite.config.mjs) resolves browser clients from locked Hex packages, keeping browser and server implementations aligned. Dependency changes require a clear purpose and license review.
 
-[Synthetic Preview Data](Synthetic%20Preview%20Data.md) identifies the fixture boundary. [Project Status](../PROJECT_STATUS.md) identifies implemented capabilities, and [R-003](delivery/R-003-domain-flow.md) tracks the real-domain flow. [The foundation ADR](decisions/ADR-001-foundation-refresh.md) records the scaffold choice and its tradeoffs.
+[Synthetic Preview Data](Synthetic%20Preview%20Data.md) identifies the fixture boundary. [Project Status](../PROJECT_STATUS.md) identifies implemented capabilities, and [the domain flow proposal](discovery/validated-domain-flow.md) tracks the real-domain flow. [The foundation ADR](decisions/ADR-001-foundation-refresh.md) records the scaffold choice and its tradeoffs.

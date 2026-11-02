@@ -10,4 +10,4 @@ A chart's visual emphasis must not outrun the strength of its evidence. Sample p
 
 Navigation and participation design are also part of measurement: presentation can change what people notice and how they answer. Evaluate those choices using [Results Exposure](Results%20Exposure.md), rather than treating conversion or engagement alone as success.
 
-[Product Vision](Product%20Vision.md) supplies the purpose; UI proposals and usability findings belong in linked research or work records rather than accumulating as a roadmap in this note.
+[Product Vision](Product%20Vision.md) supplies the purpose; UI proposals and usability findings belong in linked research or PR discussion rather than accumulating as a roadmap in this note.

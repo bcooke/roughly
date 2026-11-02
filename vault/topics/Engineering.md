@@ -12,7 +12,7 @@ Authority, derived reads, runtime boundaries, and architecture decisions.
 - [Synthetic Preview Data](../Synthetic%20Preview%20Data.md): fixture provenance.
 - [Question Links](../Question%20Links.md): implemented route contracts.
 - [Foundation ADR](../decisions/ADR-001-foundation-refresh.md): scaffold and dependency choices.
-- [R-003](../delivery/R-003-domain-flow.md): validated real-domain flow.
+- [the domain flow proposal](../discovery/validated-domain-flow.md): validated real-domain flow.
 
 ## Related maps
 

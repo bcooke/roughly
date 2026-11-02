@@ -25,4 +25,4 @@ Explain obligations, costs, and reversibility. Do not describe anticipated behav
 
 ## Related
 
-Link owning work records, relevant knowledge notes, and any superseding decision.
+Link relevant PRs, relevant knowledge notes, and any superseding decision.

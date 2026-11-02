@@ -1,12 +1,10 @@
 ---
-type: work
-id: R-003
+type: proposal
+date: 2026-11-02
 status: open
-created: 2026-11-02
-updated: 2026-11-02
 ---
 
-# Build a validated event-sourced application flow
+# Validated domain flow proposal
 
 ## Problem
 
@@ -15,7 +13,7 @@ As of November 2, 2026, browsing uses synthetic fixtures. Commanded aggregates a
 ## Acceptance criteria
 
 - Public domain command entry points and named queries over Ecto read models.
-- Question/status/option validation and the participation controls chosen through [R-002](R-002-participation-methodology.md).
+- Question/status/option validation and the participation controls chosen through [the participation investigation](2026-11-02-participation-design.md).
 - Explicit duplicate-response and concurrency behavior at the command boundary.
 - Integration coverage of event serialization/replay and projection-to-query behavior.
 - Aggregate-only public reads and reviewed privacy/retention behavior before collection.
@@ -23,7 +21,7 @@ As of November 2, 2026, browsing uses synthetic fixtures. Commanded aggregates a
 
 Scope this into focused PRs as decisions become clear. A domain demonstration is not authorization to accept public responses.
 
-## References
+## Related
 
 - [Public discussion](https://github.com/bcooke/roughly/issues/10).
 - [Domain Writes](../Domain%20Writes.md), [Read Models](../Read%20Models.md), and [System Architecture](../System%20Architecture.md).

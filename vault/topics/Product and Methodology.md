@@ -23,7 +23,7 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 ## Investigation
 
 - [Participation design investigation](../discovery/2026-11-02-participation-design.md): dated alternatives and evidence needs.
-- [R-002](../delivery/R-002-participation-methodology.md): methodology work and outcome criteria.
+- [the participation investigation](../discovery/2026-11-02-participation-design.md): methodology work and outcome criteria.
 - [Historical proposals](../archive/README.md): superseded sketches for reference.
 
 ## Related maps

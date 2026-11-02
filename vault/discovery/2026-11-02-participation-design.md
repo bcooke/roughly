@@ -2,7 +2,6 @@
 type: research
 date: 2026-11-02
 status: open
-work: R-002
 ---
 
 # Participation design investigation
@@ -54,4 +53,3 @@ These sources inform the research agenda; they do not validate a particular Roug
 
 - [Results exposure](../Results%20Exposure.md)
 - [Participant identity](../Participant%20Identity.md)
-- [Work record R-002](../delivery/R-002-participation-methodology.md)

@@ -12,4 +12,4 @@ Transient navigation, search filters, build artifacts, and [Synthetic Preview Da
 
 Event sourcing does not imply retaining every private value forever in an event envelope. The storage, linkage, and erasure of personal payloads need a deliberate [Participant Identity](Participant%20Identity.md) and privacy design before real collection.
 
-The [command router](../lib/roughly/router.ex) and [Commanded application](../lib/roughly/app.ex) are implementation entry points. [R-003](delivery/R-003-domain-flow.md) tracks the gap between the domain foundation and a complete collection flow.
+The [command router](../lib/roughly/router.ex) and [Commanded application](../lib/roughly/app.ex) are implementation entry points. [the domain flow proposal](discovery/validated-domain-flow.md) tracks the gap between the domain foundation and a complete collection flow.

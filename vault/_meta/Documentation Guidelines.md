@@ -20,7 +20,7 @@ Evergreen root notes have one clear subject, minimal `type: note` frontmatter, a
 | Topic map | Short entry points and related-note links | Repeating the content it points to |
 | Dated discovery record | Research questions, scoped observations, sources, alternatives, uncertainty | Turning one observation into a permanent conclusion |
 | Decision record | Context, choice or proposal, rationale, alternatives, consequences, status | Describing a proposal as ratified or equating a decision with implementation |
-| Delivery record | Work identity, scope, outcome, status, evidence, external references | Duplicating the entire knowledge base or forge discussion |
+| Task and optional context | A meaningful change, its outcome, PR, and useful implementation findings | Mirrored issue state, exhaustive action logs, and compulsory backfilling |
 | Project status | A dated summary with links to work and capabilities | Becoming a second detailed work ledger |
 | Archive | Historical material, clearly marked and excluded from active guidance | Presenting obsolete designs as the running system |
 
@@ -28,7 +28,7 @@ Evergreen root notes have one clear subject, minimal `type: note` frontmatter, a
 
 Removing “currently” does not make a statement evergreen. Ask whether the sentence explains a mechanism or merely copies an arrangement that changes elsewhere. Prefer a source-of-authority link over repeating module inventories, exact versions, counts of enforcement sites, or a hand-maintained roadmap.
 
-Useful implementation facts still need an owner. Put operational commands in the README or their configuration, date observations in work/research records, and point from conceptual notes to that authority. Update a contract note when its implemented contract changes.
+Useful implementation facts still need an owner. Put operational commands in the README or their configuration, date observations in research records or the PR, and point from conceptual notes to that authority. Update a contract note when its implemented contract changes.
 
 Dates are appropriate in historical research and decisions. Separate what was observed, what was inferred, what was proposed, and what was demonstrated. An unresolved idea can inform a concept note without being described as shipped or proven. Do not let careful-sounding prose manufacture certainty.
 

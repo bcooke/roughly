@@ -4,28 +4,27 @@ type: note
 
 # Project Workflow
 
-Roughly's proposed workflow keeps knowledge and work records in Git, with a forge providing contribution and review surfaces. Stable repository IDs and relative links preserve meaning across a hosting change. [The workflow decision proposal](decisions/DR-001-portable-project-knowledge.md) records the tradeoffs and review status.
+Use focused pull requests to explain and integrate changes. The repository contains the knowledge needed to understand the project; the hosting platform provides review, discussion, and automated checks. [The process decision](decisions/DR-001-portable-project-knowledge.md) records this deliberately small arrangement.
 
-## Work ownership
+## Make a change
 
-A small work record in `vault/delivery/` owns its scope, completion criteria, status, and durable outcome. Use sequential IDs such as `R-001`; no epic/story/task hierarchy is required. GitHub issues can collect public discussion and point to that record. The repository record lists the external issue or PR as an optional reference, not its identity.
+1. Search the code and related notes, then work on a focused branch.
+2. Implement and validate the behavior. Run `mix precommit` and `mix assets.build` for application changes.
+3. Open a ready PR with a short explanation, relevant evidence, and material limitations. Drafts are useful only when work actually needs to remain unfinished.
+4. Inspect the diff and check results, address real problems, then squash merge. Early development does not require a separate formal review ceremony.
 
-Do not maintain the same detailed plan in both places. Reconcile material conclusions and scope changes through a PR; do not assume comments automatically update committed documentation. An issue can be open while work is under review, but it is not proof of implementation or deployment.
+For a meaningful chunk of work, use a small repo-local record with a familiar `T-YYYY-NNN`, `BUG-YYYY-NNN`, or `IMP-YYYY-NNN` ID. State the problem, outcome, evidence, and associated PR. Add a context file only when there are findings or reasoning worth preserving. [The foundation task](delivery/tasks/T-2026-014-foundation-refresh.md) and [its context](delivery/_context/T-2026-014-context.md) are an example.
 
-## Change flow
+Do not backfill every small edit or make paperwork a prerequisite for coding. An issue, epic hierarchy, project board, or mirrored tracker is not required. Use an issue when public discussion helps. A task's completion records implementation and validation; the PR owns review/merge state, and deployment is a separate observation. Add stronger controls as contribution and operational needs justify them.
 
-1. Search existing work and knowledge. Small fixes can use a PR alone; significant work needs a focused record stating the problem and outcome.
-2. Use a feature branch. Start domain behavior with a failing test, implement, and run the appropriate checks.
-3. Open a draft PR while implementation or review is incomplete. Link the repository work ID and any external issue; explain behavior, evidence, and remaining limits.
-4. Review the diff and CI results, resolve material findings, and use a squash merge. Update the work record as part of the reviewed change. Completion and deployment are separate observations.
-5. Reconcile external issue status after merge. Promote reusable findings into [atomic knowledge notes](_meta/Documentation%20Guidelines.md), and significant choices into decision records.
+## Preserve useful knowledge
 
-`mix precommit` and `mix assets.build` are the application gates. The vault link check protects document connectivity; editorial judgment protects meaning.
+Update an existing atomic note when understanding changes. Use topic maps for navigation, dated research for provisional findings, and a decision record for a consequential choice. [Documentation Guidelines](_meta/Documentation%20Guidelines.md) defines those forms; documentation should explain the project rather than narrate every coding session.
 
-## Portability and audience
+[Project Status](../PROJECT_STATUS.md) is a dated orientation, not a task database. Essential decisions, contracts, and research findings belong in committed Markdown rather than exclusively in issue comments or a separate Wiki. Link to public discussions when useful, and bring their durable conclusions back into the repository.
 
-The root README starts contributors, topic maps navigate knowledge, and [Project Status](../PROJECT_STATUS.md) summarizes dated implementation state by linking to work records. A separate Wiki or board is optional and should not own exclusive project knowledge. Git history records changes; work records preserve enough outcomes and links to remain understandable without forge discussions.
+## Portability
 
-Code and documents can move with Git. Hosting-specific discussions, attachments, CI settings, and review history need deliberate export if their loss would matter; links alone are not a migration backup. Avoid a synchronization service until there is a demonstrated coordination need.
+Code and documents move with Git. Hosting-specific discussions, attachments, checks, and settings need deliberate export if their history matters during a migration; a URL alone is not a backup. Avoid building synchronization machinery without a concrete need.
 
-See [Public and Private Knowledge](Public%20and%20Private%20Knowledge.md) for audience boundaries and [System Architecture](System%20Architecture.md) for engineering context.
+[System Architecture](System%20Architecture.md) explains engineering boundaries. [Public and Private Knowledge](Public%20and%20Private%20Knowledge.md) defines which information belongs in a public contribution.

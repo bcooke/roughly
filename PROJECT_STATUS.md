@@ -22,15 +22,13 @@ A local browsing preview on a fresh Phoenix 1.8.16 foundation. Vue 3 and LiveVue
 
 `mix precommit` and `mix assets.build` are the required local gates. A runtime smoke check dispatched create/close commands through persisted events and the supervised question projector into Ecto. The preview is also checked interactively in Chrome.
 
-## Work and review
+## Product direction
 
-- [R-001](vault/delivery/R-001-foundation.md): foundation refresh and contribution process, under review.
-- [R-002](vault/delivery/R-002-participation-methodology.md): participation and data-quality investigation, open.
-- [R-003](vault/delivery/R-003-domain-flow.md): validated real-domain flow, open.
+- Use the preview to refine question presentation, navigation, and visual direction.
+- [Participation investigation](vault/discovery/2026-11-02-participation-design.md): results exposure, identity, honesty, sampling, and privacy remain open.
+- [Validated domain flow proposal](vault/discovery/validated-domain-flow.md): connect domain commands and projected reads to the application before real collection.
 
-These repository records own detailed scope, acceptance criteria, and outcomes. GitHub issues link to them for discussion. [DR-001](vault/decisions/DR-001-portable-project-knowledge.md) proposes this portable arrangement for maintainer review; a board or Wiki is not required.
-
-The [vault index](vault/README.md) provides topic maps for product/methodology, engineering, and contributing. Evergreen notes, dated research, decision records, and historical proposals have separate roles. The public vault contains shared project knowledge; private reflection and raw references stay outside the repository.
+The [vault index](vault/README.md) leads to connected product/methodology and engineering notes. [Project Workflow](vault/Project%20Workflow.md) uses focused PRs and relevant checks with small T/BUG/IMP records for meaningful work and optional context files. [Foundation task](vault/delivery/tasks/T-2026-014-foundation-refresh.md) links the scope and context; [PR #11](https://github.com/bcooke/roughly/pull/11) contains the implementation and validation history.
 
 ## Open boundaries
 

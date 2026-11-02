@@ -3,7 +3,6 @@ type: decision
 id: ADR-001
 date: 2026-11-02
 status: accepted
-work: R-001
 ---
 
 # Refresh the application foundation
@@ -24,6 +23,6 @@ An in-place dependency update would preserve more generated configuration, but t
 
 ## Consequences
 
-The generated defaults still require review, including dependency cost and runtime configuration. The domain remains an early foundation; adopting Commanded does not implement authorization, collection policy, privacy, or cross-domain validation. Those gaps are tracked in [R-003](../delivery/R-003-domain-flow.md), with methodology in [R-002](../delivery/R-002-participation-methodology.md).
+The generated defaults still require review, including dependency cost and runtime configuration. The domain remains an early foundation; adopting Commanded does not implement authorization, collection policy, privacy, or cross-domain validation. Those gaps are tracked in [the domain flow proposal](../discovery/validated-domain-flow.md), with methodology in [the participation investigation](../discovery/2026-11-02-participation-design.md).
 
-[System Architecture](../System%20Architecture.md) and [Domain Writes](../Domain%20Writes.md) own the continuing explanation. [R-001](../delivery/R-001-foundation.md) owns implementation and review status; acceptance of the scaffold direction is not a claim that its PR is merged or deployed.
+[System Architecture](../System%20Architecture.md) and [Domain Writes](../Domain%20Writes.md) own the continuing explanation. [The foundation PR](https://github.com/bcooke/roughly/pull/11) records validation and integration; accepting the scaffold direction does not imply production deployment.
