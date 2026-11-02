@@ -40,17 +40,17 @@ defmodule RoughlyWeb.Layouts do
       <.link navigate={~p"/"} class="wordmark" aria-label="Roughly home"><span aria-hidden="true">≈</span>
       roughly<span class="wordmark-period">.</span></.link>
       <nav aria-label="Main navigation">
-        <.link navigate={~p"/"} class="nav-explore">Explore</.link><a
-          href="https://github.com/bcooke/roughly"
-          class="source-link"
-        >Built in the open <.icon name="hero-arrow-up-right" class="size-4" /></a>
+        <.link navigate={~p"/"} class="nav-explore">Questions</.link><.link
+          id="nav-about"
+          navigate={~p"/about"}
+        >About</.link>
       </nav>
     </header>
     <main id="main-content">{render_slot(@inner_block)}</main>
     <footer class="site-footer">
-      <.link navigate={~p"/"} class="footer-brand">≈ roughly.</.link><p>
-        A little less assuming. A little more understanding.
-      </p><span>Free. Open. Approximately.</span>
+      <.link navigate={~p"/"} class="footer-brand">roughly</.link><nav aria-label="Footer">
+        <.link navigate={~p"/about"}>About</.link><a href="https://github.com/bcooke/roughly">GitHub</a>
+      </nav>
     </footer>
 
     <.flash_group flash={@flash} />

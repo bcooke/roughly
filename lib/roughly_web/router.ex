@@ -17,6 +17,7 @@ defmodule RoughlyWeb.Router do
   scope "/", RoughlyWeb do
     pipe_through :browser
 
+    live "/about", AboutLive
     live "/", ExploreLive
     live "/questions/:slug", QuestionLive
   end

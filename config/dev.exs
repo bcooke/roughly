@@ -81,3 +81,5 @@ config :roughly, Roughly.EventStore,
   port: String.to_integer(System.get_env("PGPORT", "5435")),
   database: "roughly_eventstore_dev",
   pool_size: 5
+
+config :roughly, :allow_dev_seeds, true

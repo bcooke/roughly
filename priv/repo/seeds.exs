@@ -1,2 +1,5 @@
-# The preview catalog is read from priv/preview/questions.json.
-# Synthetic people and votes must not be seeded into persistent event history.
+if Mix.env() == :dev do
+  Roughly.Dev.Seeds.run()
+else
+  raise "Development fixture seeds cannot run outside MIX_ENV=dev"
+end

@@ -8,7 +8,7 @@ status: open
 
 ## Problem
 
-As of November 2, 2026, browsing uses synthetic fixtures. Commanded aggregates and projectors exist, but the app lacks a complete validated collection flow over them.
+As of November 2, 2026, local fixtures are written through Commanded and browsing reads Ecto projections. This demonstrates the persistence and read path; the app still lacks a validated public response-collection flow.
 
 ## Acceptance criteria
 
@@ -25,4 +25,4 @@ Scope this into focused PRs as decisions become clear. A domain demonstration is
 
 - [Public discussion](https://github.com/bcooke/roughly/issues/10).
 - [Domain Writes](../Domain%20Writes.md), [Read Models](../Read%20Models.md), and [System Architecture](../System%20Architecture.md).
-- [Synthetic Preview Data](../Synthetic%20Preview%20Data.md).
+- [Development Fixtures](../Development%20Fixtures.md).

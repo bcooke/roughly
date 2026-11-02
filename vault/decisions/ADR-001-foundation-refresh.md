@@ -26,3 +26,5 @@ An in-place dependency update would preserve more generated configuration, but t
 The generated defaults still require review, including dependency cost and runtime configuration. The domain remains an early foundation; adopting Commanded does not implement authorization, collection policy, privacy, or cross-domain validation. Those gaps are tracked in [the domain flow proposal](../discovery/validated-domain-flow.md), with methodology in [the participation investigation](../discovery/2026-11-02-participation-design.md).
 
 [System Architecture](../System%20Architecture.md) and [Domain Writes](../Domain%20Writes.md) own the continuing explanation. [The foundation PR](https://github.com/bcooke/roughly/pull/11) records validation and integration; accepting the scaffold direction does not imply production deployment.
+
+The development-fixture detail is amended by [ADR-002](ADR-002-development-seeds.md); the remaining scaffold decisions stand.
