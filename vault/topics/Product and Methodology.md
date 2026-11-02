@@ -9,6 +9,7 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 ## Purpose and presentation
 
 - [Product Vision](../Product%20Vision.md): purpose and values.
+- [Result Presentation](../Result%20Presentation.md): visual forms, exact tables, and denominator preservation.
 - [Design Philosophy](../Design%20Philosophy.md): data and context in the interface.
 - [Glossary](../Glossary.md): shared language.
 - [Question Links](../Question%20Links.md): stable routes and citation context.
@@ -42,3 +43,5 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 
 - [Engineering](Engineering.md).
 - [Contributing](Contributing.md).
+
+- [Vision coverage and unfinished directions](../discovery/2026-11-02-vision-coverage.md): dated map of captured ideas, implemented foundations, and open work.

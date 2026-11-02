@@ -19,6 +19,17 @@ defmodule Roughly.Dev.SeedsTest do
     assert length(ids) == length(Enum.uniq(ids))
   end
 
+  test "presentation scenarios exercise scales and genuine multiple selections" do
+    catalog = Roughly.Dev.SeedCatalog.questions()
+    assert Enum.any?(catalog, &(Map.get(&1, :question_type) == :ordered_scale))
+    multi = Enum.find(catalog, &(Map.get(&1, :question_type) == :multiple_select))
+    assert multi
+    responses = Seeds.responses(multi)
+    assert Enum.any?(responses, &(length(&1.option_ids) > 1))
+    assert Enum.all?(responses, &(&1.option_ids != []))
+    assert responses == Seeds.responses(multi)
+  end
+
   test "seeding is disabled unless explicitly enabled by development config" do
     assert_raise RuntimeError, ~r/development/, fn -> Seeds.run() end
   end

@@ -26,7 +26,7 @@ Public openness does not imply a raw export of private responses or event logs. 
 
 Keep formats and release metadata independent of a host. A self-hosted download and a dataset archive can complement each other. [Zenodo's versioning documentation](https://help.zenodo.org/docs/deposit/manage-versions/) is one research starting point for versioned releases and persistent identifiers, not a hosting choice or an instruction to upload data.
 
-No external dataset publication, API endpoint, licensing decision, or public response export is implemented by this idea. Development fixtures remain invented data and must not be released as polling evidence.
+No external dataset publication, research API, licensing decision, or public response export is implemented by this idea. [Search](../../Search.md) has a bounded UI suggestion endpoint; it does not implement this publication proposal. Development fixtures remain invented data and must not be released as polling evidence.
 
 ## Related
 

@@ -9,6 +9,7 @@ A parking place for possibilities that deserve preservation without becoming imp
 - [Data-led visualizations](data-led-visualizations.md): visual richness arising from the dataset itself.
 - [Question imagery and illustration](question-imagery.md): clarity and engagement alongside possible measurement effects.
 - [Collection context and method variants](collection-context-variants.md): preserve relevant differences instead of assuming one collection experience fits every question.
+- [Writing and question links](writing-and-question-links.md): connect claims, assumptions, and participation invitations to the right evidence.
 - [Open API and dataset releases](open-api-and-dataset-releases.md): reusable, portable public data with explicit publication boundaries.
 
 Statuses: `exploring` for an active open question, `parked` for a captured possibility, and `rejected` for an idea whose rationale should remain available. Status is not a task priority or a promise to build. Add a dated update when evidence changes the idea.

@@ -22,6 +22,8 @@ A broader exploratory page could combine several questions into an interactive i
 
 Population views should be reusable across questions where the evidence supports them: age, location, self-described attributes, or groups defined by answers to other questions. Population definitions are analytical predicates, not necessarily a fixed profile taxonomy. Missing qualifying answers remain unknown, and groups can overlap. [Collection Context](../../Collection%20Context.md) and the [intersection proposal](../2026-11-02-question-meaning-and-intersections.md) constrain which comparisons are defensible.
 
+The [question exploration implementation](../../delivery/tasks/T-2026-019-question-exploration.md) introduces the first format-sensitive chart/table views. [Result Presentation](../../Result%20Presentation.md) owns their implemented contract; population filters, temporal views, and multi-question pages remain open.
+
 ## Open questions
 
 - Which visual forms help readers understand the question and denominator rather than merely spend more time on the page?

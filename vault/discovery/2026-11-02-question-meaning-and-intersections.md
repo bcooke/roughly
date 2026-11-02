@@ -38,9 +38,9 @@ A useful domain event records a coherent fact with sufficient context. Breaking 
 
 [Development Fixtures](../Development%20Fixtures.md) reuse participant identities across questions to support testing intersections. Their invented distributions do not demonstrate real correlations or validate cohort methodology. [Claims and Evidence](../Claims%20and%20Evidence.md) and [the participation investigation](2026-11-02-participation-design.md) supply related constraints.
 
-## Proposed next implementation slice
+## Proposal and subsequent foundation work
 
-Build a complete question exploration path before broadening every subsystem. Establish immutable instrument identity, stable option identity, and validated answer semantics for a small set of formats; preserve existing event compatibility. The existing projection lists binary, multiple-choice, and scaled types, but the vote payload contains one option string and the result query counts option strings. This is not yet a general response or scale-analysis model.
+Build a complete question exploration path before broadening every subsystem. Establish immutable instrument identity, stable option identity, and validated answer semantics for a small set of formats; discard obsolete development-only event shapes while the project remains unreleased. The subsequent [domain foundation](../delivery/tasks/T-2026-017-domain-foundation.md) implements exact instrument identities, stable option IDs, four selection formats, and collection context. Population analysis remains unimplemented. The older string-option vote model has been removed.
 
 Exercise the model with one population predicate defined by an answer to another question, using a stated answer-selection cutoff and eligible denominator. Return aggregate results only, distinguish missing answers from nonqualifying answers, and test retractions and empty intersections. Use repeatable fixture scenarios with known overlaps and contrasting distributions rather than assuming independently generated answers provide useful comparison examples.
 

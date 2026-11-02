@@ -15,3 +15,5 @@ Start with a topic map and follow links into focused notes. The vault is shared 
 Evergreen notes live at the vault root. `topics/` contains navigation maps; `discovery/` contains dated investigation and an `ideas/` parking lot; `decisions/` contains decision records; `delivery/` holds small task/context records when useful; `archive/` preserves historical proposals. [_meta/Documentation Guidelines](_meta/Documentation%20Guidelines.md) defines how these forms fit together.
 
 Use relative Markdown links so the same links work in GitHub and Obsidian. [Obsidian supports Markdown internal links](https://obsidian.md/help/links) as well as wikilinks; an Obsidian-specific publishing service is not required.
+
+- [Vision coverage and unfinished directions](discovery/2026-11-02-vision-coverage.md): dated map of captured ideas, implemented foundations, and open work.

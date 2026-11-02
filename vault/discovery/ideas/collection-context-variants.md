@@ -35,7 +35,7 @@ Which comparisons are defensible? Which variants should remain separate? Can an 
 
 Context supports investigation; it is not a universal adjustment variable. Knowing that an image was rendered does not prove it was seen. Knowing that one identity policy was used does not establish honesty. Unobserved exposure, coverage gaps, and unmeasured differences can remain.
 
-The application has not implemented this context model, multiple collection modes, or adjustment methods. [Collection Context](../../Collection%20Context.md) explains the enduring distinctions; this idea owns the open implementation questions.
+The domain implements four selection formats and a bounded collection-context value; see [ADR-003](../../decisions/ADR-003-domain-admission-and-context-boundaries.md). Public collection modes, study assignment, and adjustment methods remain unimplemented. [Collection Context](../../Collection%20Context.md) explains the enduring distinctions; this idea owns the open implementation questions.
 
 ## Related
 

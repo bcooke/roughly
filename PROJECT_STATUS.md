@@ -10,8 +10,9 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 
 - Browsing over persisted question projections, topic filters, pagination, related questions, and aggregate response counts.
 - Global search with live suggestions, keyboard navigation, session recents, typo tolerance, word variants, result previews, and shareable filtered results. Readable question URLs use event-sourced collision claims. See [T-2026-018](vault/delivery/tasks/T-2026-018-search-and-question-links.md).
+- Question exploration with distribution/table views, percentage/count display, ordered-scale columns, multiple-selection bars, and shareable view state. See [T-2026-019](vault/delivery/tasks/T-2026-019-question-exploration.md).
 - A plain About page and a simplified interface without repeated fixture notices or promotional slogans.
-- Development fixtures seeded through Commanded: 204 questions across 17 topics, 360 invented participants, and 31,467 responses. Reruns preserve counts. These are invented local development data, not collected polling evidence.
+- Development fixtures seeded through Commanded: 206 questions across 17 topics, 360 invented participants, and 31,833 responses. Reruns preserve counts. These are invented local development data, not collected polling evidence.
 - Ecto and EventStore setup, supervised projectors, regression tests, and query/LiveView tests.
 - Shared contributor instructions, linked atomic notes, dated discovery, and decision records.
 - GitHub CI for backend checks, vault links, and frontend builds.
@@ -24,6 +25,8 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 `mix precommit` and `mix assets.build` are the local gates. Seed runs exercised the full command/event/projector/read-model path; rerunning the complete catalog appended no duplicate responses. The UI has been checked in Chrome and search interactions in Safari. Mobile device testing remains outstanding.
 
 ## Product direction
+
+[Vision coverage and unfinished directions](vault/discovery/2026-11-02-vision-coverage.md) connects the wider product ideas to their owning notes and distinguishes captured thinking from implementation.
 
 - Use the seeded application to refine question presentation, navigation, and visual direction.
 - [Topic graph proposal](vault/discovery/2026-11-02-topic-graph-model.md): replace the interim single-category field with overlapping memberships and typed relationships; this is not implemented.

@@ -2904,5 +2904,43 @@
       42,
       21
     ]
+  },
+  {
+    "text": "How comfortable are you speaking in front of a group?",
+    "category": "Work & learning",
+    "question_type": "ordered_scale",
+    "options": [
+      "Very uncomfortable",
+      "Somewhat uncomfortable",
+      "Neither comfortable nor uncomfortable",
+      "Somewhat comfortable",
+      "Very comfortable"
+    ],
+    "weights": [
+      12,
+      23,
+      20,
+      30,
+      15
+    ]
+  },
+  {
+    "text": "Which of these activities have you done in the past month?",
+    "category": "Health & fitness",
+    "question_type": "multiple_select",
+    "options": [
+      "Walking outdoors",
+      "Cycling",
+      "Swimming",
+      "Strength training",
+      "None of these"
+    ],
+    "weights": [
+      75,
+      28,
+      22,
+      35,
+      0
+    ]
   }
 ]

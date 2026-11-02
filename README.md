@@ -6,7 +6,7 @@ Roughly is intended to be free, open source, and community supported. See the [p
 
 ## Current application
 
-The local application browses persisted questions and aggregate responses, with topic filters, global search, pagination, related questions, an About page, and readable result URLs. Search includes live question/topic suggestions, Command/Ctrl K, keyboard navigation, session recents, typo tolerance, and a full results page with format filters. Development setup seeds **204 questions across 17 topics, 360 invented participants, and 31,467 invented responses**. These are local fixtures, not researched polling data. Authentication, real voting, demographic slicing, and representative population estimates are not available.
+The local application browses persisted questions and aggregate responses, with topic filters, global search, pagination, related questions, an About page, and readable result URLs. Search includes live question/topic suggestions, Command/Ctrl K, keyboard navigation, session recents, typo tolerance, and a full results page with format filters. Development setup seeds **206 questions across 17 topics, 360 invented participants, and 31,833 invented responses**. These are local fixtures, not researched polling data. Authentication, real voting, demographic slicing, and representative population estimates are not available.
 
 ## Run locally
 
