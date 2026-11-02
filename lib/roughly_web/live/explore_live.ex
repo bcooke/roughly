@@ -31,12 +31,12 @@ defmodule RoughlyWeb.ExploreLive do
        page: result.page,
        total_pages: result.total_pages
      )
-     |> assign(:form, to_form(%{"q" => search}, as: :search))
+     |> assign(:form, to_form(%{"q" => search}))
      |> stream(:questions, result.entries, reset: true, dom_id: &"question-#{&1.slug}")}
   end
 
   @impl true
-  def handle_event("search", %{"search" => %{"q" => search}}, socket) do
+  def handle_event("search", %{"q" => search}, socket) do
     {:noreply, push_patch(socket, to: ~p"/?#{filters(search, socket.assigns.category)}")}
   end
 

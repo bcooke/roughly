@@ -32,7 +32,7 @@ defmodule Roughly.Questions.Commands.CreateQuestion do
       options: {:options, cmd.question_type},
       created_by: {:optional, :uuid},
       category: {:optional, {:text, 80}},
-      slug: {:optional, {:text, 150}}
+      slug: {:optional, :slug}
     ]
 
   @doc false
@@ -41,6 +41,6 @@ defmodule Roughly.Questions.Commands.CreateQuestion do
     do: %{
       command
       | language: command.language || "en",
-        slug: Roughly.Questions.Instrument.slug(command.text, command.question_uuid)
+        slug: command.slug || Roughly.Questions.Instrument.slug_base(command.text)
     }
 end

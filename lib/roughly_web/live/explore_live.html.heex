@@ -5,10 +5,19 @@
     <.form
       for={@form}
       id="question-search"
+      action={~p"/"}
+      method="get"
       phx-submit="search"
       phx-change="search"
       class="search-box"
     >
+      <.input
+        :if={@category != "All topics"}
+        id="search-topic"
+        type="hidden"
+        name="topic"
+        value={@category}
+      />
       <.icon name="hero-magnifying-glass" class="size-5 text-stone-500" />
       <.input
         field={@form[:q]}
@@ -27,11 +36,27 @@
   <section class="explore-content" aria-labelledby="explore-title">
     <div class="section-heading">
       <h2 id="explore-title">
-        {if @category == "All topics", do: "All questions", else: @category}
+        {cond do
+          @search != "" -> "Search results"
+          @category == "All topics" -> "All questions"
+          true -> @category
+        end}
       </h2><span id="question-count" class="result-count">{number(@count)} {if @count == 1,
         do: "question",
         else: "questions"}</span>
     </div>
+    <p
+      :if={@search != "" && @category != "All topics"}
+      id="search-scope"
+      class="mb-4 text-sm text-stone-600"
+    >
+      Searching in {@category}.
+      <.link
+        id="search-all-topics"
+        patch={~p"/?#{filters(@search, "All topics")}"}
+        class="text-link"
+      >Search all topics</.link>
+    </p>
     <nav aria-label="Question topics" class="topic-list">
       <.link
         id="topic-all-topics"

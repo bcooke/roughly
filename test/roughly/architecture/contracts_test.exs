@@ -8,7 +8,7 @@ defmodule Roughly.Architecture.ContractsTest do
     modules =
       for file <- files,
           Regex.match?(
-            ~r{/(commands|events)/|/(questions/question|participation/response|identity/principal|access/grants)\.ex$},
+            ~r{/(commands|events)/|/(questions/(question|slug)|participation/response|identity/principal|access/grants)\.ex$},
             file
           ),
           do: module_for(file)

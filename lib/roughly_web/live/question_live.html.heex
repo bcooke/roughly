@@ -40,7 +40,10 @@
         </p>
         <details id="methodology" class="result-methodology">
           <summary>About these results</summary><p>
-            Each percentage is the share of responses to this question. Retracted responses are excluded. Results are unweighted.
+            Each percentage is the share of active responses that selected that option. Withdrawn responses are excluded. Results are unweighted.
+          </p>
+          <p :if={@question.question_type == :multiple_select} id="multiple-selection-method">
+            More than one option can be selected, so percentages can add up to more than 100%.
           </p>
         </details>
         <.vue

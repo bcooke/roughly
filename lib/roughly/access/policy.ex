@@ -54,6 +54,7 @@ defmodule Roughly.Access.Policy do
       )
   end
 
+  defp required_capability(%Roughly.Questions.Commands.ClaimSlug{}), do: :curate_questions
   defp required_capability(%CreateQuestion{}), do: :curate_questions
   defp required_capability(%CloseQuestion{}), do: :curate_questions
   defp required_capability(%GrantCapability{}), do: :manage_access
@@ -65,12 +66,20 @@ defmodule Roughly.Access.Policy do
   defp required_capability(%DeactivatePrincipal{}), do: :self
   defp required_capability(_), do: :unclassified
 
+  defp seed_command?(%Roughly.Questions.Commands.ClaimSlug{}), do: true
   defp seed_command?(%CreateQuestion{}), do: true
   defp seed_command?(%RegisterPrincipal{}), do: true
   defp seed_command?(%RecordResponse{}), do: true
   defp seed_command?(_), do: false
 
-  defp ownership(%CreateQuestion{} = cmd, actor), do: bind(cmd, :created_by, actor.id)
+  defp ownership(%CreateQuestion{} = cmd, actor) do
+    with {:ok, command} <- bind(cmd, :created_by, actor.id) do
+      if Roughly.Questions.Slugs.owned?(command.slug, command.question_uuid),
+        do: {:ok, command},
+        else: {:error, :slug_not_claimed}
+    end
+  end
+
   defp ownership(%CloseQuestion{} = cmd, actor), do: bind(cmd, :closed_by, actor.id)
 
   defp ownership(%RecordResponse{} = cmd, actor),
