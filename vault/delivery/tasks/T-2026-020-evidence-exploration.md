@@ -8,6 +8,8 @@ updated: 2026-11-02
 
 # Historical evidence, population comparisons, and answer discovery
 
+[PR #19](https://github.com/bcooke/roughly/pull/19) contains the implementation and review.
+
 ## Outcome
 
 Build question pages that answer more than a current total: cumulative distributions under explicit clocks and cutoffs, receipt-order checkpoints, intersections defined by another exact question, readable focused-answer pages, and truthful crawlable content. Preserve missingness, option semantics, and withdrawals across every public view.
