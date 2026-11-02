@@ -84,14 +84,27 @@ defmodule Roughly.Dev.Seeds do
 
   defp response_for(question, index) do
     bucket = :erlang.phash2({question.slug, index}, 100)
-    option = pick_option(Enum.zip(question.options, question.weights), bucket)
+
+    options =
+      if Map.get(question, :question_type) == :multiple_select do
+        selected =
+          Enum.zip(question.options, question.weights)
+          |> Enum.filter(fn {label, weight} ->
+            :erlang.phash2({question.slug, index, label}, 100) < weight
+          end)
+          |> Enum.map(&elem(&1, 0))
+
+        if selected == [], do: [List.last(question.options)], else: selected
+      else
+        [pick_option(Enum.zip(question.options, question.weights), bucket)]
+      end
 
     %RecordResponse{
       response_uuid:
         Roughly.Participation.identity(question.uuid, Identity.uuid("participant:#{index}")),
       question_uuid: question.uuid,
       principal_uuid: Identity.uuid("participant:#{index}"),
-      option_ids: [option_id(question, option)],
+      option_ids: Enum.map(options, &option_id(question, &1)),
       context: %Roughly.Participation.Context{
         mode: :development_fixture,
         option_order: Enum.map(question.options, &option_id(question, &1))
@@ -114,7 +127,7 @@ defmodule Roughly.Dev.Seeds do
       category: question.category,
       options:
         Enum.map(question.options, &Roughly.Questions.Option.new(option_id(question, &1), &1)),
-      question_type: if(length(question.options) == 2, do: :binary, else: :single_choice)
+      question_type: question.question_type
     }
   end
 

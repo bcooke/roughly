@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 const props = defineProps<{ path: string }>()
 const copied = ref(false)
 const fallback = ref('')
+watch(() => props.path, () => { copied.value = false; fallback.value = '' })
 async function copyLink() {
   const url = new URL(props.path, window.location.origin).href
   try {

@@ -10,7 +10,16 @@ defmodule Roughly.Dev.SeedCatalog do
   def questions do
     Enum.map(@questions, fn question ->
       slug = Instrument.slug_base(question.text)
-      question |> Map.put(:slug, slug) |> Map.put(:uuid, Identity.uuid("question:#{slug}"))
+
+      question
+      |> Map.put(:question_type, kind(question))
+      |> Map.put(:slug, slug)
+      |> Map.put(:uuid, Identity.uuid("question:#{slug}"))
     end)
   end
+
+  defp kind(%{question_type: "ordered_scale"}), do: :ordered_scale
+  defp kind(%{question_type: "multiple_select"}), do: :multiple_select
+  defp kind(%{options: [_, _]}), do: :binary
+  defp kind(_), do: :single_choice
 end

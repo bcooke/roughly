@@ -60,7 +60,13 @@ defmodule Roughly.Questions do
 
   @spec related_questions(Roughly.Analysis.Result.t()) :: [Roughly.Analysis.Result.t()]
   def related_questions(question) do
-    result = list_questions(category: question.category, exclude: question.uuid, page_size: 4)
+    result =
+      list_questions(
+        category: question.category || "All topics",
+        exclude: question.uuid,
+        page_size: 4
+      )
+
     result.entries
   end
 end
