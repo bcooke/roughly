@@ -19,3 +19,5 @@ A source can provide stronger evidence for a particular claim without being auth
 Surveys, administrative records, observations, and other datasets can support different targets. The product ambition is not confined to collecting poll answers. A broader source model needs explicit provenance and interpretation; it is a direction to investigate rather than an implemented ingestion capability.
 
 [Polling Methodology](Polling%20Methodology.md) addresses survey-specific limits. [Read Models](Read%20Models.md) explains why application records and derived counts have an internal provenance, while [Development Fixtures](Development%20Fixtures.md) supplies no empirical evidence at all.
+
+[Answer statements and population predicates](discovery/2026-11-03-answer-statements.md) proposes an explicit relationship between an option, the proposition it expresses, a target population, and an observed proportion. Readable answer routes alone do not supply that semantic contract.

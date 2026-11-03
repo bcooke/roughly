@@ -34,6 +34,8 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 
 ## Investigation
 
+- [Answer statements and population predicates](../discovery/2026-11-03-answer-statements.md): proposed semantics for option-specific propositions and scoped proportions.
+
 - [Ideas and open questions](../discovery/ideas/README.md): visualization, imagery, collection variants, and public data access.
 
 - [Question meaning and population intersections](../discovery/2026-11-02-question-meaning-and-intersections.md): conditional counts and preserving exact instruments.

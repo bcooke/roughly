@@ -18,5 +18,3 @@ Public slugs describe the question; internal instrument UUIDs remain separate. [
 [Answer Discovery](Answer%20Discovery.md) defines readable option-specific routes and canonical metadata. [Response History](Response%20History.md) and [Population Analysis](Population%20Analysis.md) define shareable live exploration state; none of these views constitutes an immutable evidence release.
 
 Closing collection preserves the question and answer evidence addresses. Active browsing can omit closed instruments while direct reads and the sitemap retain them; collection admission remains closed.
-
-Closing collection preserves the question and answer evidence addresses. Active browsing can omit closed instruments while direct reads and the sitemap retain them; collection admission remains closed.

@@ -26,3 +26,5 @@ This is a dated orientation across the project's connected notes, not a second b
 | Event sourcing, domain contracts, authorization, portable repo knowledge, lightweight PR process, tool-agnostic guidance | [Architecture](../System%20Architecture.md), [Project Workflow](../Project%20Workflow.md) | Foundation implemented with documented limits; public authentication and stronger release controls remain future work |
 
 Question exploration and a scoped population comparison are implemented. Topic-graph discovery and richer multi-question exploration remain useful subsequent slices. This sequence does not close the research questions above. [Project Status](../../PROJECT_STATUS.md) remains the orientation to runtime capabilities; delivery records own individual implementation evidence.
+
+The [2026-11-03 answer-statement investigation](2026-11-03-answer-statements.md) develops the missing semantic relationship between options, propositions, population predicates, and rendered facts. Option routes are implemented; curated proposition definitions are not.
