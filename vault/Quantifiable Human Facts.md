@@ -15,3 +15,5 @@ Subjective phenomena also admit empirical questions. “Red is a better color”
 A helpful philosophical parallel for that last distinction is Searle's separation of the subjectivity of a phenomenon from the possibility of objective claims about it. His [1995 discussion](https://www.nybooks.com/articles/1995/11/16/the-mystery-of-consciousness-part-ii/) concerns consciousness; applying the distinction here is an interpretation, not a claim that his theory defines Roughly's whole scope.
 
 [Claims and Evidence](Claims%20and%20Evidence.md) separates the target quantity from what a source establishes. [Polling Methodology](Polling%20Methodology.md) addresses surveys as one evidence source. [Product Vision](Product%20Vision.md) supplies the project's public purpose.
+
+[Population Proportions](Population%20Proportions.md) formalizes a finite-population working scope. The [knowledge and measurement review](discovery/2026-11-03-knowledge-and-measurement.md) examines broader predecessors without claiming a newly discovered category of knowledge.

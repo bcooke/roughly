@@ -22,6 +22,10 @@ defmodule RoughlyWeb.Router do
     get "/sitemaps/questions/:page", SitemapController, :questions
     live "/search", SearchLive
     live "/about", AboutLive
+    live "/guide", GuideLive, :index
+    live "/guide/percentages", GuideLive, :percentages
+    live "/guide/knowledge", GuideLive, :knowledge
+    live "/guide/reading", GuideLive, :reading
     live "/", ExploreLive
     live "/questions/:slug/answers/:answer_slug", QuestionLive
     live "/questions/:slug", QuestionLive

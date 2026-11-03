@@ -20,6 +20,8 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 
 ## Facts and evidence
 
+- [Population Proportions](../Population%20Proportions.md): conditions, targets, observations, and a finite-population formalization.
+
 - [Quantifiable Human Facts](../Quantifiable%20Human%20Facts.md): experiences, actions, circumstances, and preferences.
 - [Claims and Evidence](../Claims%20and%20Evidence.md): target quantities, observations, and inference.
 
@@ -33,6 +35,9 @@ Questions, interpretation, participation, and the experience of exploring Roughl
 - [Development Fixtures](../Development%20Fixtures.md): fictional examples and provenance.
 
 ## Investigation
+
+- [Knowledge and measurement foundations](../discovery/2026-11-03-knowledge-and-measurement.md): broad primary-source review and limits of the connections.
+- [Guide and essays](../discovery/2026-11-03-guide-and-essays.md): maintained public explanations and a possible dated essay series.
 
 - [Answer statements and population predicates](../discovery/2026-11-03-answer-statements.md): proposed semantics for option-specific propositions and scoped proportions.
 

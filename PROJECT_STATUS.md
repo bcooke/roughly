@@ -1,6 +1,6 @@
 # Project Status
 
-Updated November 2, 2026.
+Updated November 3, 2026.
 
 ## Current milestone
 
@@ -12,7 +12,8 @@ A locally seeded application on a fresh Phoenix 1.8.16 foundation. Vue 3 and Liv
 - Global search with live suggestions, keyboard navigation, session recents, typo tolerance, word variants, result previews, and shareable filtered results. Readable question URLs use event-sourced collision claims. See [T-2026-018](vault/delivery/tasks/T-2026-018-search-and-question-links.md).
 - Event-derived historical snapshots, date/response-count trends, cutoff-aware population intersections, and focused answer URLs with server-rendered discovery metadata. See [T-2026-020](vault/delivery/tasks/T-2026-020-evidence-exploration.md).
 - Question exploration with distribution/table views, percentage/count display, ordered-scale columns, multiple-selection bars, and shareable view state. See [T-2026-019](vault/delivery/tasks/T-2026-019-question-exploration.md).
-- A plain About page and a simplified interface without repeated fixture notices or promotional slogans.
+- A maintained public Guide with definitions, knowledge/evidence explanations, and a broad reading map, alongside a short About page. [T-2026-022](vault/delivery/tasks/T-2026-022-knowledge-guide.md) records the research and publication slice.
+- Question pages use a shared aligned shell, responsive supporting sidebar, and adjacent analysis panels on wide screens. See [T-2026-021](vault/delivery/tasks/T-2026-021-question-page-layout.md).
 - Development fixtures seeded through Commanded: 209 questions across 18 topics, 360 invented participants, and 33,177 responses. Reruns preserve counts. These are invented local development data, not collected polling evidence.
 - Ecto and EventStore setup, supervised projectors, regression tests, and query/LiveView tests.
 - Shared contributor instructions, linked atomic notes, dated discovery, and decision records.

@@ -28,3 +28,5 @@ This is a dated orientation across the project's connected notes, not a second b
 Question exploration and a scoped population comparison are implemented. Topic-graph discovery and richer multi-question exploration remain useful subsequent slices. This sequence does not close the research questions above. [Project Status](../../PROJECT_STATUS.md) remains the orientation to runtime capabilities; delivery records own individual implementation evidence.
 
 The [2026-11-03 answer-statement investigation](2026-11-03-answer-statements.md) develops the missing semantic relationship between options, propositions, population predicates, and rendered facts. Option routes are implemented; curated proposition definitions are not.
+
+The [2026-11-03 foundations review](2026-11-03-knowledge-and-measurement.md) broadens the philosophical, measurement, sampling, and crowd-judgment research. [Population Proportions](../Population%20Proportions.md) defines a working target space; the public Guide offers the first explanations and source map. [Guide and essays](2026-11-03-guide-and-essays.md) preserves the proposed complementary essay series.
