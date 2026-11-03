@@ -8,6 +8,8 @@ updated: 2026-11-03
 
 # Knowledge foundations and public guide
 
+[PR #21](https://github.com/bcooke/roughly/pull/21) contains the guide, research, and validation.
+
 ## Outcome
 
 Research related ideas across philosophy, language, logic, measurement, sampling, and collective intelligence. Define a finite-population working scope and shared vocabulary without claiming a new theory or collapsing targets into observations. Give readers a maintained public Guide, with definitions, an explanation of knowledge and evidence, and a grouped source map.
