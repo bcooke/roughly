@@ -29,6 +29,10 @@ defmodule RoughlyWeb.AboutLive do
         <p>
           The answers depend on who takes part, how a question is asked, and how the data is collected. A percentage of respondents does not automatically describe the wider population.
         </p>
+        <p>
+          The <.link id="about-guide" navigate={~p"/guide"}>Guide to Roughly</.link>
+          explains the definitions, evidence, and ideas behind the project.
+        </p>
         <h2>An open project</h2>
         <p>
           Roughly is free and open source. The aim is to build a shared resource without a commercial incentive shaping the data.

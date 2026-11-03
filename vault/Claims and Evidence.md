@@ -21,3 +21,7 @@ Surveys, administrative records, observations, and other datasets can support di
 [Polling Methodology](Polling%20Methodology.md) addresses survey-specific limits. [Read Models](Read%20Models.md) explains why application records and derived counts have an internal provenance, while [Development Fixtures](Development%20Fixtures.md) supplies no empirical evidence at all.
 
 [Answer statements and population predicates](discovery/2026-11-03-answer-statements.md) proposes an explicit relationship between an option, the proposition it expresses, a target population, and an observed proportion. Readable answer routes alone do not supply that semantic contract.
+
+[Population Proportions](Population%20Proportions.md) distinguishes a condition, a proposition, a target quantity, and a quantitative claim. The [research review](discovery/2026-11-03-knowledge-and-measurement.md) records the philosophical and statistical grounds for this working vocabulary.
+
+[Population Proportions](Population%20Proportions.md) also distinguishes a target space from what an evidence model can identify, with an original finite-population bounds example. Identification is conditional on observations and assumptions; it is not a general guarantee of knowability.

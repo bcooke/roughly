@@ -26,9 +26,18 @@ defmodule RoughlyWeb.PageMetadata do
         end
 
       _ ->
-        assign(conn, :page_metadata, default(conn.request_path))
+        page = RoughlyWeb.GuidePages.for_path(conn.request_path)
+
+        assign(
+          conn,
+          :page_metadata,
+          if(page, do: for_guide(page), else: default(conn.request_path))
+        )
     end
   end
+
+  @spec for_guide(map()) :: map()
+  def for_guide(page), do: metadata(page.title, page.description, page.path, false)
 
   @spec for_question(Roughly.Analysis.Result.t(), String.t() | nil, boolean()) :: map()
   def for_question(question, answer_slug \\ nil, filtered? \\ false) do

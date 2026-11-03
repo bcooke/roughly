@@ -8,6 +8,8 @@ status: open
 
 An answer option can identify a proposition as well as a selectable response. For “How often do you do X?”, the label “Sometimes” can correspond to “does X sometimes.” Each option can then support a proportion statement: “[share] of [population] do X sometimes.” Formalizing that relationship is domain work, not merely search copywriting. The terminology below is provisional; it does not establish a new philosophical category or an implemented schema.
 
+[Population Proportions](../Population%20Proportions.md) refines the vocabulary: an open condition becomes a proposition when applied to a subject and scope. The [research review](2026-11-03-knowledge-and-measurement.md) grounds that distinction in broader prior art. The proposed sentence contract below remains unimplemented.
+
 ## Separate meaning from measurement
 
 | Element | Proposed role |
