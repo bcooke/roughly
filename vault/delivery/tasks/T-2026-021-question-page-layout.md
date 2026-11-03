@@ -8,6 +8,8 @@ updated: 2026-11-03
 
 # Question page layout and shared page edges
 
+[PR #20](https://github.com/bcooke/roughly/pull/20) contains the implementation and validation.
+
 ## Outcome
 
 Align navigation, divider, main content, and footer on one shared shell. Put question evidence in the main column and supporting navigation, counting details, and related questions in a responsive sidebar. Replace nominal donuts with shared-baseline bars, condense the header and answer summary, and place time and population analysis alongside each other on wide screens. Optional controls use native disclosures; narrow views retain section navigation and stack content.
