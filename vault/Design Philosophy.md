@@ -6,6 +6,8 @@ type: note
 
 Roughly's interface makes questions, answer distributions, and their context easy to inspect. A restrained white and gray base supports functional accents, readable typography, and clear interaction states. The approximately-equal symbol, ≈, expresses the project's commitment to approximation rather than unwarranted certainty.
 
+Useful density comes from organizing evidence and controls, with consistent page edges and a clear home for supporting context. Avoid oversized summaries and repeated explanatory cards that add scrolling without adding information.
+
 A chart's visual emphasis must not outrun the strength of its evidence. Result explanations should give useful information without crowding browsing with engineering caveats or persuasive slogans. See [Polling Methodology](Polling%20Methodology.md).
 
 Navigation and participation design are also part of measurement: presentation can change what people notice and how they answer. Evaluate those choices using [Results Exposure](Results%20Exposure.md), rather than treating conversion or engagement alone as success.

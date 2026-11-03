@@ -8,11 +8,13 @@ A result view presents a declared denominator and the observations counted again
 
 ## Question views
 
-The [question page](../lib/roughly_web/live/question_live.ex) chooses a part-to-whole donut for small binary/single-choice option sets, independent horizontal bars for multiple selections or longer nominal lists, and columns in instrument order for ordered scales. Geometry uses unrounded count ratios; displayed percentages are rounded. Ordinal positions do not establish equal numerical intervals. Multiple-selection shares use respondents as their denominator and need not sum to 100%.
+The [question page](../lib/roughly_web/live/question_live.ex) uses horizontal bars with a shared baseline for binary, single-choice, and multiple-selection answers, and columns in instrument order for ordered scales. Geometry uses unrounded count ratios; displayed percentages are rounded. Ordinal positions do not establish equal numerical intervals. Multiple-selection shares use respondents as their denominator and need not sum to 100%.
 
 All views preserve option order and stable answer identities. Labels and counts accompany color, and a semantic table provides the same counts and shares. An empty denominator has an explicit empty state rather than an invented leading answer. Percentage/count display changes annotation, while chart geometry remains a response share.
 
 Chart/table and displayed-unit choices are URL state. [Question Links](Question%20Links.md) can preserve that view, but a changing result remains distinct from a versioned evidence citation. The page exposes no individual response histories.
+
+A shared page shell aligns navigation, content, and footer edges. Question views give primary evidence the main column and supporting navigation, counting details, and related questions a sidebar. Time and population panels sit alongside each other when space permits; narrow layouts stack them and retain section links. Optional date settings and comparison-question search use disclosures without hiding the distributions themselves.
 
 ## Further analysis
 

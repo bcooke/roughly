@@ -9,287 +9,267 @@
       <.link navigate={~p"/"}>Questions</.link><.icon name="hero-chevron-right" class="size-3" />
       <.link navigate={topic_path(@question.category)}>{@question.category || "All topics"}</.link>
     </nav>
-    <header class="question-heading">
-      <p class="question-format">{format_name(@question.question_type)}</p>
-      <h1 id="question-title">{@question.text}</h1>
-      <div class="question-meta">
-        <span id="response-total"><span class="response-dot"></span>{if @suppressed,
-          do: "Small group",
-          else:
-            "#{number(@question.total)} #{if @question.total == 1, do: "response", else: "responses"}"}</span>
-        <span>{@option_count} options</span>
-        <a href="#methodology">About these results
-        <.icon name="hero-arrow-down-right" class="size-3" /></a>
-      </div>
-    </header>
-    <section
-      id="answer-summary-panel"
-      class="answer-summary-panel"
-    >
-      <meta itemprop="name" content={@question.text} />
-      <p class="result-eyebrow">
-        {if @state.population, do: "SELECTED POPULATION", else: "RECORDED RESPONSES"}
-      </p>
-      <h2 :if={@focus_label} id="answer-detail-title">{@focus_label}</h2>
-      <p id="answer-summary" itemprop="description">{@answer_summary}</p>
-      <div class="answer-summary-context">
-        <span :if={@state.population}>{@state.source.text} → {@state.option.label}</span><span :if={
-          @state.as_of
-        }>Through {Calendar.strftime(@state.as_of, "%B %-d, %Y")}</span><span>Unweighted responses to this question</span><.link
-          :if={@focus_label}
-          navigate={~p"/questions/#{@question.slug}"}
-        >All answers <.icon name="hero-arrow-up-right" class="size-3" /></.link>
-      </div>
-    </section>
-    <nav class="question-section-nav" aria-label="Explore this question">
-      <a href="#results">Breakdown</a><a href="#trends">Over time</a><a href="#population-comparison">Compare populations</a>
-    </nav>
-    <div :if={@state.population} class="population-active">
-      <.icon name="hero-funnel" class="size-4" /><span>{@state.option.label}
-      <small>Answers to “{@state.source.text}”</small></span><.link
-        id="clear-population"
-        patch={explore_path(@question, @route_params, %{"population" => nil, "option" => nil})}
-      >Clear <.icon name="hero-x-mark" class="size-3" /></.link>
-    </div>
-    <section id="results" class="question-results" aria-labelledby="results-title">
-      <div class="question-results-toolbar">
-        <div>
-          <p class="result-eyebrow">
-            {if @state.population, do: "SELECTED POPULATION", else: "ALL RESPONSES"}
-          </p><h2 id="results-title">The breakdown</h2>
-        </div>
-        <nav class="result-view-switch" aria-label="Result view">
-          <.link
-            id="view-chart"
-            patch={result_path(@question, "chart", @metric, @analysis_params)}
-            aria-current={@view == "chart" && "page"}
-            class={[@view == "chart" && "selected"]}
-          ><.icon name="hero-chart-pie" class="size-4" /> Chart</.link>
-          <.link
-            id="view-table"
-            patch={result_path(@question, "table", @metric, @analysis_params)}
-            aria-current={@view == "table" && "page"}
-            class={[@view == "table" && "selected"]}
-          ><.icon name="hero-table-cells" class="size-4" /> Table</.link>
-        </nav>
-      </div>
-      <div :if={@suppressed} id="insufficient-responses" class="question-empty">
-        <.icon name="hero-user-group" class="size-10" /><h3>
-          Not enough responses in this group.
-        </h3><p>Breakdowns need at least 10 eligible responses.</p>
-      </div>
-      <div :if={@question.total == 0 && !@suppressed} id="no-responses" class="question-empty">
-        <.icon name="hero-chart-pie" class="size-10" /><h3>No responses yet.</h3><p>
-          There isn’t a distribution to show yet.
-        </p>
-      </div>
-      <div
-        :if={@question.total > 0 && @view == "chart"}
-        id="distribution-chart"
-        data-chart={@chart}
-        class={["distribution-layout", "distribution-#{@chart}"]}
-      >
-        <figure :if={@chart == "donut"} class="donut-figure" aria-label="Answer distribution">
-          <svg viewBox="0 0 240 240" role="img" aria-labelledby="donut-title donut-description">
-            <title id="donut-title">Answer distribution</title><desc id="donut-description">
-              Each arc shows an option’s share of {@question.total} responses. Exact counts follow the chart.
-            </desc>
-            <circle cx="120" cy="120" r="91" fill="none" stroke="#eef1e8" stroke-width="28" />
-            <g id="donut-segments" phx-update="stream" transform="rotate(-90 120 120)">
-              <circle
-                :for={{id, answer} <- @streams.segments}
-                id={id}
-                cx="120"
-                cy="120"
-                r="91"
-                fill="none"
-                stroke={answer.color}
-                stroke-width="28"
-                pathLength="100"
-                stroke-dasharray={"#{answer.share} #{100 - answer.share}"}
-                stroke-dashoffset={answer.offset}
-              >
-                <title>{answer.label}: {answer.percentage}% ({answer.count} responses)</title>
-              </circle>
-            </g>
-          </svg>
-          <div class="donut-center">
-            <strong>{number(@question.total)}</strong><span>responses</span>
+    <.section_navigation id="question-mobile-navigation" class="question-mobile-nav" />
+    <div class="question-workspace">
+      <div class="question-main">
+        <header class="question-heading">
+          <h1 id="question-title">{@question.text}</h1>
+          <div class="question-meta">
+            <span id="response-total"><span class="response-dot"></span>{if @suppressed,
+              do: "Small group",
+              else:
+                "#{number(@question.total)} #{if @question.total == 1, do: "response", else: "responses"}"}</span>
+            <span>{format_name(@question.question_type)} · {@option_count} options</span>
+            <a href="#methodology">About these results
+            <.icon name="hero-arrow-down-right" class="size-3" /></a>
           </div>
-        </figure>
-        <div :if={@chart == "columns"} class="scale-distribution">
-          <div class="scale-axis"><span>100%</span><span>50%</span><span>0%</span></div>
-          <div id="scale-columns" phx-update="stream" class="scale-columns">
-            <div
-              :for={{id, answer} <- @streams.columns}
-              id={id}
-              class="scale-column"
-            >
-              <div class="scale-bar-space">
-                <strong style={"bottom: calc(#{answer.share}% + 7px)"}>{value(answer, @metric)}</strong><div
-                  class="scale-bar"
-                  style={"height: #{answer.share}%; background: #{answer.color}"}
+          <section
+            id="answer-summary-panel"
+            class="answer-summary-panel"
+          >
+            <meta itemprop="name" content={@question.text} />
+
+            <h2 :if={@focus_label} id="answer-detail-title">{@focus_label}</h2>
+            <p id="answer-summary" itemprop="description">{@answer_summary}</p>
+            <div class="answer-summary-context">
+              <span :if={@state.population}>{@state.source.text} → {@state.option.label}</span><span :if={
+                @state.as_of
+              }>Through {Calendar.strftime(@state.as_of, "%B %-d, %Y")}</span><span>Unweighted responses to this question</span><.link
+                :if={@focus_label}
+                navigate={~p"/questions/#{@question.slug}"}
+              >All answers <.icon name="hero-arrow-up-right" class="size-3" /></.link>
+            </div>
+          </section>
+        </header>
+        <div :if={@state.population} class="population-active">
+          <.icon name="hero-funnel" class="size-4" /><span>{@state.option.label}
+          <small>Answers to “{@state.source.text}”</small></span><.link
+            id="clear-population"
+            patch={
+              explore_path(@question, @route_params, %{"population" => nil, "option" => nil})
+            }
+          >Clear <.icon name="hero-x-mark" class="size-3" /></.link>
+        </div>
+        <section id="results" class="question-results" aria-labelledby="results-title">
+          <div class="question-results-toolbar">
+            <div>
+              <h2 id="results-title">Answer distribution</h2>
+            </div>
+            <div class="results-display-controls">
+              <nav class="distribution-unit-switch" aria-label="Display values">
+                <.link
+                  id="metric-percentage"
+                  patch={result_path(@question, @view, "percentage", @analysis_params)}
+                  class={[@metric == "percentage" && "selected"]}
+                >%</.link><.link
+                  id="metric-count"
+                  patch={result_path(@question, @view, "count", @analysis_params)}
+                  class={[@metric == "count" && "selected"]}
+                >Count</.link>
+              </nav>
+
+              <nav class="result-view-switch" aria-label="Result view">
+                <.link
+                  id="view-chart"
+                  patch={result_path(@question, "chart", @metric, @analysis_params)}
+                  aria-current={@view == "chart" && "page"}
+                  class={[@view == "chart" && "selected"]}
+                ><.icon name="hero-chart-bar" class="size-4" /> Chart</.link>
+                <.link
+                  id="view-table"
+                  patch={result_path(@question, "table", @metric, @analysis_params)}
+                  aria-current={@view == "table" && "page"}
+                  class={[@view == "table" && "selected"]}
+                ><.icon name="hero-table-cells" class="size-4" /> Table</.link>
+              </nav>
+            </div>
+          </div>
+          <div :if={@suppressed} id="insufficient-responses" class="question-empty">
+            <.icon name="hero-user-group" class="size-10" /><h3>
+              Not enough responses in this group.
+            </h3><p>Breakdowns need at least 10 eligible responses.</p>
+          </div>
+          <div :if={@question.total == 0 && !@suppressed} id="no-responses" class="question-empty">
+            <.icon name="hero-chart-pie" class="size-10" /><h3>No responses yet.</h3><p>
+              There isn’t a distribution to show yet.
+            </p>
+          </div>
+          <div
+            :if={@question.total > 0 && @view == "chart"}
+            id="distribution-chart"
+            data-chart={@chart}
+            class={["distribution-layout", "distribution-#{@chart}"]}
+          >
+            <div :if={@chart == "columns"} class="scale-distribution">
+              <div class="scale-axis"><span>100%</span><span>50%</span><span>0%</span></div>
+              <div id="scale-columns" phx-update="stream" class="scale-columns">
+                <div
+                  :for={{id, answer} <- @streams.columns}
+                  id={id}
+                  class="scale-column"
                 >
+                  <div class="scale-bar-space">
+                    <strong style={"bottom: calc(#{answer.share}% + 7px)"}>{value(answer, @metric)}</strong><div
+                      class="scale-bar"
+                      style={"height: #{answer.share}%; background: #{answer.color}"}
+                    >
+                    </div>
+                  </div><span>{answer.label}</span>
                 </div>
-              </div><span>{answer.label}</span>
+              </div>
+            </div>
+            <div class="distribution-key">
+              <div id="answer-breakdown" phx-update="stream">
+                <div
+                  :for={{id, answer} <- @streams.answers}
+                  id={id}
+                  class={[
+                    "distribution-answer",
+                    @focus && @focus.id == answer.id && "answer-focus"
+                  ]}
+                  itemprop="variableMeasured"
+                  itemscope
+                  itemtype="https://schema.org/PropertyValue"
+                >
+                  <meta itemprop="name" content={answer.label} /><meta
+                    itemprop="value"
+                    content={answer.percentage}
+                  /><meta itemprop="unitText" content="percent of eligible responses" /><meta
+                    itemprop="description"
+                    content={"#{answer.count} of #{@question.total} eligible responses"}
+                  />
+                  <div class="distribution-answer-main">
+                    <span class="answer-swatch" style={"background: #{answer.color}"}></span><.link navigate={
+                      answer_path(@question, answer.answer_slug, @route_params)
+                    }>{answer.label}</.link>
+                  </div>
+                  <div :if={@chart == "bars"} class="distribution-track">
+                    <div style={"width: #{answer.share}%; background: #{answer.color}"}></div>
+                  </div>
+                  <div class="distribution-answer-value">
+                    <strong>{value(answer, @metric)}</strong><small>{if @metric == "percentage",
+                      do: "#{number(answer.count)} responses",
+                      else: "#{answer.percentage}% of responses"}</small>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="distribution-key">
-          <div class="distribution-key-heading">
-            <span>Answer</span><nav aria-label="Display values">
-              <.link
-                id="metric-percentage"
-                patch={result_path(@question, @view, "percentage", @analysis_params)}
-                class={[@metric == "percentage" && "selected"]}
-              >%</.link><.link
-                id="metric-count"
-                patch={result_path(@question, @view, "count", @analysis_params)}
-                class={[@metric == "count" && "selected"]}
-              >Count</.link>
-            </nav>
+          <div :if={@view == "table" && @question.total > 0} class="answer-table-wrap">
+            <table id="answer-table">
+              <caption class="sr-only">
+                Answer counts and percentages for {@question.text}
+              </caption><thead>
+                <tr>
+                  <th scope="col">Answer</th><th scope="col">Responses</th><th scope="col">
+                    Share
+                  </th>
+                </tr>
+              </thead><tbody id="answer-table-rows" phx-update="stream">
+                <tr
+                  :for={{id, answer} <- @streams.table}
+                  id={id}
+                  itemprop="variableMeasured"
+                  itemscope
+                  itemtype="https://schema.org/PropertyValue"
+                >
+                  <th scope="row">
+                    <meta itemprop="name" content={answer.label} /><meta
+                      itemprop="value"
+                      content={answer.percentage}
+                    /><meta itemprop="unitText" content="percent of eligible responses" />
+                    <span class="answer-swatch" style={"background: #{answer.color}"}></span>{answer.label}
+                  </th><td>{number(answer.count)}</td><td>{answer.percentage}%</td>
+                </tr>
+              </tbody><tfoot>
+                <tr>
+                  <th scope="row">Respondents</th><td>{number(@question.total)}</td><td>
+                    {if @question.question_type == :multiple_select, do: "—", else: "100%"}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
-          <div id="answer-breakdown" phx-update="stream">
-            <div
-              :for={{id, answer} <- @streams.answers}
-              id={id}
-              class="distribution-answer"
-              itemprop="variableMeasured"
-              itemscope
-              itemtype="https://schema.org/PropertyValue"
-            >
-              <meta itemprop="name" content={answer.label} /><meta
-                itemprop="value"
-                content={answer.percentage}
-              /><meta itemprop="unitText" content="percent of eligible responses" /><meta
-                itemprop="description"
-                content={"#{answer.count} of #{@question.total} eligible responses"}
-              />
-              <div class="distribution-answer-main">
-                <span class="answer-swatch" style={"background: #{answer.color}"}></span><.link navigate={
-                  answer_path(@question, answer.answer_slug, @route_params)
-                }>{answer.label}</.link><strong>{value(
-                  answer,
-                  @metric
-                )}</strong>
-              </div>
-              <div :if={@chart == "bars"} class="distribution-track">
-                <div style={"width: #{answer.share}%; background: #{answer.color}"}></div>
-              </div>
-              <small>{if @metric == "percentage",
-                do: "#{number(answer.count)} responses",
-                else: "#{answer.percentage}% of responses"}</small>
-            </div>
+          <p
+            :if={@question.question_type == :multiple_select}
+            id="multiple-selection-method"
+            class="selection-explanation"
+          >
+            <.icon name="hero-check-circle" class="size-4" />Respondents can select more than one option. Shares can add up to more than 100%.
+          </p>
+          <div class="question-results-footer">
+            <span>Unweighted · {@question.language |> String.upcase()}</span><a
+              id="results-permalink"
+              href={result_path(@question, @view, @metric, @analysis_params) <> "#results"}
+              aria-label="Link to these results"
+            ><.icon name="hero-link" class="size-4" /> Link to results</a>
           </div>
-        </div>
-      </div>
-      <div :if={@view == "table" && @question.total > 0} class="answer-table-wrap">
-        <table id="answer-table">
-          <caption class="sr-only">Answer counts and percentages for {@question.text}</caption><thead>
-            <tr>
-              <th scope="col">Answer</th><th scope="col">Responses</th><th scope="col">Share</th>
-            </tr>
-          </thead><tbody id="answer-table-rows" phx-update="stream">
-            <tr
-              :for={{id, answer} <- @streams.table}
-              id={id}
-              itemprop="variableMeasured"
-              itemscope
-              itemtype="https://schema.org/PropertyValue"
-            >
-              <th scope="row">
-                <meta itemprop="name" content={answer.label} /><meta
-                  itemprop="value"
-                  content={answer.percentage}
-                /><meta itemprop="unitText" content="percent of eligible responses" />
-                <span class="answer-swatch" style={"background: #{answer.color}"}></span>{answer.label}
-              </th><td>{number(answer.count)}</td><td>{answer.percentage}%</td>
-            </tr>
-          </tbody><tfoot>
-            <tr>
-              <th scope="row">Respondents</th><td>{number(@question.total)}</td><td>
-                {if @question.question_type == :multiple_select, do: "—", else: "100%"}
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <p
-        :if={@question.question_type == :multiple_select}
-        id="multiple-selection-method"
-        class="selection-explanation"
-      >
-        <.icon name="hero-check-circle" class="size-4" />Respondents can select more than one option. Shares can add up to more than 100%.
-      </p>
-      <div class="question-results-footer">
-        <span>Unweighted · {@question.language |> String.upcase()}</span><a
-          id="results-permalink"
-          href={result_path(@question, @view, @metric, @analysis_params) <> "#results"}
-          aria-label="Link to these results"
-        ><.icon name="hero-link" class="size-4" /> Link to results</a>
-      </div>
-    </section>
-    <.exploration_sections
-      socket={@socket}
-      question={@question}
-      state={@state}
-      route_params={@route_params}
-      analysis_form={@analysis_form}
-      trend_has_data={@trend_has_data}
-      trend_points={@trend_points}
-      trend_answers={@trend_answers}
-      streams={@streams}
-      metric={@metric}
-      comparison={@comparison}
-      measure={@measure}
-      compare_form={@compare_form}
-      focus={@focus}
-    />
-    <div class="question-support-grid">
-      <section class="question-context">
-        <h2>The question</h2><blockquote>{@question.text}</blockquote><p>
-          {format_name(@question.question_type)} · {@option_count} options
-        </p>
-        <details id="methodology" class="question-methodology">
-          <summary>
-            How these results are counted <.icon name="hero-chevron-down" class="size-4" />
-          </summary><p>
-            Each percentage is the share of active responses to this exact question that selected that option. Withdrawn responses are excluded. Results are unweighted.
-          </p><p>
-            The people who responded are the denominator. These results do not establish the share of the wider population.
-          </p><p>
-            Answer-date history uses supplied answer dates where available and receipt dates otherwise. It is reconstructed from retained events; later corrections can revise earlier points. Receipt-date history shows what Roughly had recorded at each cutoff. Withdrawals remove a response from every public view.
-          </p><p>
-            Population groups use qualifying answers at the same cutoff as the target question. Missing qualifying answers are excluded, not treated as a negative. Groups can overlap. Small-group suppression is a display floor, not a complete privacy guarantee.
-          </p><p :if={@question.question_type == :ordered_scale}>
-            Options stay in the question’s order. Their spacing does not imply equal numerical intervals.
-          </p><.link navigate={~p"/about"}>About Roughly
-          <.icon name="hero-arrow-up-right" class="size-3" /></.link>
-        </details>
-        <.vue
-          id="share-question"
-          v-component="ShareQuestion"
-          v-socket={@socket}
-          v-ssr={false}
-          path={result_path(@question, @view, @metric, @analysis_params) <> "#results"}
+        </section>
+        <.exploration_sections
+          socket={@socket}
+          question={@question}
+          state={@state}
+          route_params={@route_params}
+          analysis_form={@analysis_form}
+          trend_has_data={@trend_has_data}
+          trend_points={@trend_points}
+          trend_answers={@trend_answers}
+          streams={@streams}
+          metric={@metric}
+          comparison={@comparison}
+          measure={@measure}
+          compare_form={@compare_form}
+          focus={@focus}
         />
-      </section>
-      <aside class="question-related">
-        <div class="question-related-heading">
-          <h2>More in {@question.category || "Questions"}</h2><.link navigate={
-            topic_path(@question.category)
-          }>View topic <.icon name="hero-arrow-up-right" class="size-3" /></.link>
-        </div><div id="related-questions" phx-update="stream">
-          <.link
-            :for={{id, related} <- @streams.related}
-            id={id}
-            navigate={~p"/questions/#{related.slug}"}
-            class="question-related-link"
-          ><span>{related.text}<small>{number(related.total)} responses</small></span><.icon
-            name="hero-arrow-up-right"
-            class="size-4"
-          /></.link>
-        </div>
+      </div>
+      <aside id="question-sidebar" class="question-sidebar">
+        <.section_navigation id="question-section-navigation" class="question-section-nav" />
+
+        <section class="question-context">
+          <h2>About this question</h2><p>
+            {format_name(@question.question_type)} · {@option_count} options
+          </p>
+          <details id="methodology" class="question-methodology">
+            <summary>
+              How these results are counted <.icon name="hero-chevron-down" class="size-4" />
+            </summary><p>
+              Each percentage is the share of active responses to this exact question that selected that option. Withdrawn responses are excluded. Results are unweighted.
+            </p><p>
+              The people who responded are the denominator. These results do not establish the share of the wider population.
+            </p><p>
+              Answer-date history uses supplied answer dates where available and receipt dates otherwise. It is reconstructed from retained events; later corrections can revise earlier points. Receipt-date history shows what Roughly had recorded at each cutoff. Withdrawals remove a response from every public view.
+            </p><p>
+              Population groups use qualifying answers at the same cutoff as the target question. Missing qualifying answers are excluded, not treated as a negative. Groups can overlap. Small-group suppression is a display floor, not a complete privacy guarantee.
+            </p><p :if={@question.question_type == :ordered_scale}>
+              Options stay in the question’s order. Their spacing does not imply equal numerical intervals.
+            </p><.link navigate={~p"/about"}>About Roughly
+            <.icon name="hero-arrow-up-right" class="size-3" /></.link>
+          </details>
+          <.vue
+            id="share-question"
+            v-component="ShareQuestion"
+            v-socket={@socket}
+            v-ssr={false}
+            path={result_path(@question, @view, @metric, @analysis_params) <> "#results"}
+          />
+        </section>
+        <section class="question-related">
+          <div class="question-related-heading">
+            <h2>More in {@question.category || "Questions"}</h2><.link navigate={
+              topic_path(@question.category)
+            }>View topic <.icon name="hero-arrow-up-right" class="size-3" /></.link>
+          </div><div id="related-questions" phx-update="stream">
+            <.link
+              :for={{id, related} <- @streams.related}
+              id={id}
+              navigate={~p"/questions/#{related.slug}"}
+              class="question-related-link"
+            ><span>{related.text}<small>{number(related.total)} responses</small></span><.icon
+              name="hero-arrow-up-right"
+              class="size-4"
+            /></.link>
+          </div>
+        </section>
       </aside>
     </div>
   </article>

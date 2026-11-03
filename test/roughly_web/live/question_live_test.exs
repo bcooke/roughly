@@ -15,7 +15,7 @@ defmodule RoughlyWeb.QuestionLiveTest do
     response_fixture(q, "Yes")
     response_fixture(q, "No")
     {:ok, view, _} = live(conn, "/questions/coffee")
-    assert has_element?(view, "#distribution-chart[data-chart='donut']")
+    assert has_element?(view, "#distribution-chart[data-chart='bars']")
     assert has_element?(view, "#answer-0", "50.0%")
     view |> element("#view-table") |> render_click()
     assert_patch(view, "/questions/coffee?view=table")

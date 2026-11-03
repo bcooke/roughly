@@ -13,7 +13,6 @@ defmodule RoughlyWeb.QuestionLive do
      socket
      |> stream_configure(:related, dom_id: &"related-#{&1.slug}")
      |> stream_configure(:answers, dom_id: &"answer-#{&1.index}")
-     |> stream_configure(:segments, dom_id: &"segment-#{&1.index}")
      |> stream_configure(:columns, dom_id: &"scale-column-#{&1.index}")
      |> stream_configure(:table, dom_id: &"table-answer-#{&1.index}")
      |> stream_configure(:trend_rows, dom_id: &"trend-row-#{&1.key}")
@@ -24,7 +23,6 @@ defmodule RoughlyWeb.QuestionLive do
      |> stream(:groups, [])
      |> stream(:comparison_matches, [])
      |> stream(:featured, [])
-     |> stream(:segments, [])
      |> stream(:columns, [])
      |> stream(:table, [])
      |> stream(:related, [])
@@ -104,7 +102,6 @@ defmodule RoughlyWeb.QuestionLive do
        compare_form: to_form(%{"query" => ""}),
        analysis_form: analysis_form(state)
      )
-     |> stream(:segments, answers, reset: true)
      |> stream(:columns, answers, reset: true)
      |> stream(:table, answers, reset: true)
      |> stream(:answers, answers, reset: true)
@@ -201,216 +198,243 @@ defmodule RoughlyWeb.QuestionLive do
      )}
   end
 
+  defp section_navigation(assigns) do
+    ~H"""
+    <nav id={@id} class={@class} aria-label="Explore this question">
+      <a href="#results">Breakdown</a><a href="#trends">Over time</a><a href="#population-comparison">Compare populations</a>
+    </nav>
+    """
+  end
+
   defp exploration_sections(assigns) do
     ~H"""
-    <section id="trends" class="evidence-section" aria-labelledby="trends-title">
-      <div class="evidence-section-heading">
-        <div>
-          <h2 id="trends-title">
-            Answers over time
-          </h2>
-        </div><div class="trend-heading-tools">
-          <span class="evidence-badge">Cumulative</span><nav
-            class="trend-unit-switch"
-            aria-label="Trend values"
-          >
-            <.link
-              id="trend-unit-percentage"
-              patch={explore_path(@question, @route_params, %{"metric" => "percentage"})}
-              class={[@metric == "percentage" && "selected"]}
-            >%</.link><.link
-              id="trend-unit-count"
-              patch={explore_path(@question, @route_params, %{"metric" => "count"})}
-              class={[@metric == "count" && "selected"]}
-            >Count</.link>
-          </nav>
-        </div>
-      </div>
-      <.form
-        for={@analysis_form}
-        id="exploration-controls"
-        phx-change="explore"
-        class="exploration-controls"
-      >
-        <div class="evidence-select">
-          <.input
-            field={@analysis_form[:axis]}
-            id="trend-axis"
-            type="select"
-            label="Horizontal axis"
-            options={[{"Time", "date"}, {"Number of responses", "responses"}]}
-          /><.icon name="hero-chevron-down" class="size-4 evidence-select-arrow" />
-        </div>
-        <div class="evidence-select">
-          <.input
-            field={@analysis_form[:basis]}
-            id="trend-basis"
-            disabled={@state.axis == :responses}
-            type="select"
-            label="Date basis"
-            options={[{"Answer date", "answered"}, {"Receipt date", "recorded"}]}
-          /><.icon name="hero-chevron-down" class="size-4 evidence-select-arrow" />
-        </div>
-        <div class="evidence-select">
-          <.input
-            field={@analysis_form[:months]}
-            id="trend-range"
-            disabled={@state.axis == :responses}
-            type="select"
-            label="Range"
-            options={[{"3 months", "3"}, {"6 months", "6"}, {"12 months", "12"}, {"24 months", "24"}]}
-          /><.icon name="hero-chevron-down" class="size-4 evidence-select-arrow" />
-        </div>
-        <.input
-          field={@analysis_form[:as_of]}
-          id="analysis-as-of"
-          type="date"
-          label="Through date"
-          max={Date.to_iso8601(Date.utc_today())}
-        />
-      </.form>
-      <p class="evidence-caption">
-        {if @state.axis == :responses,
-          do:
-            "Distribution in receipt order, by total question responses. Selected populations use their own denominator.",
-          else: "Month-end distributions through the selected date."} {if @state.basis == :answered &&
-                                                                            @state.axis != :responses,
-                                                                          do:
-                                                                            "Supplied answer dates are used where available."}
-      </p>
-      <.vue
-        :if={@trend_has_data}
-        id="response-trend-chart"
-        v-component="TrendChart"
-        v-socket={@socket}
-        v-ssr={false}
-        points={@trend_points}
-        answers={@trend_answers}
-        metric={@metric}
-        focus_id={@focus && @focus.id}
-        axis={to_string(@state.axis)}
-        scoped={not is_nil(@state.population)}
-      />
-      <p :if={!@trend_has_data} id="trend-empty" class="evidence-empty">
-        No eligible dated responses in this range.
-      </p>
-      <details class="trend-data-table">
-        <summary>View the values <.icon name="hero-table-cells" class="size-4" /></summary><div class="evidence-table-scroll">
-          <table>
-            <caption class="sr-only">Cumulative response distributions at each checkpoint</caption><thead>
-              <tr>
-                <th scope="col">Checkpoint</th><th scope="col">Responses</th><th scope="col">
-                  Distribution
-                </th>
-              </tr>
-            </thead><tbody id="trend-data-rows" phx-update="stream">
-              <tr :for={{id, point} <- @streams.trend_rows} id={id}>
-                <th scope="row">{point.label}</th><td>
-                  {if is_nil(point.total), do: "—", else: number(point.total)}
-                </td><td>{point_breakdown(point)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </details>
-    </section>
-    <section id="population-comparison" class="evidence-section" aria-labelledby="comparison-title">
-      <div class="evidence-section-heading">
-        <div>
-          <h2 id="comparison-title">
-            Compare populations
-          </h2>
-        </div><.icon name="hero-user-group" class="size-5" />
-      </div>
-      <div id="comparison-featured" phx-update="stream" class="comparison-featured">
-        <.link
-          :for={{id, source} <- @streams.featured}
-          id={id}
-          patch={explore_path(@question, @route_params, %{"compare" => source.slug})}
-          class={[@comparison && @comparison.source.uuid == source.uuid && "selected"]}
-        >{dimension_label(source)}</.link>
-      </div>
-      <.form
-        for={@compare_form}
-        id="comparison-search"
-        phx-change="comparison_search"
-        phx-submit="comparison_search"
-        class="comparison-search"
-      >
-        <.icon name="hero-magnifying-glass" class="size-4" /><.input
-          field={@compare_form[:query]}
-          id="comparison-query"
-          placeholder="Or find another question to compare…"
-          aria-label="Find a question to compare"
-          phx-debounce="250"
-          maxlength="200"
-          autocomplete="off"
-        />
-      </.form>
-      <div id="comparison-search-matches" phx-update="stream" class="comparison-search-matches">
-        <.link
-          :for={{id, source} <- @streams.comparison_matches}
-          id={id}
-          patch={explore_path(@question, @route_params, %{"compare" => source.slug})}
-        >{source.text}<.icon name="hero-arrow-right" class="size-4" /></.link>
-      </div>
-      <div :if={@comparison} class="comparison-body">
-        <p :if={@state.population} class="evidence-caption">
-          Comparisons below use all respondents to this question.
-        </p>
-        <div class="comparison-context">
-          <span>Grouped by answers to</span><.link navigate={
-            ~p"/questions/#{@comparison.source.slug}"
-          }>{@comparison.source.text} <.icon name="hero-arrow-up-right" class="size-3" /></.link>
+    <div class="analysis-grid">
+      <section id="trends" class="evidence-section" aria-labelledby="trends-title">
+        <div class="evidence-section-heading">
+          <div>
+            <h2 id="trends-title">
+              Answers over time
+            </h2>
+          </div><div class="trend-heading-tools">
+            <span class="evidence-badge">Cumulative</span><nav
+              class="trend-unit-switch"
+              aria-label="Trend values"
+            >
+              <.link
+                id="trend-unit-percentage"
+                patch={explore_path(@question, @route_params, %{"metric" => "percentage"})}
+                class={[@metric == "percentage" && "selected"]}
+              >%</.link><.link
+                id="trend-unit-count"
+                patch={explore_path(@question, @route_params, %{"metric" => "count"})}
+                class={[@metric == "count" && "selected"]}
+              >Count</.link>
+            </nav>
+          </div>
         </div>
         <.form
-          for={to_form(%{"measure" => @measure.id})}
-          id="comparison-measure-form"
-          phx-change="comparison_measure"
-          class="comparison-measure"
+          for={@analysis_form}
+          id="exploration-controls"
+          phx-change="explore"
+          class="exploration-controls"
         >
           <div class="evidence-select">
             <.input
-              name="measure"
-              value={@measure.id}
-              id="comparison-measure"
+              field={@analysis_form[:axis]}
+              id="trend-axis"
               type="select"
-              label="Show share selecting"
-              options={Enum.map(@trend_answers, &{&1.label, &1.id})}
+              label="Horizontal axis"
+              options={[{"Time", "date"}, {"Number of responses", "responses"}]}
             /><.icon name="hero-chevron-down" class="size-4 evidence-select-arrow" />
           </div>
-        </.form>
-        <div id="comparison-groups" phx-update="stream" class="comparison-groups">
-          <div :for={{id, group} <- @streams.groups} id={id} class="comparison-group">
-            <div class="comparison-group-heading">
-              <strong>{group.label}</strong><span :if={group.suppressed} class="comparison-suppressed">Fewer than 10 eligible responses</span><span :if={
-                !group.suppressed
-              }><strong>{group.value.percentage}%</strong><small>{number(group.value.count)} of {number(
-                group.total
-              )} responses</small></span>
-            </div><div :if={!group.suppressed} class="comparison-track">
-              <div style={"width: #{group.value.percentage}%"}></div>
-            </div><.link
-              :if={!group.suppressed}
-              patch={
-                explore_path(@question, @route_params, %{
-                  "population" => @comparison.source.slug,
-                  "option" => group.id
-                })
-              }
-            >Explore this population <.icon name="hero-arrow-right" class="size-3" /></.link>
+          <div class="evidence-select">
+            <.input
+              field={@analysis_form[:months]}
+              id="trend-range"
+              disabled={@state.axis == :responses}
+              type="select"
+              label="Range"
+              options={[
+                {"3 months", "3"},
+                {"6 months", "6"},
+                {"12 months", "12"},
+                {"24 months", "24"}
+              ]}
+            /><.icon name="hero-chevron-down" class="size-4 evidence-select-arrow" />
           </div>
-        </div>
-        <p id="comparison-denominator" class="evidence-caption">
-          {number(@comparison.eligible)} respondents answered both questions; {number(
-            @comparison.missing
-          )} have no qualifying answer. Groups use their own eligible respondent denominator and may overlap.
+          <details class="timeline-date-options">
+            <summary>Date options <.icon name="hero-chevron-down" class="size-3" /></summary><div class="timeline-date-fields">
+              <div class="evidence-select">
+                <.input
+                  field={@analysis_form[:basis]}
+                  id="trend-basis"
+                  disabled={@state.axis == :responses}
+                  type="select"
+                  label="Date basis"
+                  options={[{"Answer date", "answered"}, {"Receipt date", "recorded"}]}
+                /><.icon name="hero-chevron-down" class="size-4 evidence-select-arrow" />
+              </div>
+              <.input
+                field={@analysis_form[:as_of]}
+                id="analysis-as-of"
+                type="date"
+                label="Through date"
+                max={Date.to_iso8601(Date.utc_today())}
+              />
+            </div>
+          </details>
+        </.form>
+        <p class="evidence-caption">
+          {if @state.axis == :responses,
+            do:
+              "Distribution in receipt order, by total question responses. Selected populations use their own denominator.",
+            else: "Month-end distributions through the selected date."} {if @state.basis == :answered &&
+                                                                              @state.axis !=
+                                                                                :responses,
+                                                                            do:
+                                                                              "Supplied answer dates are used where available."}
         </p>
-      </div>
-      <p :if={!@comparison} class="evidence-empty">
-        Choose a question to compare its answer-defined populations.
-      </p>
-    </section>
+        <.vue
+          :if={@trend_has_data}
+          id="response-trend-chart"
+          v-component="TrendChart"
+          v-socket={@socket}
+          v-ssr={false}
+          points={@trend_points}
+          answers={@trend_answers}
+          metric={@metric}
+          focus_id={@focus && @focus.id}
+          axis={to_string(@state.axis)}
+          scoped={not is_nil(@state.population)}
+        />
+        <p :if={!@trend_has_data} id="trend-empty" class="evidence-empty">
+          No eligible dated responses in this range.
+        </p>
+        <details class="trend-data-table">
+          <summary>View the values <.icon name="hero-table-cells" class="size-4" /></summary><div class="evidence-table-scroll">
+            <table>
+              <caption class="sr-only">Cumulative response distributions at each checkpoint</caption><thead>
+                <tr>
+                  <th scope="col">Checkpoint</th><th scope="col">Responses</th><th scope="col">
+                    Distribution
+                  </th>
+                </tr>
+              </thead><tbody id="trend-data-rows" phx-update="stream">
+                <tr :for={{id, point} <- @streams.trend_rows} id={id}>
+                  <th scope="row">{point.label}</th><td>
+                    {if is_nil(point.total), do: "—", else: number(point.total)}
+                  </td><td>{point_breakdown(point)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+      <section id="population-comparison" class="evidence-section" aria-labelledby="comparison-title">
+        <div class="evidence-section-heading">
+          <div>
+            <h2 id="comparison-title">
+              Compare populations
+            </h2>
+          </div><.icon name="hero-user-group" class="size-5" />
+        </div>
+        <div id="comparison-featured" phx-update="stream" class="comparison-featured">
+          <.link
+            :for={{id, source} <- @streams.featured}
+            id={id}
+            patch={explore_path(@question, @route_params, %{"compare" => source.slug})}
+            class={[@comparison && @comparison.source.uuid == source.uuid && "selected"]}
+          >{dimension_label(source)}</.link>
+        </div>
+        <details class="comparison-question-picker">
+          <summary>
+            Choose another question <.icon name="hero-magnifying-glass" class="size-3" />
+          </summary>
+
+          <.form
+            for={@compare_form}
+            id="comparison-search"
+            phx-change="comparison_search"
+            phx-submit="comparison_search"
+            class="comparison-search"
+          >
+            <.icon name="hero-magnifying-glass" class="size-4" /><.input
+              field={@compare_form[:query]}
+              id="comparison-query"
+              placeholder="Or find another question to compare…"
+              aria-label="Find a question to compare"
+              phx-debounce="250"
+              maxlength="200"
+              autocomplete="off"
+            />
+          </.form>
+          <div id="comparison-search-matches" phx-update="stream" class="comparison-search-matches">
+            <.link
+              :for={{id, source} <- @streams.comparison_matches}
+              id={id}
+              patch={explore_path(@question, @route_params, %{"compare" => source.slug})}
+            >{source.text}<.icon name="hero-arrow-right" class="size-4" /></.link>
+          </div>
+        </details>
+        <div :if={@comparison} class="comparison-body">
+          <p :if={@state.population} class="evidence-caption">
+            Comparisons below use all respondents to this question.
+          </p>
+          <div class="comparison-context">
+            <span>Grouped by answers to</span><.link navigate={
+              ~p"/questions/#{@comparison.source.slug}"
+            }>{@comparison.source.text} <.icon name="hero-arrow-up-right" class="size-3" /></.link>
+          </div>
+          <.form
+            for={to_form(%{"measure" => @measure.id})}
+            id="comparison-measure-form"
+            phx-change="comparison_measure"
+            class="comparison-measure"
+          >
+            <div class="evidence-select">
+              <.input
+                name="measure"
+                value={@measure.id}
+                id="comparison-measure"
+                type="select"
+                label="Show share selecting"
+                options={Enum.map(@trend_answers, &{&1.label, &1.id})}
+              /><.icon name="hero-chevron-down" class="size-4 evidence-select-arrow" />
+            </div>
+          </.form>
+          <div id="comparison-groups" phx-update="stream" class="comparison-groups">
+            <div :for={{id, group} <- @streams.groups} id={id} class="comparison-group">
+              <div class="comparison-group-heading">
+                <strong>{group.label}</strong><span
+                  :if={group.suppressed}
+                  class="comparison-suppressed"
+                >Fewer than 10 eligible responses</span><span :if={!group.suppressed}><strong>{group.value.percentage}%</strong><small>{number(
+                  group.value.count
+                )} of {number(group.total)} responses</small></span>
+              </div><div :if={!group.suppressed} class="comparison-track">
+                <div style={"width: #{group.value.percentage}%"}></div>
+              </div><.link
+                :if={!group.suppressed}
+                patch={
+                  explore_path(@question, @route_params, %{
+                    "population" => @comparison.source.slug,
+                    "option" => group.id
+                  })
+                }
+              ><span>Explore this population</span> <.icon name="hero-arrow-right" class="size-3" /></.link>
+            </div>
+          </div>
+          <p id="comparison-denominator" class="evidence-caption">
+            {number(@comparison.eligible)} respondents answered both questions; {number(
+              @comparison.missing
+            )} have no qualifying answer. Groups use their own eligible respondent denominator and may overlap.
+          </p>
+        </div>
+        <p :if={!@comparison} class="evidence-empty">
+          Choose a question to compare its answer-defined populations.
+        </p>
+      </section>
+    </div>
     """
   end
 
@@ -423,7 +447,6 @@ defmodule RoughlyWeb.QuestionLive do
   defp chart_type(nil), do: "bars"
   defp chart_type(%{question_type: :ordered_scale}), do: "columns"
   defp chart_type(%{question_type: :multiple_select}), do: "bars"
-  defp chart_type(%{answers: answers}) when length(answers) <= 6, do: "donut"
   defp chart_type(_), do: "bars"
 
   defp chart_answers(question) do
